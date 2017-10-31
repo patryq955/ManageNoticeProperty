@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -11,7 +12,7 @@ namespace ManageNoticeProperty.Models
         private int _flatId;
         private TypeFlat _typeFlat;
         private string _userId;
-        private string _quantityRoom;
+        private int _quantityRoom;
         private decimal _area;
         private int _condignation;
         private bool _isBalcon;
@@ -26,6 +27,8 @@ namespace ManageNoticeProperty.Models
         public virtual ICollection<Album> Album { get; set; }
         public virtual ICollection<Order> Order { get; set; }
 
+        public virtual ICollection<TypeFlat> TypeFlat { get; set; }
+
         public int FlatId
         {
             get
@@ -39,24 +42,16 @@ namespace ManageNoticeProperty.Models
             }
         }
 
-        public string QuantityRoom
+        [Range(1,20,ErrorMessage ="Ilość pokoi może wynosić 1-20")]
+        [Display(Name ="Ilość pokoi")]
+        public int QuantityRoom
         {
-            get { return QuantityRoom1; }
-            set { QuantityRoom1 = value; }
+            get { return _quantityRoom; }
+            set { _quantityRoom = value; }
         }
 
-        public TypeFlat TypeFlat
-        {
-            get
-            {
-                return _typeFlat;
-            }
+        public int TypeFlatID { get; set; }
 
-            set
-            {
-                _typeFlat = value;
-            }
-        }
 
         public string UserId
         {
@@ -71,19 +66,7 @@ namespace ManageNoticeProperty.Models
             }
         }
 
-        public string QuantityRoom1
-        {
-            get
-            {
-                return _quantityRoom;
-            }
-
-            set
-            {
-                _quantityRoom = value;
-            }
-        }
-
+        [Display(Name = "Powierzchnia")]
         public decimal Area
         {
             get
@@ -97,6 +80,7 @@ namespace ManageNoticeProperty.Models
             }
         }
 
+        [Display(Name ="Ilość kondygnacji")]
         public int Condignation
         {
             get
@@ -110,6 +94,7 @@ namespace ManageNoticeProperty.Models
             }
         }
 
+        [Display(Name = "Czy mieszkanie posiada balkon")]
         public bool IsBalcon
         {
             get
@@ -123,6 +108,8 @@ namespace ManageNoticeProperty.Models
             }
         }
 
+        [Required(ErrorMessage ="Podaj krótki opis mieszkania")]
+        [Display(Name = "Opis")]
         public string Description
         {
             get
@@ -149,6 +136,7 @@ namespace ManageNoticeProperty.Models
             }
         }
 
+        [Display(Name = "Cena")]
         public decimal Price
         {
             get
@@ -162,6 +150,8 @@ namespace ManageNoticeProperty.Models
             }
         }
 
+        [Display(Name = "Miasto")]
+        [Required(ErrorMessage ="Podaj miasto")]
         public string City
         {
             get
@@ -175,6 +165,8 @@ namespace ManageNoticeProperty.Models
             }
         }
 
+        [Display(Name = "Ulica")]
+        [Required(ErrorMessage ="Podaj nazwę ulicy")]
         public string Street
         {
             get
@@ -188,6 +180,9 @@ namespace ManageNoticeProperty.Models
             }
         }
 
+        [Display(Name = "Kod pocztowy")]
+        [RegularExpression("^[0-9][0-9]-[0-9][0-9][0-9]$")]
+        [Required(ErrorMessage ="Podaj kod pocztowy")]
         public string PostCode
         {
             get
@@ -214,13 +209,5 @@ namespace ManageNoticeProperty.Models
             }
         }
 
-    }
-
-    public enum TypeFlat
-    {
-        Datached,
-        Villa,
-        Farm,
-        Skyscraper
     }
 }

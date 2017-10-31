@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -71,6 +72,8 @@ namespace ManageNoticeProperty.Models
             }
         }
 
+        [Display(Name = "Treść wiadomości")]
+        [Required(ErrorMessage ="Dodaj treść wiadomości")]
         public string Description
         {
             get

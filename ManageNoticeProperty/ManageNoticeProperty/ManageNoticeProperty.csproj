@@ -206,6 +206,10 @@
     <Compile Include="Migrations\201710311732199_AddUsersAccount.Designer.cs">
       <DependentUpon>201710311732199_AddUsersAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710311939024_AddModel.cs" />
+    <Compile Include="Migrations\201710311939024_AddModel.Designer.cs">
+      <DependentUpon>201710311939024_AddModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -214,6 +218,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\TypeFlat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -290,6 +295,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201710311732199_AddUsersAccount.resx">
       <DependentUpon>201710311732199_AddUsersAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710311939024_AddModel.resx">
+      <DependentUpon>201710311939024_AddModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
