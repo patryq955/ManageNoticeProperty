@@ -7,16 +7,16 @@ using System.Web;
 
 namespace ManageNoticeProperty.DAL
 {
-    public class DbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbContext()
-            : base("DefaultConnection")
+        public ApplicationDbContext()
+            : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
 
-        public static DbContext Create()
+        public static ApplicationDbContext Create()
         {
-            return new DbContext();
+            return new ApplicationDbContext();
         }
     }
 }
