@@ -79,6 +79,13 @@ namespace ManageNoticeProperty.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [StringLength(20, ErrorMessage ="Numer telefonu jest za długi")]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Numer telefonu")]
+        public string PhoneNumber { get; set; }
+
     }
 
     public class ResetPasswordViewModel
