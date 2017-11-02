@@ -1,10 +1,6 @@
 ﻿using ManageNoticeProperty.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 
 namespace ManageNoticeProperty.DAL
 {
@@ -14,7 +10,7 @@ namespace ManageNoticeProperty.DAL
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
+        
         DbSet<Album> Album { get; set; }
         DbSet<Flat> Flat { get; set; }
         DbSet<Message> Message { get; set; }
