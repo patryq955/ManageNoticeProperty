@@ -14,7 +14,5 @@ namespace ManageNoticeProperty.Models
         [StringLength(50,ErrorMessage ="Nazwa typu mieszkania jest zbyt długa")]
         public string Name { get; set; }
 
-        IEnumerable<Flat> Flat { get; set; }
-
     }
 }

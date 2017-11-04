@@ -211,6 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="Controllers\PropertyController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -223,6 +224,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\LastVisit.cs" />
+    <Compile Include="Infrastructure\ILastVisit.cs" />
     <Compile Include="Migrations\201710311732199_AddUsersAccount.cs" />
     <Compile Include="Migrations\201710311732199_AddUsersAccount.Designer.cs">
       <DependentUpon>201710311732199_AddUsersAccount.cs</DependentUpon>
@@ -230,6 +233,14 @@
     <Compile Include="Migrations\201710311939024_AddModel.cs" />
     <Compile Include="Migrations\201710311939024_AddModel.Designer.cs">
       <DependentUpon>201710311939024_AddModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711041014304_repairError.cs" />
+    <Compile Include="Migrations\201711041014304_repairError.Designer.cs">
+      <DependentUpon>201711041014304_repairError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711041314237_deleteFkInTypeFlat.cs" />
+    <Compile Include="Migrations\201711041314237_deleteFkInTypeFlat.Designer.cs">
+      <DependentUpon>201711041314237_deleteFkInTypeFlat.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -241,9 +252,11 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Repository\AlbumRepository.cs" />
     <Compile Include="Models\Repository\IRepository.cs" />
+    <Compile Include="Models\Repository\TypeFlatRepository.cs" />
     <Compile Include="Models\TypeFlat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\FlatViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -303,9 +316,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Property\AddProperty.cshtml" />
+    <Content Include="Views\Property\GetProperty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\MyBase\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -321,6 +337,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710311939024_AddModel.resx">
       <DependentUpon>201710311939024_AddModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711041014304_repairError.resx">
+      <DependentUpon>201711041014304_repairError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711041314237_deleteFkInTypeFlat.resx">
+      <DependentUpon>201711041314237_deleteFkInTypeFlat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

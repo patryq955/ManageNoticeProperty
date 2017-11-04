@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace ManageNoticeProperty.App_Start
+namespace ManageNoticeProperty
 {
     public class RouteConfig
     {
@@ -13,6 +13,12 @@ namespace ManageNoticeProperty.App_Start
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute(
+                name: "Property",
+                url: "Nieruchomość-{id}",
+                defaults: new { controller = "Property", action = "GetProperty"}
+            );
+            
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
