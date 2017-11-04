@@ -27,96 +27,103 @@ namespace ManageNoticeProperty.Infrastructure
 
         public void AddLasstViewProperty(int id)
         {
-            _lastViewPropertyID.Insert(0, id.ToString());
-            if(_lastViewPropertyID.Count > 3)
-            {
-                _lastViewPropertyID.RemoveAt(_lastViewPropertyID.Count - 1);
-            }
 
-            saveCookie();
+            _lastViewPropertyID.Add(id.ToString());
+            if (_lastViewPropertyID.Count > 3)
+            {
+                _lastViewPropertyID.RemoveAt(0);
+            }
+            saveLastViewProperty();
         }
 
         public IList<string> GetLastViewProperty()
         {
-            throw new NotImplementedException();
+            return _lastViewPropertyID;
         }
 
         private void LoadCookie()
         {
-            if (_cookies[_nameCookie] == null)
+
+            foreach (var idCookie in _nameList.Reverse())
             {
-                return;
-            }
-            foreach (var nameValue in _nameList)
-            {
-                var value = _cookies[_nameCookie][nameValue] ?? null;
-                if (value != null)
+                if (_cookies[idCookie] != null)
                 {
-                    _lastViewPropertyID.Add(value);
+                    _lastViewPropertyID.Add(_cookies[idCookie]["ID"]);
                 }
-
+                else
+                {
+                    break;
+                }
             }
-
         }
 
-        private void saveCookie()
+        private void saveLastViewProperty()
         {
-            int numberName = 0;
-            foreach(var propertyID in _lastViewPropertyID)
+            int indexNameList = 2;
+            foreach (var idProperty in _lastViewPropertyID)
             {
-                if (_cookies[_nameCookie][_nameList[numberName]] == null)
+
+                if (_cookies[_nameList[indexNameList]] != null)
                 {
-                    _cookie = new HttpCookie(_nameList[numberName]);
+                    _cookies[_nameList[indexNameList]].Expires = DateTime.Now.AddDays(-1);
+
                 }
-                _cookies[_nameCookie][_nameList[numberName]] = propertyID;
-                numberName++;
+                _cookie = new HttpCookie(_nameList[indexNameList]);
+
+                _cookie["ID"] = idProperty;
+                HttpContext.Current.Response.Cookies.Add(_cookie);
+                indexNameList--;
             }
         }
 
         //public void AddLasstViewProperty(int id)
         //{
-
-        //    _lastViewPropertyID.Add(id.ToString());
-        //    if (_lastViewPropertyID.Count > 3)
+        //    _lastViewPropertyID.Insert(0, id.ToString());
+        //    if(_lastViewPropertyID.Count > 3)
         //    {
-        //        _lastViewPropertyID.RemoveAt(0);
+        //        _lastViewPropertyID.RemoveAt(_lastViewPropertyID.Count - 1);
         //    }
 
-
+        //    saveCookie();
         //}
 
         //public IList<string> GetLastViewProperty()
         //{
-        //    return _lastViewPropertyID;
+        //    throw new NotImplementedException();
         //}
 
         //private void LoadCookie()
         //{
-
-        //    foreach (var idCookie in _nameList.Reverse())
+        //    if (_cookies[_nameCookie] == null)
         //    {
-
-        //        if (_cookies[idCookie] != null)
-        //        {
-        //            _lastViewPropertyID.Add(_cookies[idCookie].Value);
-        //            break;
-        //        }
+        //        return;
         //    }
+        //    foreach (var nameValue in _nameList)
+        //    {
+        //        var value = _cookies[_nameCookie][nameValue] ?? null;
+        //        if (value != null)
+        //        {
+        //            _lastViewPropertyID.Add(value);
+        //        }
+
+        //    }
+
         //}
 
-        //private void saveLastViewProperty()
+        //private void saveCookie()
         //{
-        //    int indexNameList = 2;
-        //    _lastViewPropertyID.Clear();
-        //    foreach (var idProperty in _lastViewPropertyID)
+        //    int numberName = 0;
+        //    foreach(var propertyID in _lastViewPropertyID)
         //    {
-        //        HttpCookie cookie;
-        //        if (_cookies[_nameList[indexNameList]] == null)
+        //        if (_cookies[_nameCookie][_nameList[numberName]] == null)
         //        {
-        //            cookie = new HttpCookie(_nameList[indexNameList]);
+        //            _cookie = new HttpCookie(_nameList[numberName]);
         //        }
-        //        cookie[_nameList[indexNameList]] = "ss";
+        //        _cookies[_nameCookie][_nameList[numberName]] = propertyID;
+        //        numberName++;
         //    }
         //}
+
+
     }
 }
