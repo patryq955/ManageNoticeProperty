@@ -13,6 +13,7 @@ namespace ManageNoticeProperty.App_Start
     using Ninject.Web.Common.WebHost;
     using Models.Repository;
     using Models;
+    using Infrastructure;
 
     public static class NinjectWebCommon
     {
@@ -67,6 +68,9 @@ namespace ManageNoticeProperty.App_Start
             //kernel.Bind<IMailService>().To<BackgroundPostalMailService>();
             //kernel.Bind<IMailService>().To<PostalMailService>();
             kernel.Bind<IRepository<Album>>().To<AlbumRepository>();
+            kernel.Bind<IRepository<TypeFlat>>().To<TypeFlatRepository>();
+            kernel.Bind<IRepository<Flat>>().To<FlatRepository>();
+            kernel.Bind<ILastVisit>().To<LastVisit>();
         }
     }
 }

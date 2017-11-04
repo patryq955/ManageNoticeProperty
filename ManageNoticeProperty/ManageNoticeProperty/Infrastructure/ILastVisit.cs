@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ManageNoticeProperty.Infrastructure
 {
-    interface ILastVisit
+    public interface ILastVisit
     {
         void AddLasstViewProperty(int id);
         IList<string> GetLastViewProperty();

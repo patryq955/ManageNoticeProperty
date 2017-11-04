@@ -12,6 +12,7 @@ namespace ManageNoticeProperty.Infrastructure
     public class LastVisit : ILastVisit
     {
         private HttpCookieCollection _cookies;
+        private HttpCookie _cookie;
         private readonly string _nameCookie = "LastVisitPropertyID";
         readonly string[] _nameList = { "first", "second", "third" };
         private List<string> _lastViewPropertyID;
@@ -26,7 +27,13 @@ namespace ManageNoticeProperty.Infrastructure
 
         public void AddLasstViewProperty(int id)
         {
-            throw new NotImplementedException();
+            _lastViewPropertyID.Insert(0, id.ToString());
+            if(_lastViewPropertyID.Count > 3)
+            {
+                _lastViewPropertyID.RemoveAt(_lastViewPropertyID.Count - 1);
+            }
+
+            saveCookie();
         }
 
         public IList<string> GetLastViewProperty()
@@ -50,6 +57,20 @@ namespace ManageNoticeProperty.Infrastructure
 
             }
 
+        }
+
+        private void saveCookie()
+        {
+            int numberName = 0;
+            foreach(var propertyID in _lastViewPropertyID)
+            {
+                if (_cookies[_nameCookie][_nameList[numberName]] == null)
+                {
+                    _cookie = new HttpCookie(_nameList[numberName]);
+                }
+                _cookies[_nameCookie][_nameList[numberName]] = propertyID;
+                numberName++;
+            }
         }
 
         //public void AddLasstViewProperty(int id)

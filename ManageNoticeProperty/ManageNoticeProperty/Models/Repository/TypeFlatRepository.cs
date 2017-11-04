@@ -1,6 +1,7 @@
 ﻿using ManageNoticeProperty.DAL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -11,17 +12,17 @@ namespace ManageNoticeProperty.Models.Repository
         ApplicationDbContext db = new ApplicationDbContext();
         public void Add(TypeFlat entity)
         {
-            throw new NotImplementedException();
+            db.TypeFlat.Add(entity);
         }
 
         public void Delete(TypeFlat entity)
         {
-            throw new NotImplementedException();
+            db.TypeFlat.Remove(entity);
         }
 
         public TypeFlat GetID(int Id)
         {
-            throw new NotImplementedException();
+            return db.TypeFlat.Where(x => x.TypeFlatID == Id).FirstOrDefault();
         }
 
         public IEnumerable<TypeFlat> GetOverview(Func<TypeFlat, bool> predicate = null)
@@ -35,7 +36,12 @@ namespace ManageNoticeProperty.Models.Repository
 
         public void Update(TypeFlat entity)
         {
-            throw new NotImplementedException();
+            db.Entry(entity).State = EntityState.Modified;
+        }
+        
+        public void Save()
+        {
+            db.SaveChanges();
         }
     }
 }

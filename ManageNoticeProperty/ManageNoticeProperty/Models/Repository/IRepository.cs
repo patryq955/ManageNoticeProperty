@@ -16,5 +16,7 @@ namespace ManageNoticeProperty.Models.Repository
 
         void Delete(T entity);
 
+        void Save();
+
     }
 }

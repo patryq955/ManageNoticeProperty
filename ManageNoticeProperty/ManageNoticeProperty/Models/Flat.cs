@@ -28,13 +28,15 @@ namespace ManageNoticeProperty.Models
         public string City { get; set; }
 
         [Display(Name = "Powierzchnia")]
+        [Range(1,10000,ErrorMessage ="Powierzchnia jest za mała")]
         public decimal Area { get; set; }
 
-        [Range(1, 20, ErrorMessage = "Ilość pokoi może wynosić 1-20")]
+        [Range(1, 20, ErrorMessage = "Ilość pokoi może wynosić {1}-{2}")]
         [Display(Name = "Ilość pokoi")]
         public int QuantityRoom { get; set; }
 
         [Display(Name = "Ilość kondygnacji")]
+        [Range(1, 200,ErrorMessage = "Ilość kondygnacji musi zawierać sie w przedziale {1}-{2}")]
         public int Condignation { get; set; }
 
         [Display(Name = "Czy mieszkanie posiada balkon")]
@@ -54,16 +56,11 @@ namespace ManageNoticeProperty.Models
         public string Street { get; set; }
 
         [Display(Name = "Kod pocztowy")]
-        [RegularExpression("^[0-9][0-9]-[0-9][0-9][0-9]$")]
+        [RegularExpression("^[0-9][0-9]-[0-9][0-9][0-9]$",ErrorMessage ="Nieprawidłowy kod pocztowy")]
         [Required(ErrorMessage = "Podaj kod pocztowy")]
         public string PostCode { get; set; }
 
         public DateTime AddFlate { get; set; }
 
-        public void test()
-        {
-            TypeFlatRepository test = new TypeFlatRepository();
-            IList<TypeFlat> ss = test.GetOverview().ToList();
-        }
     }
 }

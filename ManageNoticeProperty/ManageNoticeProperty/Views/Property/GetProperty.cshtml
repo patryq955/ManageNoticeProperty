@@ -1,8 +1,20 @@
-﻿
+﻿@model  ManageNoticeProperty.Models.Flat
 @{
     ViewBag.Title = "GetProperty";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>GetProperty</h2>
+
+
+<div class="row">
+    <div class="col-lg-8 col-md-12">
+        @Model.City
+    </div>
+    <div class="col-lg-4 col-md-12">
+        @Model.Description
+    </div>
+
+
+</div>
 
