@@ -211,6 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="Controllers\AdminManagUserController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -320,9 +321,16 @@
     <Content Include="Views\Property\AddProperty.cshtml" />
     <Content Include="Views\Property\GetProperty.cshtml" />
     <Content Include="Views\Property\NothingProperty.cshtml" />
+    <Content Include="Views\Shared\_AddEditFlat.cshtml" />
+    <Content Include="Views\AdminManagUser\Delete.cshtml" />
+    <Content Include="Views\AdminManagUser\Edit.cshtml" />
+    <Content Include="Views\AdminManagUser\Index.cshtml" />
+    <Content Include="Views\Manage\ChangePasswordOtherUser.cshtml" />
+    <Content Include="Views\Property\RaportAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Admin\" />
     <Folder Include="Views\MyBase\" />
   </ItemGroup>
   <ItemGroup>

@@ -7,65 +7,7 @@
 <h2>AddProperty</h2>
 
 
-<div class="row">
-    <div class="col-lg-6 col-md-12">
-        @using (Html.BeginForm("AddProperty", "Property", FormMethod.Post, new { @class = "form-group" }))
-        {
-            <table>
-                <tr>
-                    <td>@Html.LabelFor(x => x.Flat.City)</td>
-                    <td>@Html.TextBoxFor(x => x.Flat.City)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(x => x.Flat.Street)</td>
-                    <td>@Html.TextBoxFor(x => x.Flat.Street)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(x=>x.Flat.PostCode)</td>
-                    <td>@Html.TextBoxFor(x=>x.Flat.PostCode)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(x=>x.Flat.TypeFlatID)</td>
-                    <td>
-                        @Html.DropDownListFor(m => m.Flat.TypeFlatID, new SelectList(Model.TypeFlat, "TypeFlatID", "Name", Model.TypeFlat.First().TypeFlatID))
-                    </td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(x => x.Flat.Area)</td>
-                    <td>@Html.TextBoxFor(x => x.Flat.Area)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(x => x.Flat.QuantityRoom)</td>
-                    <td>@Html.TextBoxFor(x => x.Flat.QuantityRoom)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(x => x.Flat.Condignation)</td>
-                    <td>@Html.TextBoxFor(x => x.Flat.Condignation)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(x => x.Flat.IsBalcon)</td>
-                    <td>@Html.CheckBoxFor(x => x.Flat.IsBalcon)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(x => x.Flat.Description)</td>
-                    <td>@Html.TextAreaFor(x => x.Flat.Description)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(x=>x.Flat.Price)</td>
-                    <td>@Html.TextBoxFor(x=>x.Flat.Price)</td>
-                </tr>
-            
-
-            </table>
-
-
-            <div>
-                @Html.ValidationSummary()
-            </div>
-            <input type="submit" value="Dodaj" class="btn" />
-        }
-    </div>
-</div>
+@Html.Partial("_AddEditFlat",Model)
 
 
 

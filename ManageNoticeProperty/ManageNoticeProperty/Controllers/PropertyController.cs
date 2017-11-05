@@ -77,6 +77,12 @@ namespace ManageNoticeProperty.Controllers
             return View();
         }
 
+        [Authorize(Roles ="Admin")]
+        public ActionResult RaportAdmin()
+        {
+            return View();
+        }
+
         public ApplicationUserManager UserManager
         {
             get

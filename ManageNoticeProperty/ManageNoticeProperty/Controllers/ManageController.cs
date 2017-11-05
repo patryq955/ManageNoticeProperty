@@ -243,6 +243,29 @@ namespace ManageNoticeProperty.Controllers
             AddErrors(result);
             return View(model);
         }
+        public ActionResult ChangePasswordOtherUser(string id)
+        {
+            ChangePasswordOtherUserViewModel vM = new ChangePasswordOtherUserViewModel();
+            vM.UserID = id;
+
+            return View(vM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePasswordOtherUser(ChangePasswordOtherUserViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await UserManager.FindByIdAsync(model.UserID);
+            var userToken = await UserManager.GenerateUserTokenAsync("ResetPassword", model.UserID);
+            var result = await UserManager.ResetPasswordAsync(model.UserID, userToken, model.NewPassword);
+
+            AddErrors(result);
+            return View(model);
+        }
 
         //
         // GET: /Manage/SetPassword

@@ -58,6 +58,22 @@ namespace ManageNoticeProperty.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class ChangePasswordOtherUserViewModel
+    {
+        public string UserID { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "Hasło {0} musi mieć długość {2}.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Nowe hasło")]
+        public string NewPassword { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Potwierdź nowe hasło")]
+        [Compare("NewPassword", ErrorMessage = "Nowe hasło nie jest takie same")]
+        public string ConfirmPassword { get; set; }
+    }
+
     public class AddPhoneNumberViewModel
     {
         [Required]

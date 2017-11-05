@@ -13,7 +13,6 @@ namespace ManageNoticeProperty.Infrastructure
     {
         private HttpCookieCollection _cookies;
         private HttpCookie _cookie;
-        private readonly string _nameCookie = "LastVisitPropertyID";
         readonly string[] _nameList = { "first", "second", "third" };
         private List<string> _lastViewPropertyID;
 

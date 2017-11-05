@@ -22,11 +22,14 @@ namespace ManageNoticeProperty.Controllers
         public ActionResult Index()
         {
             var lista = _lastVisit.GetLastViewProperty().ToList();
-            List<Flat> lastVisitProperty= new List<Flat>();
+            List<Flat> lastVisitProperty = new List<Flat>();
             foreach (var id in lista)
             {
-                var test = _flatRepository.GetID(int.Parse(id));
-                lastVisitProperty.Add(_flatRepository.GetID(int.Parse(id)));
+                var flat = _flatRepository.GetID(int.Parse(id));
+                if (flat != null)
+                {
+                    lastVisitProperty.Add(_flatRepository.GetID(int.Parse(id)));
+                }
             }
             return View(lastVisitProperty);
 
