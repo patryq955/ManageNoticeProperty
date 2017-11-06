@@ -212,6 +212,7 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Controllers\AdminManagUserController.cs" />
+    <Compile Include="Controllers\BuyPropertyController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -243,6 +244,18 @@
     <Compile Include="Migrations\201711041314237_deleteFkInTypeFlat.Designer.cs">
       <DependentUpon>201711041314237_deleteFkInTypeFlat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711051606066_AddDateSellProperty.cs" />
+    <Compile Include="Migrations\201711051606066_AddDateSellProperty.Designer.cs">
+      <DependentUpon>201711051606066_AddDateSellProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711051631486_AddDescriptionOrder.cs" />
+    <Compile Include="Migrations\201711051631486_AddDescriptionOrder.Designer.cs">
+      <DependentUpon>201711051631486_AddDescriptionOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711051931559_EditOrder.cs" />
+    <Compile Include="Migrations\201711051931559_EditOrder.Designer.cs">
+      <DependentUpon>201711051931559_EditOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -253,11 +266,15 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Repository\AlbumRepository.cs" />
     <Compile Include="Models\Repository\FlatRepository.cs" />
+    <Compile Include="Models\Repository\IFlatRepository.cs" />
     <Compile Include="Models\Repository\IRepository.cs" />
+    <Compile Include="Models\Repository\OrderRepository.cs" />
     <Compile Include="Models\Repository\TypeFlatRepository.cs" />
     <Compile Include="Models\TypeFlat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\AdminRaportViewModel.cs" />
+    <Compile Include="ViewModel\GetPropertyOrder.cs" />
     <Compile Include="ViewModel\FlatViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -327,10 +344,12 @@
     <Content Include="Views\AdminManagUser\Index.cshtml" />
     <Content Include="Views\Manage\ChangePasswordOtherUser.cshtml" />
     <Content Include="Views\Property\RaportAdmin.cshtml" />
+    <Content Include="Views\BuyProperty\Index.cshtml" />
+    <Content Include="Views\Shared\_RaportAdmin.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTimePicker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
     <Folder Include="Views\MyBase\" />
   </ItemGroup>
   <ItemGroup>
@@ -353,6 +372,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711041314237_deleteFkInTypeFlat.resx">
       <DependentUpon>201711041314237_deleteFkInTypeFlat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711051606066_AddDateSellProperty.resx">
+      <DependentUpon>201711051606066_AddDateSellProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711051631486_AddDescriptionOrder.resx">
+      <DependentUpon>201711051631486_AddDescriptionOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711051931559_EditOrder.resx">
+      <DependentUpon>201711051931559_EditOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

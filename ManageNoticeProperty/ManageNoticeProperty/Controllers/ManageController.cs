@@ -264,7 +264,7 @@ namespace ManageNoticeProperty.Controllers
             var result = await UserManager.ResetPasswordAsync(model.UserID, userToken, model.NewPassword);
 
             AddErrors(result);
-            return View(model);
+            return RedirectToAction("AdminManagUser", "Index");
         }
 
         //

@@ -7,7 +7,7 @@ using System.Web;
 
 namespace ManageNoticeProperty.Models.Repository
 {
-    public class FlatRepository : IRepository<Flat>
+    public class FlatRepository : IFlatRepository
     {
         ApplicationDbContext db;
         public FlatRepository()
@@ -46,6 +46,16 @@ namespace ManageNoticeProperty.Models.Repository
         public void Save()
         {
             db.SaveChanges();
+        }
+
+        public IEnumerable<Flat> GetOverviewAll(Func<Flat, bool> predicate)
+        {
+            if(predicate==null)
+            {
+                return db.Flat.Include("Order").Include("User").Include("Order.BuyUser");
+            }
+
+            return db.Flat.Include("Order").Include("User").Include("Order.BuyUser").Where(predicate);
         }
     }
 }

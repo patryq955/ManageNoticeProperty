@@ -48,6 +48,9 @@ namespace ManageNoticeProperty.Models
 
         public bool IsHidden { get; set; }
 
+        [UIHint("DateTimePicker")]
+        public DateTime? SellDate { get; set; }
+
         [Display(Name = "Cena")]
         public decimal Price { get; set; }
 

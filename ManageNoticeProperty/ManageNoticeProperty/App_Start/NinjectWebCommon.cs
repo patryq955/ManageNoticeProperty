@@ -70,6 +70,8 @@ namespace ManageNoticeProperty.App_Start
             kernel.Bind<IRepository<Album>>().To<AlbumRepository>();
             kernel.Bind<IRepository<TypeFlat>>().To<TypeFlatRepository>();
             kernel.Bind<IRepository<Flat>>().To<FlatRepository>();
+            kernel.Bind<IRepository<Order>>().To<OrderRepository>();
+            kernel.Bind<IFlatRepository>().To<FlatRepository>();
             kernel.Bind<ILastVisit>().To<LastVisit>();
         }
     }

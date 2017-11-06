@@ -3,7 +3,8 @@
     <div class="col-lg-6 col-md-12">
         @using (Html.BeginForm("AddProperty", "Property", FormMethod.Post, new { @class = "form-group" }))
         {
-            <table>
+            @Html.AntiForgeryToken()
+            <table class="table">
                 <tr>
                     <td>@Html.LabelFor(x => x.Flat.City)</td>
                     <td>@Html.TextBoxFor(x => x.Flat.City)</td>

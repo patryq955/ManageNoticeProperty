@@ -9,6 +9,8 @@ using ManageNoticeProperty.Models.Repository;
 using System.Collections.Generic;
 using System.Linq;
 using ManageNoticeProperty.Infrastructure;
+using System;
+using System.Globalization;
 
 namespace ManageNoticeProperty.Controllers
 {
@@ -16,14 +18,16 @@ namespace ManageNoticeProperty.Controllers
     {
         private ApplicationUserManager _userManager;
         private IRepository<TypeFlat> _typeFlatRepository;
-        private IRepository<Flat> _flatRepository;
+        private IRepository<Order> _orderRepository;
+        private IFlatRepository _flatRepository;
         private ILastVisit _lastVisit;
-        public PropertyController(IRepository<TypeFlat> typeFlatRepository, 
-            IRepository<Flat> flatRepository, ILastVisit lastVisit)
+        public PropertyController(IRepository<TypeFlat> typeFlatRepository,
+            IFlatRepository flatRepository, ILastVisit lastVisit, IRepository<Order> orderRepository)
         {
             _typeFlatRepository = typeFlatRepository;
             _flatRepository = flatRepository;
             _lastVisit = lastVisit;
+            _orderRepository = orderRepository;
         }
         // GET: Property
         public ActionResult Index()
@@ -41,6 +45,7 @@ namespace ManageNoticeProperty.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddProperty(FlatViewModel flatViewModel)
         {
             if (!ModelState.IsValid)
@@ -55,7 +60,7 @@ namespace ManageNoticeProperty.Controllers
                 flatViewModel.Flat.AddFlate = System.DateTime.Now;
                 _flatRepository.Add(flatViewModel.Flat);
                 _flatRepository.Save();
-                
+
             }
             return RedirectToAction("Index", "Home");
         }
@@ -63,13 +68,43 @@ namespace ManageNoticeProperty.Controllers
         public ActionResult GetProperty(int id)
         {
             Flat flat;
+            GetPropertyOrder getPropertyOrder = new GetPropertyOrder();
             flat = _flatRepository.GetID(id);
             if (flat == null)
             {
                 return View("NothingProperty");
             }
+
             _lastVisit.AddLasstViewProperty(id);
-            return View(flat);
+            getPropertyOrder.Flat = flat;
+            getPropertyOrder.Order = new Order();
+            return View(getPropertyOrder);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult GetProperty(int id, GetPropertyOrder getPropertyOrder)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View("GetProperty",new {id=id,getPropertyOrder=getPropertyOrder });
+            }
+
+            Order order = new Order();
+            order.Description = getPropertyOrder.Order.Description;
+            order.BuyUserID = User.Identity.GetUserId();
+            order.FlatId = id;
+            _orderRepository.Add(order);
+            _orderRepository.Save();
+
+            Flat flat = _flatRepository.GetID(id);
+            flat.IsHidden = true;
+            flat.SellDate = DateTime.Now;
+            _flatRepository.Update(flat);
+            _flatRepository.Save();
+
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult NothingProperty()
@@ -77,11 +112,27 @@ namespace ManageNoticeProperty.Controllers
             return View();
         }
 
-        [Authorize(Roles ="Admin")]
-        public ActionResult RaportAdmin()
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult RaportAdmin(string startDate = null, string endDate = null)
         {
-            return View();
+            AdminRaportViewModel adminRaportViewModel = new AdminRaportViewModel();
+
+            Func<Flat, bool> func = x => x.IsHidden == true && x.SellDate >= setStartDateInRaportAdmin(startDate) && x.SellDate <= setEndDateInRaportAdmin(endDate);
+            var listSellProperty = _flatRepository.GetOverviewAll(func).ToList();
+            var totalPrice = listSellProperty.Sum(x => x.Price);
+
+            adminRaportViewModel.Flats = listSellProperty;
+            adminRaportViewModel.TotalPrice = totalPrice;
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_RaportAdmin", adminRaportViewModel);
+            }
+
+            return View(adminRaportViewModel);
         }
+
 
         public ApplicationUserManager UserManager
         {
@@ -94,5 +145,33 @@ namespace ManageNoticeProperty.Controllers
                 _userManager = value;
             }
         }
+
+
+        #region private method
+        private DateTime setStartDateInRaportAdmin(string startDate)
+        {
+            DateTime value;
+            var isDate = DateTime.TryParseExact(startDate, "yyyy-MM-dd", new CultureInfo("pl-PL"), DateTimeStyles.None, out value);
+            if (startDate == null || isDate == false)
+            {
+                return new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            }
+            return value;
+        }
+
+        private DateTime setEndDateInRaportAdmin(string endDate)
+        {
+            DateTime value;
+            var isDate  = DateTime.TryParseExact(endDate, "yyyy-MM-dd", new CultureInfo("pl-PL"), DateTimeStyles.None, out value);
+            if (endDate == null || isDate == false)
+            {
+                return new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
+            }
+            return value;
+        }
+
+
+
+        #endregion
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,7 +10,7 @@ namespace ManageNoticeProperty.Models
     {
         private int _orderId;
         private int _flatId;
-        private int _buyUserId;
+        private string _buyUserId;
         public virtual ApplicationUser BuyUser { get; set; }
         public virtual Flat Flat { get; set; }
 
@@ -39,7 +40,7 @@ namespace ManageNoticeProperty.Models
             }
         }
 
-        public int CopyUserId
+        public string BuyUserID
         {
             get
             {
@@ -51,5 +52,8 @@ namespace ManageNoticeProperty.Models
                 _buyUserId = value;
             }
         }
+
+        [Required(ErrorMessage = "Opis do zamówiena jest wymagany")]
+        public string Description { get; set; }
     }
 }

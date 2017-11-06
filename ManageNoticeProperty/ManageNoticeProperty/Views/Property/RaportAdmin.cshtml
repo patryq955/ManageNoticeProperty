@@ -1,8 +1,67 @@
-﻿
+﻿@model ManageNoticeProperty.ViewModel.AdminRaportViewModel
 @{
     ViewBag.Title = "RaportAdmin";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Raport sprzedaży</h2>
+<br />
+<div class="row form">
+    <form id="search-form" method="get" data-ajax="true" data-ajax-target="#property-list">
+        <div class="col-lg-4 col-sm12">
 
+            <input id="search-filter" type="search" name="startDate" placeholder="Data od" />
+
+        </div>
+        <div class="col-lg-4 col-sm012">
+            <input id="search-filter" type="search" name="endDate" placeholder="Data do" />
+        </div>
+        <div class="col-lg-4 col-sm012">
+            <input type="submit" value="Szukaj" />
+        </div>
+
+    </form>
+</div>
+<div class="row">
+ 
+    <hr />
+
+</div>
+
+@Html.Partial("_RaportAdmin")
+
+@section scripts{
+    <script>
+        $(function () {
+
+            var ajaxSubmit = function () {
+
+                var $form = $(this);
+
+                var settings = {
+                    data: $(this).serialize(),
+                    url: $(this).attr("action"),
+                    type: $(this).attr("method")
+                };
+
+                $.ajax(settings).done(function (result) {
+                    var $targetElement = $($form.data("ajax-target"));
+                    var $newContent = $(result);
+                    $($targetElement).replaceWith($newContent);
+                    $newContent.effect("slide");
+                });
+
+                return false;
+            };
+
+            $("#search-form").submit(ajaxSubmit);
+
+
+        });
+
+
+        $("#search-filter").datepicker({ dateFormat: 'M d, yy' });
+        $('.datepicker').datepicker();
+    </script>
+
+}
