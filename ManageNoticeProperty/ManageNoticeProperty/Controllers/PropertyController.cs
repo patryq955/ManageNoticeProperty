@@ -68,13 +68,14 @@ namespace ManageNoticeProperty.Controllers
         public ActionResult GetProperty(int id)
         {
             Flat flat;
-            GetPropertyOrder getPropertyOrder = new GetPropertyOrder();
+            GetPropertyOrderViewModel getPropertyOrder = new GetPropertyOrderViewModel();
+            
             flat = _flatRepository.GetID(id);
-            if (flat == null)
+            if (flat == null || (flat.IsHidden && flat.UserId != User.Identity.GetUserId()))
             {
                 return View("NothingProperty");
             }
-
+            getPropertyOrder.IsOwnProperty = flat.UserId == User.Identity.GetUserId() ? true : false;
             _lastVisit.AddLasstViewProperty(id);
             getPropertyOrder.Flat = flat;
             getPropertyOrder.Order = new Order();
@@ -84,7 +85,7 @@ namespace ManageNoticeProperty.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult GetProperty(int id, GetPropertyOrder getPropertyOrder)
+        public ActionResult GetProperty(int id, GetPropertyOrderViewModel getPropertyOrder)
         {
             if(!ModelState.IsValid)
             {

@@ -1,71 +1,89 @@
-﻿@model  ManageNoticeProperty.ViewModel.GetPropertyOrder
-@{
-    ViewBag.Title = "GetProperty";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@model  ManageNoticeProperty.ViewModel.GetPropertyOrderViewModel
+    @{
+        ViewBag.Title = "GetProperty";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
-<h2>GetProperty</h2>
-<div id="result" style="display:none;"></div>
+    <h2>GetProperty</h2>
+    <div id="result" style="display:none;"></div>
 
-<div class="row">
-    <div class="col-lg-8 col-md-12">
-        @Model.Flat.City
-    </div>
-    <div class="col-lg-4 col-md-12">
-        @Model.Flat.Description
-    </div>
-
-
-</div>
-<div class="row">
-    @Html.ActionLink("Zgłoś Zainteresowanie", "Index", "BuyProperty", null, new { @class = "btn btn-default" })
-    <button id="btnModalUp" type="button">Test</button>
-</div>
-
-<div tabindex="-1" id="blockModal" class="modal fade ">
-
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-           <div class="modal-header">
-               <h3>Potwierdzenie zainteresowania mieszkaniem</h3>
-           </div> 
-            <div class="modal-body">
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6 col-sm-12">
-                            @Html.LabelFor(x=>x.Order.Description)
-                        </div>
-                        <div class="col-lg-8 col-md-6 col-sm-12">
-                            @Html.TextBoxFor(x=>x.Order.Description)
-                        </div>
-                    </div>
-                    <div class="row">
-                        @Html.ValidationSummary()
-                    </div>
-                    <div class="row">
-                        <input type="submit" value="Zatwierdź" />
-                    </div>
-
-                }
-            </div>
+    <div class="row">
+        <div class="col-lg-8 col-md-12">
+            @Model.Flat.City
         </div>
-      
+        <div class="col-lg-4 col-md-12">
+            @Model.Flat.Description
+        </div>
+
+
     </div>
-</div>
+    <div class="row">
+        @if (Model.IsOwnProperty == false && !Model.Flat.IsHidden)
+        {
+            <button id="btnModalUp" type="button" class="btn btn-default">Test</button>
+        }
+
+    </div>
+
+    <div tabindex="-1" id="blockModal" class="modal fade ">
+
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Potwierdzenie zainteresowania mieszkaniem</h3>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                @Html.LabelFor(x => x.Order.Description)
+                            </div>
+                            <div class="col-lg-8 col-md-6 col-sm-12">
+                                @Html.TextBoxFor(x => x.Order.Description)
+                            </div>
+                        </div>
+                        <div class="row">
+                            @Html.ValidationSummary()
+                        </div>
+                        <div class="row">
+                            <input type="submit" value="Zatwierdź" />
+                        </div>
+
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 
 
 
+    @section scripts{
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#btnModalUp").click(function () {
+                    $("#blockModal").modal('show');
+                })
+            });
 
-@section scripts{
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#btnModalUp").click(function () {
-                $("#blockModal").modal('show');
-            })
-        });
+            $(function () {
+                $('#blockModal').dialog({
+                    autoOpen: false,
+                    width: 400,
+                    resizable: false,
+                    modal: true
+                });
 
-    </script>
-}
+                $('.modal2').click(function () {
+                    $('#blockModal').load(this.href, function () {
+                        $(this).dialog('open');
+                    });
+                    return false;
+                });
+            });
+
+        </script>
+    }

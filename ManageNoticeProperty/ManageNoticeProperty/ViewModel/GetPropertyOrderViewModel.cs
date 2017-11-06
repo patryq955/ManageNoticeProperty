@@ -6,9 +6,10 @@ using System.Web;
 
 namespace ManageNoticeProperty.ViewModel
 {
-    public class GetPropertyOrder
+    public class GetPropertyOrderViewModel
     {
         public Flat Flat { get; set; }
         public Order Order { get; set; }
+        public bool IsOwnProperty { get; set; }
     }
 }

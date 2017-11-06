@@ -19,7 +19,7 @@ namespace ManageNoticeProperty.Controllers
         // GET: AdminManagUser
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(db.Users.Where(x=>x.Id != "d67b7d7d-83f9-4ec0-aa8c-90f083aaeaf4").ToList());
         }
 
         // GET: AdminManagUser/Details/5
@@ -93,9 +93,6 @@ namespace ManageNoticeProperty.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-
-
 
         protected override void Dispose(bool disposing)
         {
