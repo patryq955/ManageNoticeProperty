@@ -6,11 +6,11 @@ using Microsoft.AspNet.Identity.Owin;
 using ManageNoticeProperty.Models;
 using ManageNoticeProperty.ViewModel;
 using ManageNoticeProperty.Models.Repository;
-using System.Collections.Generic;
 using System.Linq;
 using ManageNoticeProperty.Infrastructure;
 using System;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace ManageNoticeProperty.Controllers
 {
@@ -19,15 +19,18 @@ namespace ManageNoticeProperty.Controllers
         private ApplicationUserManager _userManager;
         private IRepository<TypeFlat> _typeFlatRepository;
         private IRepository<Order> _orderRepository;
+        private IRepository<Album> _albumRepository;
         private IFlatRepository _flatRepository;
         private ILastVisit _lastVisit;
         public PropertyController(IRepository<TypeFlat> typeFlatRepository,
-            IFlatRepository flatRepository, ILastVisit lastVisit, IRepository<Order> orderRepository)
+            IFlatRepository flatRepository, ILastVisit lastVisit, IRepository<Order> orderRepository,
+            IRepository<Album> albumRepository)
         {
             _typeFlatRepository = typeFlatRepository;
             _flatRepository = flatRepository;
             _lastVisit = lastVisit;
             _orderRepository = orderRepository;
+            _albumRepository = albumRepository;
         }
         // GET: Property
         public ActionResult Index()
@@ -46,17 +49,27 @@ namespace ManageNoticeProperty.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddProperty(FlatViewModel flatViewModel)
+        public  ActionResult AddProperty(FlatViewModel flatViewModel)
         {
             if (!ModelState.IsValid)
             {
                 return View("AddProperty", flatViewModel);
             }
 
+            if (flatViewModel.PostedFile == null)
+            {
+                
+                return View("AddProperty", flatViewModel);
+            }
+            
             if (Request.IsAuthenticated)
             {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                flatViewModel.Flat.UserId = user.Id;
+                FileToByte fileToByte = new FileToByte();
+                flatViewModel.Flat.Album = new List<Album>();
+                var album = new Album();
+                album.Photo = fileToByte.GetSavePhoto(flatViewModel.PostedFile);
+                flatViewModel.Flat.Album.Add(album);
+                flatViewModel.Flat.UserId = User.Identity.GetUserId();
                 flatViewModel.Flat.AddFlate = System.DateTime.Now;
                 _flatRepository.Add(flatViewModel.Flat);
                 _flatRepository.Save();
@@ -69,7 +82,7 @@ namespace ManageNoticeProperty.Controllers
         {
             Flat flat;
             GetPropertyOrderViewModel getPropertyOrder = new GetPropertyOrderViewModel();
-            
+
             flat = _flatRepository.GetID(id);
             if (flat == null || (flat.IsHidden && flat.UserId != User.Identity.GetUserId()))
             {
@@ -87,9 +100,9 @@ namespace ManageNoticeProperty.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult GetProperty(int id, GetPropertyOrderViewModel getPropertyOrder)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                return View("GetProperty",new {id=id,getPropertyOrder=getPropertyOrder });
+                return View("GetProperty", new { id = id, getPropertyOrder = getPropertyOrder });
             }
 
             Order order = new Order();
@@ -113,7 +126,6 @@ namespace ManageNoticeProperty.Controllers
             return View();
         }
 
-
         [Authorize(Roles = "Admin")]
         public ActionResult RaportAdmin(string startDate = null, string endDate = null)
         {
@@ -133,7 +145,6 @@ namespace ManageNoticeProperty.Controllers
 
             return View(adminRaportViewModel);
         }
-
 
         public ApplicationUserManager UserManager
         {
@@ -163,7 +174,7 @@ namespace ManageNoticeProperty.Controllers
         private DateTime setEndDateInRaportAdmin(string endDate)
         {
             DateTime value;
-            var isDate  = DateTime.TryParseExact(endDate, "yyyy-MM-dd", new CultureInfo("pl-PL"), DateTimeStyles.None, out value);
+            var isDate = DateTime.TryParseExact(endDate, "yyyy-MM-dd", new CultureInfo("pl-PL"), DateTimeStyles.None, out value);
             if (endDate == null || isDate == false)
             {
                 return new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));

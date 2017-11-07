@@ -2,6 +2,7 @@
 using ManageNoticeProperty.Models.Repository;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -23,6 +24,9 @@ namespace ManageNoticeProperty.ViewModel
             }
         }
         public IEnumerable<TypeFlat> TypeFlat { get; set; }
+
+        [Required(ErrorMessage ="Zdjęcie jest wymagane")]
+        public HttpPostedFileBase PostedFile { get; set; }
 
         public FlatViewModel()
         {

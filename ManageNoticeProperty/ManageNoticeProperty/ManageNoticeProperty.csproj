@@ -226,6 +226,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\FileToByte.cs" />
+    <Compile Include="Infrastructure\IFileToByte.cs" />
     <Compile Include="Infrastructure\LastVisit.cs" />
     <Compile Include="Infrastructure\ILastVisit.cs" />
     <Compile Include="Migrations\201710311732199_AddUsersAccount.cs" />
@@ -256,6 +258,10 @@
     <Compile Include="Migrations\201711051931559_EditOrder.Designer.cs">
       <DependentUpon>201711051931559_EditOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711071827402_lastReapirBigError.cs" />
+    <Compile Include="Migrations\201711071827402_lastReapirBigError.Designer.cs">
+      <DependentUpon>201711071827402_lastReapirBigError.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -280,6 +286,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\p1.jpeg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -381,6 +388,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711051931559_EditOrder.resx">
       <DependentUpon>201711051931559_EditOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711071827402_lastReapirBigError.resx">
+      <DependentUpon>201711071827402_lastReapirBigError.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

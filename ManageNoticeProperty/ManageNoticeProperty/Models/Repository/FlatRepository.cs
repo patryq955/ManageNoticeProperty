@@ -26,7 +26,7 @@ namespace ManageNoticeProperty.Models.Repository
 
         public Flat GetID(int Id)
         {
-            return db.Flat.Where(x => x.FlatId == Id).FirstOrDefault();
+            return db.Flat.Include("Album").Where(x => x.FlatId == Id).FirstOrDefault();
         }
 
         public IEnumerable<Flat> GetOverview(Func<Flat, bool> predicate = null)
@@ -52,10 +52,10 @@ namespace ManageNoticeProperty.Models.Repository
         {
             if(predicate==null)
             {
-                return db.Flat.Include("Order").Include("User").Include("Order.BuyUser");
+                return db.Flat.Include("Order").Include("User").Include("Order.BuyUser").Include("Album");
             }
 
-            return db.Flat.Include("Order").Include("User").Include("Order.BuyUser").Where(predicate);
+            return db.Flat.Include("Order").Include("User").Include("Order.BuyUser").Include("Album").Where(predicate);
         }
     }
 }
