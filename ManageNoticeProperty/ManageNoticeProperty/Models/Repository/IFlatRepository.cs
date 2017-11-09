@@ -9,5 +9,6 @@ namespace ManageNoticeProperty.Models.Repository
     public interface IFlatRepository : IRepository<Flat>
     {
         IEnumerable<Flat> GetOverviewAll(Func<Flat, bool> predicate);
+        Flat GetIdAll(int id);
     }
 }

@@ -14,7 +14,7 @@ namespace ManageNoticeProperty.Models
         public virtual ICollection<Album> Album { get; set; }
         public virtual ICollection<Order> Order { get; set; }
 
-        public virtual ICollection<TypeFlat> TypeFlat { get; set; }
+        public virtual TypeFlat TypeFlat { get; set; }
 
         public int FlatId { get; set; }
 

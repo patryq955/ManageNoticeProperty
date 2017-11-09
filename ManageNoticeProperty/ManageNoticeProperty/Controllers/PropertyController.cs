@@ -11,6 +11,7 @@ using ManageNoticeProperty.Infrastructure;
 using System;
 using System.Globalization;
 using System.Collections.Generic;
+using PagedList;
 
 namespace ManageNoticeProperty.Controllers
 {
@@ -33,9 +34,26 @@ namespace ManageNoticeProperty.Controllers
             _albumRepository = albumRepository;
         }
         // GET: Property
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View();
+            AllPropertyViewModel vM = new AllPropertyViewModel();
+            vM.TypeFlat = _typeFlatRepository.GetOverview();
+
+
+            var lista = _flatRepository.GetOverview().ToList();
+            int pageSize = 5;
+            var pageNumber = page ?? 1;
+            var test = lista.ToPagedList(pageNumber, pageSize);
+            vM.Flat = test;
+
+            return View(vM);
+        }
+
+        [HttpPost]
+        public ActionResult Index(AllPropertyViewModel vM)
+        {
+
+            return View(vM);
         }
 
         [Authorize]
@@ -83,7 +101,7 @@ namespace ManageNoticeProperty.Controllers
             Flat flat;
             GetPropertyOrderViewModel getPropertyOrder = new GetPropertyOrderViewModel();
 
-            flat = _flatRepository.GetID(id);
+            flat = _flatRepository.GetIdAll(id);
             if (flat == null || (flat.IsHidden && flat.UserId != User.Identity.GetUserId()))
             {
                 return View("NothingProperty");
@@ -157,7 +175,6 @@ namespace ManageNoticeProperty.Controllers
                 _userManager = value;
             }
         }
-
 
         #region private method
         private DateTime setStartDateInRaportAdmin(string startDate)

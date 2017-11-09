@@ -48,14 +48,19 @@ namespace ManageNoticeProperty.Models.Repository
             db.SaveChanges();
         }
 
-        public IEnumerable<Flat> GetOverviewAll(Func<Flat, bool> predicate)
+        public IEnumerable<Flat> GetOverviewAll(Func<Flat, bool> predicate = null)
         {
-            if(predicate==null)
+            if (predicate == null)
             {
                 return db.Flat.Include("Order").Include("User").Include("Order.BuyUser").Include("Album");
             }
 
             return db.Flat.Include("Order").Include("User").Include("Order.BuyUser").Include("Album").Where(predicate);
+        }
+
+        public Flat GetIdAll(int id)
+        {
+            return db.Flat.Include("Order").Include("User").Include("Order.BuyUser").Include("Album").Where(x => x.FlatId == id).FirstOrDefault();
         }
     }
 }

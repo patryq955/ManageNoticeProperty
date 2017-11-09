@@ -8,11 +8,13 @@ namespace ManageNoticeProperty.Models
 {
     public class TypeFlat
     {
-        public int TypeFlatID{get;set;}
+        public int TypeFlatID { get; set; }
 
-        [Required(ErrorMessage ="Podaj nazwe typu mieszkania")]
-        [StringLength(50,ErrorMessage ="Nazwa typu mieszkania jest zbyt długa")]
+        [Required(ErrorMessage = "Podaj nazwe typu mieszkania")]
+        [StringLength(50, ErrorMessage = "Nazwa typu mieszkania jest zbyt długa")]
         public string Name { get; set; }
+
+
 
     }
 }
