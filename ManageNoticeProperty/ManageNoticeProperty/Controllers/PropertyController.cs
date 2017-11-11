@@ -102,8 +102,10 @@ namespace ManageNoticeProperty.Controllers
             GetPropertyOrderViewModel getPropertyOrder = new GetPropertyOrderViewModel();
 
             flat = _flatRepository.GetIdAll(id);
-            if (flat == null || (flat.IsHidden && flat.UserId != User.Identity.GetUserId()
-               && flat.Order.OrderByDescending(x => x.SellDate).FirstOrDefault().BuyUserID != User.Identity.GetUserId()))
+            if (flat == null
+               || ((flat.IsHidden && flat.UserId != User.Identity.GetUserId()) //You are seller and Property is Hidden
+               && (flat.IsHidden && flat.Order.Count(x => x.BuyUserID == User.Identity.GetUserId()) == 0) // You are buyer on list Order
+                ))
             {
                 return View("NothingProperty");
             }
