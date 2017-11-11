@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ManageNoticeProperty.ViewModel.MessageInfoViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<div id="load-message">
+    @Html.Partial("_ListMessageInfo")
+</div>
+@section scripts{
+    <script>
+        $(document).delegate('#Delete', 'click', function (e) {
+
+            e.preventDefault();
+            idDeleteMessage = $(this).attr("data-id");
+            $.ajax({
+                type: "post",
+                url: "@Url.Action("DeleteMessage","Message")",
+                ajaxasync: true,
+                data: { id: idDeleteMessage },
+                success: function () {
+                    $("#load-message").load("/Message/Index");
+                },
+                error: function (data) {
+                    alert(data.x);
+                }
+            });
+        });
+
+
+    </script>
+
+}

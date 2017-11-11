@@ -53,6 +53,7 @@ table {
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
+    padding-top:70px;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -75,6 +76,9 @@ textarea {
     vertical-align: super;
 }
 
+.maint-container{
+ 
+}
 
 
 /*Main Page*/
@@ -125,6 +129,11 @@ textarea {
         text-decoration: none;
     }
 
+/*Add Product*/
+.add-property{
+  
+}
+
 /* All product filter*/
 
 .all-property-list {
@@ -158,6 +167,9 @@ textarea {
 }
 
 /*Get Product*/
+.get-property{
+  
+}
 .get-product-title {
 }
 
@@ -167,7 +179,15 @@ textarea {
     max-height: 600px;
     width: 100%;
 }
+/*Raport Admin*/
+.raport-admin{
 
+}
+
+/* Manage User*/
+.manage-user{
+
+}
 
 /*  Validation */
 .field-validation-error {

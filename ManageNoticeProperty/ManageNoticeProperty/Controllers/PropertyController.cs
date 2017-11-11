@@ -19,12 +19,12 @@ namespace ManageNoticeProperty.Controllers
     {
         private ApplicationUserManager _userManager;
         private IRepository<TypeFlat> _typeFlatRepository;
-        private IRepository<Order> _orderRepository;
+        private IExtendRepository<Order> _orderRepository;
         private IRepository<Album> _albumRepository;
-        private IFlatRepository _flatRepository;
+        private IExtendRepository<Flat> _flatRepository;
         private ILastVisit _lastVisit;
         public PropertyController(IRepository<TypeFlat> typeFlatRepository,
-            IFlatRepository flatRepository, ILastVisit lastVisit, IRepository<Order> orderRepository,
+            IExtendRepository<Flat> flatRepository, ILastVisit lastVisit, IExtendRepository<Order> orderRepository,
             IRepository<Album> albumRepository)
         {
             _typeFlatRepository = typeFlatRepository;
@@ -39,8 +39,8 @@ namespace ManageNoticeProperty.Controllers
             AllPropertyViewModel vM = new AllPropertyViewModel();
             vM.TypeFlat = _typeFlatRepository.GetOverview();
 
-
-            var lista = _flatRepository.GetOverview().ToList();
+            Func<Flat, bool> predicate = x => x.IsHidden == false;
+            var lista = _flatRepository.GetOverview(predicate).ToList();
             int pageSize = 5;
             var pageNumber = page ?? 1;
             var test = lista.ToPagedList(pageNumber, pageSize);
@@ -102,7 +102,8 @@ namespace ManageNoticeProperty.Controllers
             GetPropertyOrderViewModel getPropertyOrder = new GetPropertyOrderViewModel();
 
             flat = _flatRepository.GetIdAll(id);
-            if (flat == null || (flat.IsHidden && flat.UserId != User.Identity.GetUserId()))
+            if (flat == null || (flat.IsHidden && flat.UserId != User.Identity.GetUserId()
+               && flat.Order.OrderByDescending(x=>x.SellDate).FirstOrDefault().BuyUserID != User.Identity.GetUserId()))
             {
                 return View("NothingProperty");
             }
@@ -127,6 +128,7 @@ namespace ManageNoticeProperty.Controllers
             order.Description = getPropertyOrder.Order.Description;
             order.BuyUserID = User.Identity.GetUserId();
             order.FlatId = id;
+            order.isDelete = false;
             _orderRepository.Add(order);
             _orderRepository.Save();
 

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ManageNoticeProperty.ViewModel.MessageInfoViewModel>
+<div class="container">
+    @if (Model.Count() == 0)
+    {
+        <p> Brak Wiadomości</p>
+    }
+    else
+    {
+        foreach (var order in Model)
+        {
+
+            <dic class="row message-row-@order.Order.OrderId">
+                <div class="col-lg-10">
+                    <a href="@Url.Action("MessageInfo", "Message", new { id = order.Order.OrderId })">
+
+                        @order.Text
+                        @order.Order.Flat.City
+                        @order.Order.Flat.Description
+                    </a>
+                </div>
+
+                <div class="col-lg-2">
+                    @*@using (Html.BeginForm("MessageDelete", "Message"))
+                        {
+                            @Html.HiddenFor(x=> order.Order.OrderId)
+                            @Html.ActionLink("Usuń", "DeleteMessage", "Property", new { @class = "btn btn-default" })
+                        }*@
+                    <a id="Delete" class="remove-message btn btn-default" data-id="@order.Order.OrderId" href="#">Usuń</a>
+                </div>
+            </dic>
+            <div id="total-price">
+                Razem: <span id="total-price-value">@Model.FirstOrDefault().Text</span> zł
+            </div>
+
+        }
+    }
+</div>

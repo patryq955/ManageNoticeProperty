@@ -220,7 +220,7 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Controllers\AdminManagUserController.cs" />
-    <Compile Include="Controllers\BuyPropertyController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -274,6 +274,14 @@
     <Compile Include="Migrations\201711072119267_ChangeFlatType.Designer.cs">
       <DependentUpon>201711072119267_ChangeFlatType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711091942046_AddFlagDeleteMessegeOrder.cs" />
+    <Compile Include="Migrations\201711091942046_AddFlagDeleteMessegeOrder.Designer.cs">
+      <DependentUpon>201711091942046_AddFlagDeleteMessegeOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711101918247_AddFieldSellDateToOrder.cs" />
+    <Compile Include="Migrations\201711101918247_AddFieldSellDateToOrder.Designer.cs">
+      <DependentUpon>201711101918247_AddFieldSellDateToOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -284,7 +292,7 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Repository\AlbumRepository.cs" />
     <Compile Include="Models\Repository\FlatRepository.cs" />
-    <Compile Include="Models\Repository\IFlatRepository.cs" />
+    <Compile Include="Models\Repository\IExtendRepository.cs" />
     <Compile Include="Models\Repository\IRepository.cs" />
     <Compile Include="Models\Repository\OrderRepository.cs" />
     <Compile Include="Models\Repository\TypeFlatRepository.cs" />
@@ -295,6 +303,7 @@
     <Compile Include="ViewModel\AllPropertyViewModel.cs" />
     <Compile Include="ViewModel\GetPropertyOrderViewModel.cs" />
     <Compile Include="ViewModel\FlatViewModel.cs" />
+    <Compile Include="ViewModel\MessageInfoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -369,10 +378,13 @@
     <Content Include="Views\Shared\EditorTemplates\DateTimePicker.cshtml" />
     <Content Include="Views\Shared\_Test.cshtml" />
     <Content Include="Views\Property\Index.cshtml" />
+    <Content Include="Views\Message\Index.cshtml" />
+    <Content Include="Views\Message\MessageInfo.cshtml" />
+    <Content Include="Views\Message\EmptyMessage.cshtml" />
+    <Content Include="Views\Shared\_ListMessageInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\MyBase\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -409,6 +421,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711072119267_ChangeFlatType.resx">
       <DependentUpon>201711072119267_ChangeFlatType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711091942046_AddFlagDeleteMessegeOrder.resx">
+      <DependentUpon>201711091942046_AddFlagDeleteMessegeOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711101918247_AddFieldSellDateToOrder.resx">
+      <DependentUpon>201711101918247_AddFieldSellDateToOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

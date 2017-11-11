@@ -3,31 +3,31 @@
     ViewBag.Title = "RaportAdmin";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container raport-admin">
+    <h2>Raport sprzedaży</h2>
+    <br />
+    <div class="row form">
+        <form id="search-form" method="get" data-ajax="true" data-ajax-target="#property-list">
+            <div class="col-lg-4 col-sm12">
 
-<h2>Raport sprzedaży</h2>
-<br />
-<div class="row form">
-    <form id="search-form" method="get" data-ajax="true" data-ajax-target="#property-list">
-        <div class="col-lg-4 col-sm12">
+                <input id="search-filter" type="search" name="startDate" placeholder="Data od" />
 
-            <input id="search-filter" type="search" name="startDate" placeholder="Data od" />
+            </div>
+            <div class="col-lg-4 col-sm012">
+                <input id="search-filter" type="search" name="endDate" placeholder="Data do" />
+            </div>
+            <div class="col-lg-4 col-sm012">
+                <input type="submit" value="Szukaj" />
+            </div>
 
-        </div>
-        <div class="col-lg-4 col-sm012">
-            <input id="search-filter" type="search" name="endDate" placeholder="Data do" />
-        </div>
-        <div class="col-lg-4 col-sm012">
-            <input type="submit" value="Szukaj" />
-        </div>
+        </form>
+    </div>
+    <div class="row">
 
-    </form>
+        <hr />
+
+    </div>
 </div>
-<div class="row">
- 
-    <hr />
-
-</div>
-
 @Html.Partial("_RaportAdmin")
 
 @section scripts{
@@ -60,8 +60,8 @@
         });
 
 
-        $("#search-filter").datepicker({ dateFormat: 'M d, yy' });
-        $('.datepicker').datepicker();
+        //$("#search-filter").datepicker({ dateFormat: 'M d, yy' });
+        //$('.datepicker').datepicker();
     </script>
 
 }

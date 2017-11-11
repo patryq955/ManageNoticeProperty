@@ -7,7 +7,7 @@ using System.Web;
 
 namespace ManageNoticeProperty.Models.Repository
 {
-    public class FlatRepository : IFlatRepository
+    public class FlatRepository : IExtendRepository<Flat>
     {
         ApplicationDbContext db;
         public FlatRepository()

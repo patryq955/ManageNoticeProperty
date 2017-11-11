@@ -12,9 +12,9 @@ namespace ManageNoticeProperty.Controllers
 {
     public class HomeController : Controller
     {
-        IRepository<Flat> _flatRepository;
+        IExtendRepository<Flat> _flatRepository;
         ILastVisit _lastVisit;
-        public HomeController(IRepository<Flat> flatRepository, ILastVisit lastVisit)
+        public HomeController(IExtendRepository<Flat> flatRepository, ILastVisit lastVisit)
         {
             _flatRepository = flatRepository;
             _lastVisit = lastVisit;

@@ -18,6 +18,12 @@ namespace ManageNoticeProperty
                 url: "Nieruchomość-{id}",
                 defaults: new { controller = "Property", action = "GetProperty"}
             );
+
+                        routes.MapRoute(
+                name: "Message",
+                url: "MessageInfo-{id}",
+                defaults: new { controller = "Message", action = "MessageInfo" }
+            );
             
             routes.MapRoute(
                 name: "Default",

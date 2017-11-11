@@ -7,7 +7,7 @@ using System.Web;
 
 namespace ManageNoticeProperty.Models.Repository
 {
-    public class OrderRepository : IRepository<Order>
+    public class OrderRepository : IExtendRepository<Order>
     {
         ApplicationDbContext db = new ApplicationDbContext();
         public OrderRepository()
@@ -29,6 +29,11 @@ namespace ManageNoticeProperty.Models.Repository
             return db.Order.Where(x => x.OrderId == Id).FirstOrDefault();
         }
 
+        public Order GetIdAll(int id)
+        {
+            return db.Order.Include("Flat").Include("Flat.User").Include("BuyUser").Where(x => x.OrderId == id).FirstOrDefault();
+        }
+
         public IEnumerable<Order> GetOverview(Func<Order, bool> predicate = null)
         {
             if (predicate == null)
@@ -37,6 +42,15 @@ namespace ManageNoticeProperty.Models.Repository
             }
 
             return db.Order.Where(predicate);
+        }
+
+        public IEnumerable<Order> GetOverviewAll(Func<Order, bool> predicate = null)
+        {
+            if (predicate== null)
+            {
+                return db.Order.Include("Flat").Include("Flat.User").Include("BuyUser");
+            }
+            return db.Order.Include("Flat").Include("Flat.User").Include("BuyUser").Where(predicate);
         }
 
         public void Save()

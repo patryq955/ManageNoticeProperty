@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ManageNoticeProperty.Models.Repository
 {
-    public interface IFlatRepository : IRepository<Flat>
+    public interface IExtendRepository<T> : IRepository<T> where T : class
     {
-        IEnumerable<Flat> GetOverviewAll(Func<Flat, bool> predicate);
-        Flat GetIdAll(int id);
+        IEnumerable<T> GetOverviewAll(Func<T, bool> predicate = null);
+        T GetIdAll(int id);
     }
 }
