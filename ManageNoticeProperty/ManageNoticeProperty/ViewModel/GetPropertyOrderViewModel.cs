@@ -11,5 +11,7 @@ namespace ManageNoticeProperty.ViewModel
         public Flat Flat { get; set; }
         public Order Order { get; set; }
         public bool IsOwnProperty { get; set; }
+
+        public bool isBuyAfter { get; set; }
     }
 }

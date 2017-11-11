@@ -282,6 +282,14 @@
     <Compile Include="Migrations\201711101918247_AddFieldSellDateToOrder.Designer.cs">
       <DependentUpon>201711101918247_AddFieldSellDateToOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711111345491_ChangeOrderDatabase.cs" />
+    <Compile Include="Migrations\201711111345491_ChangeOrderDatabase.Designer.cs">
+      <DependentUpon>201711111345491_ChangeOrderDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711111729329_AddDeleteDateOrder.cs" />
+    <Compile Include="Migrations\201711111729329_AddDeleteDateOrder.Designer.cs">
+      <DependentUpon>201711111729329_AddDeleteDateOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -427,6 +435,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711101918247_AddFieldSellDateToOrder.resx">
       <DependentUpon>201711101918247_AddFieldSellDateToOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711111345491_ChangeOrderDatabase.resx">
+      <DependentUpon>201711111345491_ChangeOrderDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711111729329_AddDeleteDateOrder.resx">
+      <DependentUpon>201711111729329_AddDeleteDateOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -10,9 +10,10 @@ using System.Web.Mvc;
 
 namespace ManageNoticeProperty.Controllers
 {
+    [Authorize]
     public class MessageController : Controller
     {
-        IExtendRepository<Order> _orderRepository;
+        private IExtendRepository<Order> _orderRepository;
         public MessageController(IExtendRepository<Order> orderRepository)
         {
             _orderRepository = orderRepository;
@@ -20,7 +21,7 @@ namespace ManageNoticeProperty.Controllers
         // GET: Message
         public ActionResult Index()
         {
-            List<MessageInfoViewModel> vM = getListMessageInfoViewModel();
+            List<MessageInfoViewModel> vM = GetListMessageInfoViewModel();
             if (Request.IsAjaxRequest())
             {
                 return PartialView("_ListMessageInfo", vM);
@@ -31,25 +32,36 @@ namespace ManageNoticeProperty.Controllers
 
         public ActionResult MessageInfo(int id)
         {
+            string userID = User.Identity.GetUserId();
             MessageInfoViewModel messageInfo = new MessageInfoViewModel();
             messageInfo.Order = _orderRepository.GetIdAll(id);
-            var userId = User.Identity.GetUserId();
-            if (messageInfo == null || (messageInfo.Order.BuyUserID != userId && messageInfo.Order.Flat.UserId != userId)
-                || (messageInfo.Order.isDelete = true && messageInfo.Order.Flat.UserId != userId))
+            if (messageInfo == null
+    || (messageInfo.Order.BuyUserID != userID && messageInfo.Order.Flat.UserId != userID)
+    || (IsBuyer(messageInfo.Order) && messageInfo.Order.isDeleteBuyer)
+    || (!IsBuyer(messageInfo.Order) && messageInfo.Order.isDeleteSeller)
+    )
             {
                 return View("EmptyMessage");
             }
-            messageInfo.Text = messageInfo.Order.BuyUserID == userId ? TyPeText.Buyer : TyPeText.Seller;
-            messageInfo.IsSellOffer = messageInfo.Order.BuyUserID == userId ? false : true;
+            messageInfo.Text = messageInfo.Order.BuyUserID == userID ? TyPeText.Buyer : TyPeText.Seller;
+            messageInfo.IsSellOffer = messageInfo.Order.BuyUserID == userID ? false : true;
 
             return View(messageInfo);
         }
 
-
         public ActionResult DeleteMessage(int id)
         {
-             var messageToDelete = _orderRepository.GetIdAll(id);
-            messageToDelete.isDelete = true;
+            var messageToDelete = _orderRepository.GetIdAll(id);
+            if (IsBuyer(messageToDelete))
+            {
+                messageToDelete.isDeleteBuyer = true;
+                messageToDelete.DeleteBuyerDate = DateTime.Today;
+            }
+            else
+            {
+                messageToDelete.isDeleteSeller = true;
+                messageToDelete.DeleteSellerDate = DateTime.Today;
+            }
             _orderRepository.Update(messageToDelete);
             _orderRepository.Save();
 
@@ -59,27 +71,34 @@ namespace ManageNoticeProperty.Controllers
         }
 
         #region private Method
-        private List<MessageInfoViewModel> getListMessageInfoViewModel()
+        private List<MessageInfoViewModel> GetListMessageInfoViewModel()
         {
-            Func<Order, bool> predicateSellInfo = x => x.Flat.UserId == User.Identity.GetUserId()
-         && x.isDelete == false;
+            string userId = User.Identity.GetUserId();
+            Func<Order, bool> predicateSellInfo = x => x.Flat.UserId == userId && x.isDeleteSeller == false;
             var orderSellInfo = _orderRepository.GetOverviewAll(predicateSellInfo);
 
-            Func<Order, bool> predicateBuyInfo = x => x.BuyUserID == User.Identity.GetUserId();
+            Func<Order, bool> predicateBuyInfo = x => x.BuyUserID == userId && x.isDeleteBuyer == false;
             var orderBuyInfo = _orderRepository.GetOverviewAll(predicateBuyInfo);
             var buyList = orderBuyInfo.Select(x => new MessageInfoViewModel()
             {
                 Order = x,
-                Text = TyPeText.Buyer
+                Text = TyPeText.Buyer,
+                IsSellOffer = false
             }).ToList();
 
             var sellList = (orderSellInfo.Select(x => new MessageInfoViewModel()
             {
                 Order = x,
-                Text = TyPeText.Seller
+                Text = TyPeText.Seller,
+                IsSellOffer = true
             }).ToList());
 
             return buyList.Concat(sellList).ToList();
+        }
+
+        public bool IsBuyer(Order order)
+        {
+            return User.Identity.GetUserId() == order.BuyUserID ? true : false;
         }
         #endregion
     }

@@ -67,7 +67,7 @@ namespace ManageNoticeProperty.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public  ActionResult AddProperty(FlatViewModel flatViewModel)
+        public ActionResult AddProperty(FlatViewModel flatViewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -76,10 +76,10 @@ namespace ManageNoticeProperty.Controllers
 
             if (flatViewModel.PostedFile == null)
             {
-                
+
                 return View("AddProperty", flatViewModel);
             }
-            
+
             if (Request.IsAuthenticated)
             {
                 FileToByte fileToByte = new FileToByte();
@@ -103,11 +103,14 @@ namespace ManageNoticeProperty.Controllers
 
             flat = _flatRepository.GetIdAll(id);
             if (flat == null || (flat.IsHidden && flat.UserId != User.Identity.GetUserId()
-               && flat.Order.OrderByDescending(x=>x.SellDate).FirstOrDefault().BuyUserID != User.Identity.GetUserId()))
+               && flat.Order.OrderByDescending(x => x.SellDate).FirstOrDefault().BuyUserID != User.Identity.GetUserId()))
             {
                 return View("NothingProperty");
             }
             getPropertyOrder.IsOwnProperty = flat.UserId == User.Identity.GetUserId() ? true : false;
+            getPropertyOrder.isBuyAfter = flat.Order.Where(
+                    x => x.BuyUserID == User.Identity.GetUserId()
+                    ).Count() > 0 ? true : false;
             _lastVisit.AddLasstViewProperty(id);
             getPropertyOrder.Flat = flat;
             getPropertyOrder.Order = new Order();
@@ -128,13 +131,14 @@ namespace ManageNoticeProperty.Controllers
             order.Description = getPropertyOrder.Order.Description;
             order.BuyUserID = User.Identity.GetUserId();
             order.FlatId = id;
-            order.isDelete = false;
+            order.isDeleteBuyer = false;
+            order.SellDate = DateTime.Now;
             _orderRepository.Add(order);
             _orderRepository.Save();
 
             Flat flat = _flatRepository.GetID(id);
-            flat.IsHidden = true;
-            flat.SellDate = DateTime.Now;
+            // flat.IsHidden = true;
+            //flat.SellDate = DateTime.Now;
             _flatRepository.Update(flat);
             _flatRepository.Save();
 

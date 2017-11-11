@@ -34,7 +34,7 @@
 
 
     <div class="row">
-        @if (Model.IsOwnProperty == false && !Model.Flat.IsHidden)
+        @if (Model.IsOwnProperty == false && !Model.Flat.IsHidden && !Model.isBuyAfter)
         {
             <button id="btnModalUp" type="button" class="btn btn-default">Test</button>
         }

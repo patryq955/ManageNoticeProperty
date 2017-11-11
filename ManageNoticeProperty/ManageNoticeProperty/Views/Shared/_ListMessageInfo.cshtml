@@ -20,11 +20,6 @@
                 </div>
 
                 <div class="col-lg-2">
-                    @*@using (Html.BeginForm("MessageDelete", "Message"))
-                        {
-                            @Html.HiddenFor(x=> order.Order.OrderId)
-                            @Html.ActionLink("Usuń", "DeleteMessage", "Property", new { @class = "btn btn-default" })
-                        }*@
                     <a id="Delete" class="remove-message btn btn-default" data-id="@order.Order.OrderId" href="#">Usuń</a>
                 </div>
             </dic>

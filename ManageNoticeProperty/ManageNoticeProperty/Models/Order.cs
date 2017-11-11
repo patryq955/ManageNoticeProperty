@@ -20,7 +20,13 @@ namespace ManageNoticeProperty.Models
         [Required(ErrorMessage = "Opis do zamówiena jest wymagany")]
         public string Description { get; set; }
 
-        public bool isDelete { get; set; }
+        public bool isDeleteBuyer { get; set; }
+
+        public DateTime? DeleteBuyerDate { get; set; }
+
+        public bool isDeleteSeller { get; set; }
+
+        public DateTime? DeleteSellerDate { get; set; }
 
         public DateTime? SellDate { get; set; }
     }
