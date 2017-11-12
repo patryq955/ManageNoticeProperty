@@ -25,11 +25,16 @@ namespace ManageNoticeProperty
             bundles.Add(new ScriptBundle("~/bundles/jQueryAll").Include(
                     "~/Scripts/jquery-{version}.js",
                     "~/Scripts/jquery.validate.min.js",
-                      "~/Scripts/jquery.validate.unobtrusive.min.js"));
+                      "~/Scripts/jquery.validate.unobtrusive.min.js",
+                     "~/Scripts/jquery-ui-1.12.1.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/formatPrice").Include(
+                "~/Scripts/jquery.price_format.2.0.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/themes/base/jquery-ui.min.css"));
         }
     }
 }

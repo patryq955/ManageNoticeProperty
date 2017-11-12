@@ -23,15 +23,18 @@ namespace ManageNoticeProperty.Controllers
         private IRepository<Album> _albumRepository;
         private IExtendRepository<Flat> _flatRepository;
         private ILastVisit _lastVisit;
+        private IPhotoConvert _photoConvert;
+        private GetPropertyOrderViewModel _getPropertyOrder;
         public PropertyController(IRepository<TypeFlat> typeFlatRepository,
             IExtendRepository<Flat> flatRepository, ILastVisit lastVisit, IExtendRepository<Order> orderRepository,
-            IRepository<Album> albumRepository)
+            IRepository<Album> albumRepository, IPhotoConvert photoConvert)
         {
             _typeFlatRepository = typeFlatRepository;
             _flatRepository = flatRepository;
             _lastVisit = lastVisit;
             _orderRepository = orderRepository;
             _albumRepository = albumRepository;
+            _photoConvert = photoConvert;
         }
         // GET: Property
         public ActionResult Index(int? page)
@@ -57,18 +60,25 @@ namespace ManageNoticeProperty.Controllers
         }
 
         [Authorize]
+        [HttpGet]
         public ActionResult AddProperty()
         {
             FlatViewModel vM = new FlatViewModel();
             vM.TypeFlat = _typeFlatRepository.GetOverview().ToArray();
-
+            vM.NameAction = "AddProperty";
+            vM.isAddAction = true;
             return View(vM);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddProperty(FlatViewModel flatViewModel)
         {
+            if (flatViewModel.PostedFile == null)
+            {
+                ModelState.AddModelError("FlatViewModel.PostedFile", "Zdjęcie jest wymagane");
+            }
             if (!ModelState.IsValid)
             {
                 return View("AddProperty", flatViewModel);
@@ -82,10 +92,9 @@ namespace ManageNoticeProperty.Controllers
 
             if (Request.IsAuthenticated)
             {
-                FileToByte fileToByte = new FileToByte();
                 flatViewModel.Flat.Album = new List<Album>();
                 var album = new Album();
-                album.Photo = fileToByte.GetSavePhoto(flatViewModel.PostedFile);
+                album.Photo = _photoConvert.PhotoToByte(flatViewModel.PostedFile);
                 flatViewModel.Flat.Album.Add(album);
                 flatViewModel.Flat.UserId = User.Identity.GetUserId();
                 flatViewModel.Flat.AddFlate = System.DateTime.Now;
@@ -96,27 +105,69 @@ namespace ManageNoticeProperty.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize]
+        public ActionResult EditProperty(int id)
+        {
+            FlatViewModel vM = new FlatViewModel();
+            vM.Flat = _flatRepository.GetID(id);
+            if (vM.Flat.UserId != User.Identity.GetUserId())
+            {
+                return RedirectToAction("ManageOwnProperty", "Property");
+            }
+            vM.TypeFlat = _typeFlatRepository.GetOverview();
+            vM.isAddAction = false;
+            vM.NameAction = "EditProperty";
+            return View(vM);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult EditProperty(FlatViewModel flatViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("EditProperty", flatViewModel);
+            }
+
+            var flat = _flatRepository.GetID(flatViewModel.Flat.FlatId);
+            flat.Area = flatViewModel.Flat.Area;
+            flat.City = flatViewModel.Flat.City;
+            flat.Condignation = flatViewModel.Flat.Condignation;
+            flat.Description = flatViewModel.Flat.Description;
+            flat.IsBalcon = flatViewModel.Flat.IsBalcon;
+            flat.PostCode = flatViewModel.Flat.PostCode;
+            flat.Price = flatViewModel.Flat.Price;
+            flat.QuantityRoom = flatViewModel.Flat.QuantityRoom;
+            flat.Street = flatViewModel.Flat.Street;
+            flat.TypeFlatID = flatViewModel.Flat.TypeFlatID;
+            _flatRepository.Update(flat);
+            _flatRepository.Save();
+
+            return RedirectToAction("ManageOwnProperty");
+
+        }
+
+        public ActionResult ManageOwnProperty()
+        {
+            Func<Flat, bool> predicate = x => x.UserId == User.Identity.GetUserId();
+            var ownProperty = _flatRepository.GetOverviewAll(predicate).ToList();
+            return View(ownProperty);
+        }
+
         public ActionResult GetProperty(int id)
         {
             Flat flat;
-            GetPropertyOrderViewModel getPropertyOrder = new GetPropertyOrderViewModel();
+            _getPropertyOrder = new GetPropertyOrderViewModel();
 
             flat = _flatRepository.GetIdAll(id);
-            if (flat == null
-               || ((flat.IsHidden && flat.UserId != User.Identity.GetUserId()) //You are seller and Property is Hidden
-               && (flat.IsHidden && flat.Order.Count(x => x.BuyUserID == User.Identity.GetUserId()) == 0) // You are buyer on list Order
-                ))
+            if (isGetProperty(flat))
             {
                 return View("NothingProperty");
             }
-            getPropertyOrder.IsOwnProperty = flat.UserId == User.Identity.GetUserId() ? true : false;
-            getPropertyOrder.isBuyAfter = flat.Order.Where(
-                    x => x.BuyUserID == User.Identity.GetUserId()
-                    ).Count() > 0 ? true : false;
             _lastVisit.AddLasstViewProperty(id);
-            getPropertyOrder.Flat = flat;
-            getPropertyOrder.Order = new Order();
-            return View(getPropertyOrder);
+            setGetPropertyViewModel(flat);
+
+            return View(_getPropertyOrder);
         }
 
         [HttpPost]
@@ -134,6 +185,7 @@ namespace ManageNoticeProperty.Controllers
             order.BuyUserID = User.Identity.GetUserId();
             order.FlatId = id;
             order.isDeleteBuyer = false;
+            order.Price = getPropertyOrder.Flat.Price;
             order.SellDate = DateTime.Now;
             _orderRepository.Add(order);
             _orderRepository.Save();
@@ -157,11 +209,11 @@ namespace ManageNoticeProperty.Controllers
         {
             AdminRaportViewModel adminRaportViewModel = new AdminRaportViewModel();
 
-            Func<Flat, bool> func = x => x.IsHidden == true && x.SellDate >= setStartDateInRaportAdmin(startDate) && x.SellDate <= setEndDateInRaportAdmin(endDate);
-            var listSellProperty = _flatRepository.GetOverviewAll(func).ToList();
+            Func<Order, bool> func = x => x.SellDate >= setStartDateInRaportAdmin(startDate) && x.SellDate <= setEndDateInRaportAdmin(endDate);
+            var listSellProperty = _orderRepository.GetOverviewAll(func).ToList();
             var totalPrice = listSellProperty.Sum(x => x.Price);
 
-            adminRaportViewModel.Flats = listSellProperty;
+            adminRaportViewModel.Order = listSellProperty;
             adminRaportViewModel.TotalPrice = totalPrice;
 
             if (Request.IsAjaxRequest())
@@ -205,6 +257,26 @@ namespace ManageNoticeProperty.Controllers
                 return new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
             }
             return value;
+        }
+
+        private void setGetPropertyViewModel(Flat flat)
+        {
+            _getPropertyOrder.IsOwnProperty = flat.UserId == User.Identity.GetUserId() ? true : false;
+
+            _getPropertyOrder.isBuyAfter = flat.Order.Where(
+                    x => x.BuyUserID == User.Identity.GetUserId()
+                    ).Count() > 0 ? true : false;
+
+            _getPropertyOrder.Flat = flat;
+            _getPropertyOrder.Order = new Order();
+        }
+
+        private bool isGetProperty(Flat flat)
+        {
+            return flat == null
+               || ((flat.IsHidden && flat.UserId != User.Identity.GetUserId()) //You are seller and Property is Hidden
+               && (flat.IsHidden && flat.Order.Count(x => x.BuyUserID == User.Identity.GetUserId()) == 0) // You are buyer on list Order
+                );
         }
 
 

@@ -29,5 +29,7 @@ namespace ManageNoticeProperty.Models
         public DateTime? DeleteSellerDate { get; set; }
 
         public DateTime? SellDate { get; set; }
+
+        public decimal Price { get; set; }
     }
 }

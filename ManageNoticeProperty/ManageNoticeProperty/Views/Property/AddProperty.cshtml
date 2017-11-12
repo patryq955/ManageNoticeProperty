@@ -11,3 +11,25 @@
 
 </div>
 
+
+@section scripts{
+@Scripts.Render("~/bundles/formatPrice")
+    <script>
+        $(document).ready(function () {
+            $(".decimalFormat").priceFormat({
+                prefix: '',
+                centsSeparator: ',',
+                thousandsSeparator: ' '
+                
+            })
+            $("#deletePriceDecimal").rules("remove", "number");
+            $("#deleteAreeDecimal").rules("remove", "number");
+
+
+
+        });
+
+    </script>
+    
+    }
+

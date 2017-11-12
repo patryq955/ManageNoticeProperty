@@ -9,7 +9,6 @@ namespace ManageNoticeProperty.Models
 {
     public class Flat
     {
-
         public virtual ApplicationUser User { get; set; }
         public virtual ICollection<Album> Album { get; set; }
         public virtual ICollection<Order> Order { get; set; }
@@ -28,7 +27,6 @@ namespace ManageNoticeProperty.Models
         public string City { get; set; }
 
         [Display(Name = "Powierzchnia")]
-        [Range(1,10000,ErrorMessage ="Powierzchnia jest za mała")]
         public decimal Area { get; set; }
 
         [Range(1, 20, ErrorMessage = "Ilość pokoi może wynosić {1}-{2}")]
@@ -36,7 +34,7 @@ namespace ManageNoticeProperty.Models
         public int QuantityRoom { get; set; }
 
         [Display(Name = "Ilość kondygnacji")]
-        [Range(1, 200,ErrorMessage = "Ilość kondygnacji musi zawierać sie w przedziale {1}-{2}")]
+        [Range(1, 200, ErrorMessage = "Ilość kondygnacji musi zawierać sie w przedziale {1}-{2}")]
         public int Condignation { get; set; }
 
         [Display(Name = "Czy mieszkanie posiada balkon")]
@@ -51,15 +49,27 @@ namespace ManageNoticeProperty.Models
         [UIHint("DateTimePicker")]
         public DateTime? SellDate { get; set; }
 
+        private decimal _price;
         [Display(Name = "Cena")]
-        public decimal Price { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal Price
+        {
+            get
+            {
+                return _price;
+            }
+            set
+            {
+                _price = (decimal)value;
+            }
+        }
 
-        [Display(Name = "Ulica")]
-        [Required(ErrorMessage = "Podaj nazwę ulicy")]
-        public string Street { get; set; }
+            [Display(Name = "Ulica")]
+            [Required(ErrorMessage = "Podaj nazwę ulicy")]
+            public string Street { get; set; }
 
         [Display(Name = "Kod pocztowy")]
-        [RegularExpression("^[0-9][0-9]-[0-9][0-9][0-9]$",ErrorMessage ="Nieprawidłowy kod pocztowy")]
+        [RegularExpression("^[0-9][0-9]-[0-9][0-9][0-9]$", ErrorMessage = "Nieprawidłowy kod pocztowy")]
         [Required(ErrorMessage = "Podaj kod pocztowy")]
         public string PostCode { get; set; }
 

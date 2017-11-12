@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,8 +8,9 @@ using System.Web;
 
 namespace ManageNoticeProperty.Infrastructure
 {
-    public interface IFileToByte
+    public interface IPhotoConvert
     {
-         byte[] GetSavePhoto(HttpPostedFileBase photoToConvert);
+        byte[] PhotoToByte(HttpPostedFileBase photoToConvert);
+
     }
 }

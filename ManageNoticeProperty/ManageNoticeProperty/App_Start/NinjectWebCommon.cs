@@ -68,6 +68,7 @@ namespace ManageNoticeProperty.App_Start
             //kernel.Bind<IMailService>().To<BackgroundPostalMailService>();
             //kernel.Bind<IMailService>().To<PostalMailService>();
             kernel.Bind<IRepository<Album>>().To<AlbumRepository>();
+            kernel.Bind<IPhotoConvert>().To<PhotoConvert>();
             kernel.Bind<IRepository<TypeFlat>>().To<TypeFlatRepository>();
             kernel.Bind<IRepository<Flat>>().To<FlatRepository>();
             kernel.Bind<IExtendRepository<Order>>().To<OrderRepository>();

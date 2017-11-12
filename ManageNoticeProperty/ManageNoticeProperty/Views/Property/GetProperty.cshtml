@@ -29,11 +29,12 @@
             @Model.Flat.Description
         </div>
     </div>
-    
-
-
 
     <div class="row">
+        @if (Model.IsOwnProperty == false && !Model.Flat.IsHidden && !Model.isBuyAfter)
+        {
+            <button id="btnModalUp" type="button" class="btn btn-default">Test</button>
+        }
         @if (Model.IsOwnProperty == false && !Model.Flat.IsHidden && !Model.isBuyAfter)
         {
             <button id="btnModalUp" type="button" class="btn btn-default">Test</button>

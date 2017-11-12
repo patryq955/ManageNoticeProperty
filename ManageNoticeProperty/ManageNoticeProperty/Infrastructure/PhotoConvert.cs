@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
 
 namespace ManageNoticeProperty.Infrastructure
 {
-    public class FileToByte : IFileToByte
+    public class PhotoConvert : IPhotoConvert
     {
-        public byte[] GetSavePhoto(HttpPostedFileBase photoToConvert)
+        public byte[] PhotoToByte(HttpPostedFileBase photoToConvert)
         {
-            var test = photoToConvert.InputStream;
+            var test = photoToConvert;
+            var file = photoToConvert.InputStream;
             byte[] data;
-            using (Stream inputStream = test)
+            using (Stream inputStream = file)
             {
                 MemoryStream memoryStream = inputStream as MemoryStream;
                 if (memoryStream == null)

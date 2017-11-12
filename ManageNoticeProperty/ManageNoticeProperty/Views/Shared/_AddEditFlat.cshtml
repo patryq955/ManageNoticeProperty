@@ -1,11 +1,16 @@
 ﻿@model ManageNoticeProperty.ViewModel.FlatViewModel
 <div class="row">
     <div class="col-lg-6 col-md-12">
-        @using (Html.BeginForm("AddProperty", "Property", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-group" }))
+        @using (Html.BeginForm(Model.NameAction, "Property", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-group" }))
         {
             @Html.AntiForgeryToken()
             <table class="table">
                 <tr>
+                    @if (!Model.isAddAction)
+                    {
+                        @Html.HiddenFor(model => model.Flat.FlatId)
+
+                    }
                     <td>@Html.LabelFor(x => x.Flat.City)</td>
                     <td>@Html.TextBoxFor(x => x.Flat.City)</td>
                 </tr>
@@ -25,7 +30,7 @@
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(x => x.Flat.Area)</td>
-                    <td>@Html.TextBoxFor(x => x.Flat.Area)</td>
+                    <td>@Html.TextBoxFor(x => x.Flat.Area, new { @class = "decimalFormat", @id= "deleteAreeDecimal" })</td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(x => x.Flat.QuantityRoom)</td>
@@ -45,17 +50,16 @@
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(x => x.Flat.Price)</td>
-                    <td>@Html.TextBoxFor(x => x.Flat.Price)</td>
+                    <td>@Html.TextBoxFor(x => x.Flat.Price, new { @class = "decimalFormat",@id= "deletePriceDecimal" })</td>
                 </tr>
                 <tr>
                     <td>
-                        @Html.LabelFor(x=>x.PostedFile, "Zdjęcia")
+                        @Html.LabelFor(x => x.PostedFile, "Zdjęcia")
                     </td>
                     <td>
                         @Html.TextBoxFor(x => x.PostedFile, new { type = "file" })
                     </td>
                 </tr>
-
             </table>
 
 

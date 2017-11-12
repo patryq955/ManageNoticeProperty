@@ -3,6 +3,7 @@ using ManageNoticeProperty.Models.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 
@@ -25,13 +26,15 @@ namespace ManageNoticeProperty.ViewModel
         }
         public IEnumerable<TypeFlat> TypeFlat { get; set; }
 
-        [Required(ErrorMessage ="Zdjęcie jest wymagane")]
         public HttpPostedFileBase PostedFile { get; set; }
+
+        public string NameAction { get; set; }
+
+        public bool isAddAction { get; set; }
 
         public FlatViewModel()
         {
             _typeFlatRepository = new TypeFlatRepository();
-            _flat = new Flat();
             TypeFlat = _typeFlatRepository.GetOverview().ToList();
         }
     }

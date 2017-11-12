@@ -21,7 +21,8 @@ namespace ManageNoticeProperty.Controllers
         }
         public ActionResult Index()
         {
-            var lista = _lastVisit.GetLastViewProperty().ToList();
+            
+            var lista = _lastVisit.GetLastViewProperty().Reverse().ToList();
             List<Flat> lastVisitProperty = new List<Flat>();
             foreach (var id in lista)
             {

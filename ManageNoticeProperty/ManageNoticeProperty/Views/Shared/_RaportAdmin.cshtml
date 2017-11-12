@@ -5,16 +5,16 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(x => x.Flats.First().City)
+                        @Html.DisplayNameFor(x => x.Order.FirstOrDefault().Flat.City)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(x => x.Flats.First().Street)
+                        @Html.DisplayNameFor(x => x.Order.First().Flat.Street)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(x => x.Flats.First().PostCode)
+                        @Html.DisplayNameFor(x => x.Order.First().Flat.PostCode)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(x => x.Flats.First().SellDate)
+                        @Html.DisplayNameFor(x => x.Order.First().SellDate)
                     </th>
                     <th>
                         Sell user
@@ -23,38 +23,34 @@
                         Buy user
                     </th>
                     <th>
-                        @Html.DisplayNameFor(x => x.Flats.First().Price)
+                        @Html.DisplayNameFor(x => x.Order.First().Flat.Price)
                     </th>
                 </tr>
 
             </thead>
-            @foreach (var flat in Model.Flats)
+            @foreach (var order in Model.Order)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(x => flat.City)
+                        @Html.DisplayFor(x => order.Flat.City)
                     </td>
                     <td>
-                        @Html.DisplayFor(x => flat.Street)
+                        @Html.DisplayFor(x => order.Flat.Street)
                     </td>
                     <td>
-                        @Html.DisplayFor(x => flat.PostCode)
+                        @Html.DisplayFor(x => order.Flat.PostCode)
                     </td>
                     <td>
-                        @Html.DisplayFor(x => flat.SellDate)
+                        @Html.DisplayFor(x => order.SellDate)
                     </td>
                     <td>
-                        @Html.DisplayFor(x => flat.User.UserName)
+                        @Html.DisplayFor(x => order.Flat.User.UserName)
                     </td>
                     <td>
-                        @foreach (var order in flat.Order)
-                        {
-                            @Html.DisplayFor(x => order.BuyUser.UserName)<br/>
-                        }
-
+                        @Html.DisplayFor(x => order.BuyUser.UserName)
                     </td>
                     <td>
-                        @Html.DisplayFor(x => flat.Price)
+                        @Html.DisplayFor(x => order.Price)
                     </td>
                 </tr>
 
@@ -67,7 +63,7 @@
                     <td></td>
                     <td></td>
                     <td>Razem:</td>
-                    <td>@Model.TotalPrice</td>
+                    <td>@Model.TotalPrice Do EDYCJI!! zastanowienia</td>
                 </tr>
             </tfoot>
         </table>

@@ -8,7 +8,7 @@ namespace ManageNoticeProperty.ViewModel
 {
     public class AdminRaportViewModel
     {
-        public List<Flat> Flats { get; set; }
+        public List<Order> Order { get; set; }
         public decimal TotalPrice { get; set; }
         
     }
