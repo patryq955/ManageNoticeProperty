@@ -27,6 +27,11 @@ namespace ManageNoticeProperty.Infrastructure
         public void AddLasstViewProperty(int id)
         {
 
+            if(_lastViewPropertyID.Where(x=> x.Equals(id.ToString())).Count() != 0)
+            {
+                return;
+            }
+
             _lastViewPropertyID.Add(id.ToString());
             if (_lastViewPropertyID.Count > 3)
             {
