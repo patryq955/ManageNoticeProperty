@@ -4,15 +4,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
-
-    @using (Ajax.BeginForm( new AjaxOptions()
+    @using (Ajax.BeginForm("Index", "Property", new AjaxOptions()
     {
         UpdateTargetId= "load-all-property",
-        HttpMethod="Post"
+        HttpMethod="Get"
     }))
     {
-        @*<form class="all-property-search" id="search-form" method="get"
-            data - ajax = "true" data - ajax - target = "#load-all-property" data - ajax - update = "#load-all-property" >*@
+    @*<form class="all-property-search" id="search-form" method="get"
+          data-ajax="true" data-ajax-target="#load-all-property" data-ajax-update="#load-all-property">*@
         <div class="row all-property-search-row">
             <div class="col-md-3">
                 @Html.LabelFor(x => x.TypeFlatID, "Typ Nieruchomoście")
@@ -26,9 +25,7 @@
                 @Html.LabelFor(x => x.IsBalcon, "Z balkonem")
                 @Html.CheckBoxFor(x => x.IsBalcon)
             </div>
-
         </div>
-
         <div class="row all-property-search-row">
             <div div class="col-md-6">
                 @Html.LabelFor(x => x.PriceFrom, "Cena")
@@ -41,9 +38,7 @@
                 @Html.TextBoxFor(x => x.QuantityRoomTo)
             </div>
 
-
         </div>
-
         <div class="row all-property-search-row">
             <div div class="col-md-6">
                 @Html.LabelFor(x => x.AreaFrom, "Powierzchnia")
@@ -55,22 +50,18 @@
                 @Html.TextBoxFor(x => x.CondignationFrom)
                 @Html.TextBoxFor(x => x.CondignationTo)
             </div>
-
         </div>
         <div div class="col-md-3">
             <input type="submit" value="Szukaj" class="btn" />
         </div>
-    }
-    @*</form>*@
+            }
+ @*   </form>*@
     <div>
         <div class="row"></div>
     </div>
-
     @Html.Partial("_ListAllProperty")
 
-
 </div>
-
 @section scripts{
     <script>
 
@@ -100,5 +91,4 @@
         //});
 
     </script>
-
 }

@@ -40,7 +40,7 @@ namespace ManageNoticeProperty.Controllers
         // GET: Property
 
         [HttpGet]
-        public ActionResult Index(int? page, AllPropertyViewModel vM, string testString)
+        public ActionResult Index(int? page, AllPropertyViewModel vM)
         {
             vM.TypeFlat = _typeFlatRepository.GetOverview();
 
@@ -51,24 +51,6 @@ namespace ManageNoticeProperty.Controllers
             {
                 return PartialView("_ListAllProperty", vM);
             }
-            return View(vM);
-        }
-
-
-
-        [HttpPost]
-        public ActionResult Index(AllPropertyViewModel vM, int? page)
-        {
-            vM.TypeFlat = _typeFlatRepository.GetOverview();
-            Func<Flat, bool> predicate = x => x.IsHidden == false && x.City == vM.City;
-
-            vM.Flat = _flatRepository.GetOverview(predicate).ToPagedList(pageNumber: page ?? 1, pageSize: 2);
-
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_ListAllProperty", vM);
-            }
-
             return View(vM);
         }
 

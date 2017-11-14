@@ -26,7 +26,8 @@ namespace ManageNoticeProperty
                     "~/Scripts/jquery-{version}.js",
                     "~/Scripts/jquery.validate.min.js",
                       "~/Scripts/jquery.validate.unobtrusive.min.js",
-                     "~/Scripts/jquery-ui-1.12.1.min.js"));
+                     "~/Scripts/jquery-ui-1.12.1.min.js",
+                     "~/Scripts/jquery.unobtrusive-ajax.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/formatPrice").Include(
                 "~/Scripts/jquery.price_format.2.0.js"));
