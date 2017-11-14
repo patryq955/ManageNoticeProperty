@@ -80,6 +80,13 @@ textarea {
  
 }
 
+.text-is-message{
+    text-decoration:none;
+    font-size:18px;
+    color:red !important;
+    
+}
+
 
 /*Main Page*/
 

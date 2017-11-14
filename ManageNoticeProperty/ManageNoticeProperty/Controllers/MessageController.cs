@@ -45,7 +45,7 @@ namespace ManageNoticeProperty.Controllers
             }
             messageInfo.Text = messageInfo.Order.BuyUserID == userID ? TyPeText.Buyer : TyPeText.Seller;
             messageInfo.IsSellOffer = messageInfo.Order.BuyUserID == userID ? false : true;
-
+            updateReadMessage(messageInfo.Order);
             return View(messageInfo);
         }
 
@@ -64,7 +64,7 @@ namespace ManageNoticeProperty.Controllers
             }
             _orderRepository.Update(messageToDelete);
             _orderRepository.Save();
-
+            updateReadMessage(messageToDelete);
 
 
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
@@ -72,11 +72,12 @@ namespace ManageNoticeProperty.Controllers
 
         public int MessageToRead()
         {
+            var test = User.Identity.GetUserId();
             Func<Order, bool> predicate =
                 x => x.Flat.UserId == User.Identity.GetUserId()
                 && x.isReadSeller == false;                ;
-            var result = _orderRepository.GetOverviewAll(predicate).Where(predicate).Count();
-            return 0;
+            
+            return _orderRepository.GetOverviewAll(predicate).Where(predicate).Count();
         }
 
         #region private Method
@@ -109,6 +110,15 @@ namespace ManageNoticeProperty.Controllers
         {
             return User.Identity.GetUserId() == order.BuyUserID ? true : false;
         }
+
+        public void updateReadMessage(Order order)
+        {
+            order.isReadSeller = true;
+            _orderRepository.Update(order);
+            _orderRepository.Save();
+        }
+
+
         #endregion
     }
 }
