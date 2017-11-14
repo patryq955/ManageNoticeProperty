@@ -17,6 +17,7 @@ namespace ManageNoticeProperty.Controllers
 {
     public class PropertyController : Controller
     {
+        private readonly int _itemOnPage = 2;
         private ApplicationUserManager _userManager;
         private IRepository<TypeFlat> _typeFlatRepository;
         private IExtendRepository<Order> _orderRepository;
@@ -37,27 +38,42 @@ namespace ManageNoticeProperty.Controllers
             _photoConvert = photoConvert;
         }
         // GET: Property
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, AllPropertyViewModel vM, string testString)
         {
-            AllPropertyViewModel vM = new AllPropertyViewModel();
             vM.TypeFlat = _typeFlatRepository.GetOverview();
+                       
+            ViewBag.Test = vM;
+            vM.Flat = _flatRepository.GetOverview(SearchProperty(vM)).ToPagedList(pageNumber: page ?? 1, pageSize: _itemOnPage);
 
-            Func<Flat, bool> predicate = x => x.IsHidden == false;
-            var lista = _flatRepository.GetOverview(predicate).ToList();
-            int pageSize = 5;
-            var pageNumber = page ?? 1;
-            var test = lista.ToPagedList(pageNumber, pageSize);
-            vM.Flat = test;
-
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListAllProperty", vM);
+            }
             return View(vM);
         }
 
-        [HttpPost]
-        public ActionResult Index(AllPropertyViewModel vM)
+        public ActionResult IndexNextPage(int? page, AllPropertyViewModel vM, string testString)
         {
 
-            return View(vM);
+            return PartialView("_ListAllProperty", vM);
+
         }
+
+        //[HttpPost]
+        //public ActionResult Index(AllPropertyViewModel vM,int? page)
+        //{
+        //    vM.TypeFlat = _typeFlatRepository.GetOverview();
+        //    Func<Flat, bool> predicate = x => x.IsHidden == false && x.City == vM.City;
+
+        //    vM.Flat = _flatRepository.GetOverview(predicate).ToPagedList(pageNumber: page ?? 1, pageSize: 2);
+
+        //    if (Request.IsAjaxRequest())
+        //    {
+        //        return PartialView("_ListAllProperty", vM);
+        //    }
+
+        //    return View(vM);
+        //  }
 
         [Authorize]
         [HttpGet]
@@ -160,12 +176,12 @@ namespace ManageNoticeProperty.Controllers
             _getPropertyOrder = new GetPropertyOrderViewModel();
 
             flat = _flatRepository.GetIdAll(id);
-            if (isGetProperty(flat))
+            if (IsGetProperty(flat))
             {
                 return View("NothingProperty");
             }
             _lastVisit.AddLasstViewProperty(id);
-            setGetPropertyViewModel(flat);
+            SetGetPropertyViewModel(flat);
 
             return View(_getPropertyOrder);
         }
@@ -209,7 +225,7 @@ namespace ManageNoticeProperty.Controllers
         {
             AdminRaportViewModel adminRaportViewModel = new AdminRaportViewModel();
 
-            Func<Order, bool> func = x => x.SellDate >= setStartDateInRaportAdmin(startDate) && x.SellDate <= setEndDateInRaportAdmin(endDate);
+            Func<Order, bool> func = x => x.SellDate >= SetStartDateInRaportAdmin(startDate) && x.SellDate <= SetEndDateInRaportAdmin(endDate);
             var listSellProperty = _orderRepository.GetOverviewAll(func).ToList();
             var totalPrice = listSellProperty.Sum(x => x.Price);
 
@@ -237,7 +253,7 @@ namespace ManageNoticeProperty.Controllers
         }
 
         #region private method
-        private DateTime setStartDateInRaportAdmin(string startDate)
+        private DateTime SetStartDateInRaportAdmin(string startDate)
         {
             DateTime value;
             var isDate = DateTime.TryParseExact(startDate, "yyyy-MM-dd", new CultureInfo("pl-PL"), DateTimeStyles.None, out value);
@@ -248,7 +264,7 @@ namespace ManageNoticeProperty.Controllers
             return value;
         }
 
-        private DateTime setEndDateInRaportAdmin(string endDate)
+        private DateTime SetEndDateInRaportAdmin(string endDate)
         {
             DateTime value;
             var isDate = DateTime.TryParseExact(endDate, "yyyy-MM-dd", new CultureInfo("pl-PL"), DateTimeStyles.None, out value);
@@ -259,7 +275,7 @@ namespace ManageNoticeProperty.Controllers
             return value;
         }
 
-        private void setGetPropertyViewModel(Flat flat)
+        private void SetGetPropertyViewModel(Flat flat)
         {
             _getPropertyOrder.IsOwnProperty = flat.UserId == User.Identity.GetUserId() ? true : false;
 
@@ -271,7 +287,7 @@ namespace ManageNoticeProperty.Controllers
             _getPropertyOrder.Order = new Order();
         }
 
-        private bool isGetProperty(Flat flat)
+        private bool IsGetProperty(Flat flat)
         {
             return flat == null
                || ((flat.IsHidden && flat.UserId != User.Identity.GetUserId()) //You are seller and Property is Hidden
@@ -279,7 +295,29 @@ namespace ManageNoticeProperty.Controllers
                 );
         }
 
+        private Func<Flat,bool> SearchProperty(AllPropertyViewModel vM)
+        {
+            vM.PriceFrom = ValidateType.isCheck<double>(vM.PriceFrom) ? vM.PriceFrom : null;
+            vM.PriceTo = ValidateType.isCheck<double>(vM.PriceTo) ? vM.PriceTo : null;
+            vM.QuantityRoomFrom = ValidateType.isCheck<int>(vM.QuantityRoomFrom) ? vM.QuantityRoomFrom : null;
+            vM.QuantityRoomTo = ValidateType.isCheck<int>(vM.QuantityRoomTo) ? vM.QuantityRoomTo : null;
+            vM.AreaFrom = ValidateType.isCheck<double>(vM.AreaFrom) ? vM.AreaFrom.Replace(".",",") : null;
+            vM.AreatTo = ValidateType.isCheck<double>(vM.AreatTo) ? vM.AreatTo : null;
+            vM.CondignationFrom = ValidateType.isCheck<int>(vM.CondignationFrom) ? vM.CondignationFrom : null;
+            vM.CondignationTo = ValidateType.isCheck<int>(vM.CondignationTo) ? vM.CondignationTo : null;
 
+            return x => x.IsHidden == false && (vM.City == null || x.City.ToLower().Contains(vM.City.ToLower()))
+                && (vM.PriceFrom == null || x.Price >= decimal.Parse(vM.PriceFrom))
+                && (vM.PriceTo == null || x.Price <= decimal.Parse(vM.PriceTo))
+                && (vM.IsBalcon == x.IsBalcon)
+                && (vM.QuantityRoomFrom == null || x.QuantityRoom >= int.Parse(vM.QuantityRoomFrom))
+                && (vM.QuantityRoomTo == null || x.QuantityRoom <= int.Parse(vM.QuantityRoomTo))
+                && (vM.AreaFrom == null || x.Area >= decimal.Parse(vM.AreaFrom))
+                && (vM.AreatTo == null || x.Area <= decimal.Parse(vM.AreatTo))
+                && (vM.CondignationFrom == null || x.Condignation >= int.Parse(vM.CondignationFrom))
+                && (vM.CondignationTo == null || x.Condignation <= int.Parse(vM.CondignationTo))
+                ;
+        }
 
         #endregion
     }

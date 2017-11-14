@@ -1,0 +1,41 @@
+﻿@model ManageNoticeProperty.ViewModel.AllPropertyViewModel
+@using PagedList.Mvc;
+<div id="load-all-property" class="row">
+    @foreach (var property in Model.Flat)
+    {
+        <a href="@Url.Action("GetProperty", "Property", new { id = property.FlatId })">
+            <div class="row all-property-list">
+                <div class="col-lg-4 all-property-list-element">
+                    <img src="data:image;base64,@Convert.ToBase64String(property.Album.FirstOrDefault().Photo)" class="img-responsive" />
+                </div>
+                <div class="col-lg-8">
+                    <h2>@property.TypeFlat.Name, @property.City</h2>
+                    <div class="row all-property-list-element-text">
+                        @property.Area m<span class="igorny">2</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    }
+    @ViewBag.Test.City
+
+    <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
+    Page @(Model.Flat.PageCount < Model.Flat.PageNumber ? 0 : Model.Flat.PageNumber) of @Model.Flat.PageCount
+
+    @Html.PagedListPager(Model.Flat, page => Url.Action("Index",
+    new
+    {
+        page,
+        City = Model.City,
+        PriceFrom = Model.PriceFrom,
+        PriceTo = Model.PriceTo,
+        IsBalcon = Model.IsBalcon,
+        QuantityRoomTo = Model.QuantityRoomTo,
+        QuantityRoomFrom = Model.QuantityRoomFrom,
+        AreaFrom = Model.AreaFrom,
+        AreaTo = Model.AreatTo,
+        CondignationFrom = Model.CondignationFrom,
+        CondignationTo = Model.CondignationTo
+    }))
+
+</div>

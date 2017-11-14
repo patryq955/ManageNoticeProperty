@@ -13,30 +13,27 @@ namespace ManageNoticeProperty.ViewModel
 
         public IEnumerable<TypeFlat> TypeFlat { get; set; }
 
-        public int TypeFlatID { get; set; }
 
-        public string City { get; set; }
+        public string City { get; set;}
 
-        public int QuantityRoomTo { get; set; }
+        public string QuantityRoomTo { get; set; }
 
-        public int QuantityRoomFrom { get; set; }
+        public string QuantityRoomFrom { get; set; }
 
-        public decimal AreatTo { get; set; }
+        public string AreatTo { get; set; }
 
-        public decimal AreaFrom { get; set; }
+        public string AreaFrom { get; set; }
 
-        public decimal CondignationTo { get; set; }
+        public string CondignationTo { get; set; }
 
-        public decimal CondignationFrom { get; set; }
+        public string CondignationFrom { get; set; }
 
-        public decimal PriceTo { get; set; }
+        public string PriceTo { get; set; }
 
-        public decimal PriceFrom { get; set; }
+        public string PriceFrom { get; set; }
 
         public bool IsBalcon { get; set; }
 
-        public int PageIndex { get; set; }
-        public int PageSize { get; set; }
-        public int RecordCount { get; set; }
+        public int TypeFlatID { get; set; }
     }
 }

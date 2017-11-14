@@ -239,6 +239,7 @@
     <Compile Include="Infrastructure\IPhotoConvert.cs" />
     <Compile Include="Infrastructure\LastVisit.cs" />
     <Compile Include="Infrastructure\ILastVisit.cs" />
+    <Compile Include="Infrastructure\ValidateType.cs" />
     <Compile Include="Migrations\201710311732199_AddUsersAccount.cs" />
     <Compile Include="Migrations\201710311732199_AddUsersAccount.Designer.cs">
       <DependentUpon>201710311732199_AddUsersAccount.cs</DependentUpon>
@@ -443,6 +444,7 @@
     <Content Include="Views\Shared\_ListMessageInfo.cshtml" />
     <Content Include="Views\Property\EditProperty.cshtml" />
     <Content Include="Views\Property\ManageOwnProperty.cshtml" />
+    <Content Include="Views\Shared\_ListAllProperty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

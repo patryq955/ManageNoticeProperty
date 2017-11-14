@@ -20,7 +20,6 @@
                 ajaxasync: true,
                 data: { id: idDeleteMessage },
                 success: function () {
-                    alert(idDeleteMessage);
                     $("#load-message").load("/Message/Index");
                 },
                 error: function (data) {

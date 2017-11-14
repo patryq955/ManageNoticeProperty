@@ -3,102 +3,95 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="container">
 
-    @using (Html.BeginForm())
+    @using (Ajax.BeginForm("Index", "Property", new AjaxOptions { UpdateTargetId = "load-all-property", HttpMethod = "POST", OnSuccess = "OnAjaxRequestSuccess" }, new { @id = "formAjax", @class = "all-property-search" }))
     {
-        <div class="row">
-            <div>
+
+        <div class="row all-property-search-row">
+            <div class="col-md-3">
                 @Html.LabelFor(x => x.TypeFlatID, "Typ Nieruchomoście")
                 @Html.DropDownListFor(x => x.TypeFlatID, new SelectList(Model.TypeFlat, "TypeFlatID", "Name", Model.TypeFlat.FirstOrDefault().TypeFlatID))
             </div>
-            <div>
-                @Html.LabelFor(x => x.City, "Miejscowosc")
-                @Html.TextAreaFor(x => x.City)
+            <div div class="col-md-3">
+                @Html.LabelFor(x => x.City, "Miejscowość")
+                @Html.TextBoxFor(x => x.City)
             </div>
-            <div>
+            <div div class="col-md-3">
                 @Html.LabelFor(x => x.IsBalcon, "Z balkonem")
                 @Html.CheckBoxFor(x => x.IsBalcon)
             </div>
-            <div>
+            <div div class="col-md-3">
                 <input type="submit" value="Szukaj" class="btn" />
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="row">
-                    @Html.LabelFor(x => x.PriceFrom, "Cena")
-                    @Html.TextBoxFor(x => x.PriceFrom)
-                </div>
-                <div class="row">
-                    @Html.TextBoxFor(x => x.PriceTo)
-                </div>
+        <div class="row all-property-search-row">
+            <div div class="col-md-6">
+                @Html.LabelFor(x => x.PriceFrom, "Cena")
+                @Html.TextBoxFor(x => x.PriceFrom)
+                @Html.TextBoxFor(x => x.PriceTo)
             </div>
-            <div class="col-lg-6">
-                <div class="row">
-                    @Html.LabelFor(x => x.QuantityRoomFrom, "Liczba Pokoi")
-                    @Html.TextBoxFor(x => x.QuantityRoomFrom)
-                </div>
-                <div class="row">
-                    @Html.TextBoxFor(x => x.QuantityRoomTo)
-                </div>
+            <div div class="col-md-6">
+                @Html.LabelFor(x => x.QuantityRoomFrom, "Liczba Pokoi")
+                @Html.TextBoxFor(x => x.QuantityRoomFrom)
+                @Html.TextBoxFor(x => x.QuantityRoomTo)
             </div>
+
 
         </div>
 
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="row">
-                    @Html.LabelFor(x => x.AreaFrom, "Powierzchnia")
-                    @Html.TextBoxFor(x => x.AreaFrom)
-                </div>
-                <div class="row">
-                    @Html.TextBoxFor(x => x.AreatTo)
-                </div>
+        <div class="row all-property-search-row">
+            <div div class="col-md-6">
+                @Html.LabelFor(x => x.AreaFrom, "Powierzchnia")
+                @Html.TextBoxFor(x => x.AreaFrom)
+                @Html.TextBoxFor(x => x.AreatTo)
             </div>
-            <div class="col-lg-6">
-                <div class="row">
-                    @Html.LabelFor(x => x.CondignationFrom, "Kondygnacja")
-                    @Html.TextBoxFor(x => x.CondignationFrom)
-                </div>
-                <div class="row">
-                    @Html.TextBoxFor(x => x.CondignationTo)
-                </div>
+            <div div class="col-md-6">
+                @Html.LabelFor(x => x.CondignationFrom, "Kondygnacja")
+                @Html.TextBoxFor(x => x.CondignationFrom)
+                @Html.TextBoxFor(x => x.CondignationTo)
             </div>
+
         </div>
     }
     <div>
         <div class="row"></div>
     </div>
-    <div class="row">
-        @foreach (var property in Model.Flat)
-        {
-            <a href="@Url.Action("GetProperty", "Property", new { id = property.FlatId })" >
-                <div class="row all-property-list">
-                    <div class="col-lg-4 all-property-list-element">
-                        <img src="data:image;base64,@Convert.ToBase64String(property.Album.FirstOrDefault().Photo)" class="img-responsive" />
-                    </div>
-                    <div class="col-lg-8">
-                        <h2>@property.TypeFlat.Name, @property.City</h2>
-                        <div class="row all-property-list-element-text">
-                            @property.Area m<span class="igorny">2</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        }
 
-    </div>
-    <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
-    Page @(Model.Flat.PageCount < Model.Flat.PageNumber ? 0 : Model.Flat.PageNumber) of @Model.Flat.PageCount
+    @Html.Partial("_ListAllProperty")
 
-    @Html.PagedListPager(Model.Flat, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
 </div>
 
 @section scripts{
+    <script>
 
+        //$(document).ready(function () {
+        //    $("#formAjax").submit(function (event) {
+        //        event.preventDefault();
+        //        event.stopImmediatePropagation();
+        //        var action = $("#formAjax").attr("action");
+        //        var dataString = new FormData($("#formAjax").get(0));
+        //        $.ajax({
+        //            type: "GET",
+        //            url: action,
+        //            data:dataString,
+        //            contentType: false,
+        //            processData: false,
+        //            success: function (result) {
+        //                alert("bangla");
+        //                var $newContent = $(result);
+        //                $("#load-all-property").replaceWith($newContent);
+        //                $newContent.effect("slide");
+        //            },
+        //            error: function (data) {
+        //                alert("error");
+        //            }
+        //        });
+        //    });
+        //});
+
+    </script>
 
 }

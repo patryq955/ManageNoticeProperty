@@ -166,6 +166,15 @@ textarea {
     color:#523f3f;
 }
 
+.all-property-search-row{
+    padding: 6px 0px;
+}
+
+.all-property-search{
+    background-color:#98f7a9; 
+ 
+}
+
 /*Get Product*/
 .get-property{
   
