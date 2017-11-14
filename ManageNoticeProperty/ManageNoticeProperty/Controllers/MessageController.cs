@@ -70,6 +70,15 @@ namespace ManageNoticeProperty.Controllers
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
 
+        public int MessageToRead()
+        {
+            Func<Order, bool> predicate =
+                x => x.Flat.UserId == User.Identity.GetUserId()
+                && x.isReadSeller == false;                ;
+            var result = _orderRepository.GetOverviewAll(predicate).Where(predicate).Count();
+            return 0;
+        }
+
         #region private Method
         private List<MessageInfoViewModel> GetListMessageInfoViewModel()
         {

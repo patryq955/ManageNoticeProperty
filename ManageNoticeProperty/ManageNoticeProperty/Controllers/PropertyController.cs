@@ -38,10 +38,12 @@ namespace ManageNoticeProperty.Controllers
             _photoConvert = photoConvert;
         }
         // GET: Property
+
+        [HttpGet]
         public ActionResult Index(int? page, AllPropertyViewModel vM, string testString)
         {
             vM.TypeFlat = _typeFlatRepository.GetOverview();
-                       
+
             ViewBag.Test = vM;
             vM.Flat = _flatRepository.GetOverview(SearchProperty(vM)).ToPagedList(pageNumber: page ?? 1, pageSize: _itemOnPage);
 
@@ -52,28 +54,23 @@ namespace ManageNoticeProperty.Controllers
             return View(vM);
         }
 
-        public ActionResult IndexNextPage(int? page, AllPropertyViewModel vM, string testString)
+
+
+        [HttpPost]
+        public ActionResult Index(AllPropertyViewModel vM, int? page)
         {
+            vM.TypeFlat = _typeFlatRepository.GetOverview();
+            Func<Flat, bool> predicate = x => x.IsHidden == false && x.City == vM.City;
 
-            return PartialView("_ListAllProperty", vM);
+            vM.Flat = _flatRepository.GetOverview(predicate).ToPagedList(pageNumber: page ?? 1, pageSize: 2);
 
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ListAllProperty", vM);
+            }
+
+            return View(vM);
         }
-
-        //[HttpPost]
-        //public ActionResult Index(AllPropertyViewModel vM,int? page)
-        //{
-        //    vM.TypeFlat = _typeFlatRepository.GetOverview();
-        //    Func<Flat, bool> predicate = x => x.IsHidden == false && x.City == vM.City;
-
-        //    vM.Flat = _flatRepository.GetOverview(predicate).ToPagedList(pageNumber: page ?? 1, pageSize: 2);
-
-        //    if (Request.IsAjaxRequest())
-        //    {
-        //        return PartialView("_ListAllProperty", vM);
-        //    }
-
-        //    return View(vM);
-        //  }
 
         [Authorize]
         [HttpGet]
@@ -295,13 +292,13 @@ namespace ManageNoticeProperty.Controllers
                 );
         }
 
-        private Func<Flat,bool> SearchProperty(AllPropertyViewModel vM)
+        private Func<Flat, bool> SearchProperty(AllPropertyViewModel vM)
         {
             vM.PriceFrom = ValidateType.isCheck<double>(vM.PriceFrom) ? vM.PriceFrom : null;
             vM.PriceTo = ValidateType.isCheck<double>(vM.PriceTo) ? vM.PriceTo : null;
             vM.QuantityRoomFrom = ValidateType.isCheck<int>(vM.QuantityRoomFrom) ? vM.QuantityRoomFrom : null;
             vM.QuantityRoomTo = ValidateType.isCheck<int>(vM.QuantityRoomTo) ? vM.QuantityRoomTo : null;
-            vM.AreaFrom = ValidateType.isCheck<double>(vM.AreaFrom) ? vM.AreaFrom.Replace(".",",") : null;
+            vM.AreaFrom = ValidateType.isCheck<double>(vM.AreaFrom) ? vM.AreaFrom.Replace(".", ",") : null;
             vM.AreatTo = ValidateType.isCheck<double>(vM.AreatTo) ? vM.AreatTo : null;
             vM.CondignationFrom = ValidateType.isCheck<int>(vM.CondignationFrom) ? vM.CondignationFrom : null;
             vM.CondignationTo = ValidateType.isCheck<int>(vM.CondignationTo) ? vM.CondignationTo : null;

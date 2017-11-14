@@ -31,5 +31,7 @@ namespace ManageNoticeProperty.Models
         public DateTime? SellDate { get; set; }
 
         public decimal Price { get; set; }
+
+        public bool isReadSeller { get; set; }
     }
 }

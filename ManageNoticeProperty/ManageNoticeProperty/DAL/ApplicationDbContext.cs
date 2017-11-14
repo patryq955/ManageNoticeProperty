@@ -13,7 +13,6 @@ namespace ManageNoticeProperty.DAL
         
         public DbSet<Album> Album { get; set; }
         public DbSet<Flat> Flat { get; set; }
-        public DbSet<Message> Message { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<TypeFlat> TypeFlat { get; set; }
         public static ApplicationDbContext Create()
