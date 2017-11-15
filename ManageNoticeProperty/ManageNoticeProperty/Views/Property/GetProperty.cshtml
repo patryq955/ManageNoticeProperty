@@ -6,10 +6,10 @@
 }
 <div class="container get-property">
     <div class="row get-product-title">
-        <div class="col-sm-10  col-xs-12">
+        <div class="col-sm-9  col-xs-12">
             <h2>@Model.Flat.TypeFlat.Name, @Model.Flat.Area m<span class="igorny">2</span>, @Model.Flat.City </h2>
         </div>
-        <div class="col-sm-2 col-xs-12">
+        <div class="col-sm-3 col-xs-12 text-left">
             <h2>@Model.Flat.Price zł</h2>
         </div>
     </div>
@@ -19,25 +19,38 @@
         </div>
     </div>
 
-
-
-    <div class="row">
-        <div class="col-lg-8 col-md-12">
-            @Model.Flat.City
-        </div>
-        <div class="col-lg-4 col-md-12">
-            @Model.Flat.Description
-        </div>
-    </div>
-
     <div class="row">
         @if (Model.IsOwnProperty == false && !Model.Flat.IsHidden && !Model.isBuyAfter)
         {
             <button id="myBtn" class="btn btn-default">Kup</button>
         }
     </div>
+
+    <div class="row panel panel-info get-property-panel-info">
+        <div class="row panel-heading">
+            @Html.LabelFor(x => x.Flat.City)
+        </div>
+        <div class="row panel-body">
+            @Model.Flat.City
+        </div>
+        <div class="row panel-heading">
+            @Html.LabelFor(x => x.Flat.Street)
+        </div>
+        <div class="row panel-body">
+            @Model.Flat.Street
+        </div>
+
+    </div>
+
 </div>
 
+
+<div class="col-lg-4 col-md-12">
+    @Model.Flat.Description
+</div>
+    </div>
+
+</div>
 
 
 <!-- The Modal -->
@@ -56,7 +69,7 @@
                     @Html.AntiForgeryToken()
                     <div class="row form-group">
                         <div class="col-lg-4 col-md-6 col-sm-12">
-                            @Html.LabelFor(x => x.Order.Description,"Wiadomość")
+                            @Html.LabelFor(x => x.Order.Description, "Wiadomość")
                         </div>
                         <div class="col-lg-8 col-md-6 col-sm-12">
                             @Html.TextBoxFor(x => x.Order.Description)
@@ -77,10 +90,8 @@
 </div>
 
 
-
-
 @section scripts{
-<script src="~/Scripts/jquery.fancybox.js"></script>
+    <script src="~/Scripts/jquery.fancybox.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#btnModalUp").click(function () {
@@ -112,7 +123,7 @@
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks on the button, open the modal 
+        // When the user clicks on the button, open the modal
         btn.onclick = function () {
             modal.style.display = "block";
         }

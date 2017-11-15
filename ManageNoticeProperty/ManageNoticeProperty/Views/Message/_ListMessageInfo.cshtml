@@ -9,11 +9,17 @@
         foreach (var order in Model)
         {
 
-            <dic class="row message-row-@order.Order.OrderId">
-                <div class="col-lg-10">
-                    <a href="@Url.Action("MessageInfo", "Message", new { id = order.Order.OrderId })">
-
-                        @order.Text
+            <dic class="row message-row @(@order.Order.isReadSeller==false ? "not-read-message" :"")" >
+                <div class="col-lg-10 ">
+                    <a href="@Url.Action("MessageInfo", "Message", new { id = order.Order.OrderId })" class="panel-body">
+                        @if (order.IsSellOffer)
+    {
+                            @:Zainteresowanie twoją ofertą
+                        }
+                        else
+                        {
+                            @:Zainteresowałeś się ofertą
+                        }
                         @order.Order.Flat.City
                         @order.Order.Flat.Description
                     </a>

@@ -11,7 +11,9 @@
 @section scripts
 {
     <script>
-        $("#hidden-show-property").click(function () {
+        $(document).delegate('#hidden-show-property', 'click', function (e) {
+
+            e.preventDefault();
             idProperty = $(this).attr("data-id");
             $.ajax({
                 type: "post",

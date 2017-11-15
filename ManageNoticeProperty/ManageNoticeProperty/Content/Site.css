@@ -1,5 +1,5 @@
 ﻿html, body, div, span, applet, object, iframe,
-  h3, h4, h5, h6, p, blockquote, pre,
+h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -24,9 +24,10 @@ footer, header, hgroup, menu, nav, section {
     display: block;
 }
 
-.column{
-    padding:0px
+.column {
+    padding: 0px;
 }
+
 body {
     line-height: 1;
 }
@@ -53,7 +54,7 @@ table {
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-top:70px;
+    padding-top: 70px;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -72,15 +73,13 @@ textarea {
     max-width: 280px;
 }
 
-.maint-container{
- 
+.maint-container {
 }
 
-.message-active{
-    text-decoration:none;
-    font-size:18px;
-    color:red !important;
-    
+.message-active {
+    text-decoration: none;
+    font-size: 18px;
+    color: red !important;
 }
 
 .modal {
@@ -113,12 +112,12 @@ textarea {
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
 
 
 /*Main Page*/
@@ -170,66 +169,64 @@ textarea {
     }
 
 /*Add Product*/
-.add-property{
-  
+.add-property {
 }
 
 /* All product filter*/
 
-.all-property-list-page{
-    
-    margin:0 auto;
+.all-property-list-page {
+    margin: 0 auto;
 }
 
 .all-property-list {
     margin: 10px;
     background-color: #f1f2ed;
 }
-.all-property-list:hover {
-    margin: 10px;
-    background-color: #f1f2ed;
-    opacity: 0.7;
-}
+
+    .all-property-list:hover {
+        margin: 10px;
+        background-color: #f1f2ed;
+        opacity: 0.7;
+    }
 
     .all-property-list img {
         width: 100%;
     }
 
     .all-property-list h2 {
-        padding:10px;
-        font-weight:bold;
-        font-size:26px;
+        padding: 10px;
+        font-weight: bold;
+        font-size: 26px;
         color: #16271e;
     }
 
-.all-property-list-element{
+.all-property-list-element {
     padding: 0px;
 }
 
-.all-property-list-element-text{
+.all-property-list-element-text {
     padding: 0px 20px;
-    color:#8f7c7c;
+    color: #8f7c7c;
 }
 
-.all-property-search-row{
+.all-property-search-row {
     padding: 6px 0px;
 }
 
 
-.all-property-list-description-a{
-    color:black;
-    text-decoration:none;
+.all-property-list-description-a {
+    color: black;
+    text-decoration: none;
 }
 
-.all-property-list-description-a:hover{
-    color:black;
-   
-}
+    .all-property-list-description-a:hover {
+        color: black;
+    }
 
 /*Get Product*/
-.get-property{
-  
+.get-property {
 }
+
 .get-product-title {
 }
 
@@ -239,15 +236,45 @@ textarea {
     max-height: 600px;
     width: 100%;
 }
-/*Raport Admin*/
-.raport-admin{
 
+.get-property-panel-info{
+    margin:10px 0px;
+}
+
+
+/*Raport Admin*/
+.raport-admin {
 }
 
 /* Manage User*/
-.manage-user{
-
+.manage-user {
 }
+
+/*  Mesage*/
+.not-read-message {
+    font-weight: bold;
+    font-size: large;
+}
+
+.message-text {
+    padding: 40px;
+    line-height: 25px;
+}
+
+    .message-text div:first-child  {
+        font-weight: bold;
+        border: 1px solid ;
+        border-radius: 15px;
+        padding:10px;
+           
+    }
+    .message-text div:nth-child(2)  {
+        font-weight: bold;
+        border: 1px solid ;
+        border-radius:  15px 15px 40px 40px;
+        padding:10px 20px;
+           
+    }
 
 /*  Validation */
 .field-validation-error {
