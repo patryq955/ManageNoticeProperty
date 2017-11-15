@@ -2,66 +2,84 @@
 @using PagedList.Mvc;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Ogłoszenia";
+
 }
 <div class="container">
     @using (Ajax.BeginForm("Index", "Property", new AjaxOptions()
     {
-        UpdateTargetId= "load-all-property",
-        HttpMethod="Get"
+        UpdateTargetId = "load-all-property",
+        HttpMethod = "Get"
     }))
     {
-    @*<form class="all-property-search" id="search-form" method="get"
-          data-ajax="true" data-ajax-target="#load-all-property" data-ajax-update="#load-all-property">*@
-        <div class="row all-property-search-row">
-            <div class="col-md-3">
-                @Html.LabelFor(x => x.TypeFlatID, "Typ Nieruchomoście")
-                @Html.DropDownListFor(x => x.TypeFlatID, new SelectList(Model.TypeFlat, "TypeFlatID", "Name", Model.TypeFlat.FirstOrDefault().TypeFlatID))
-            </div>
-            <div div class="col-md-3">
+        <div class="row form-group">
+            <div div class="col-md-3 ">
                 @Html.LabelFor(x => x.City, "Miejscowość")
-                @Html.TextBoxFor(x => x.City)
+                @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
+            </div>
+            <div class="col-md-9 ">
+                @Html.LabelFor(x => x.TypeFlatID, "Typ Nieruchomoście")
+                @Html.DropDownListFor(x => x.TypeFlatID, new SelectList(Model.TypeFlat, "TypeFlatID", "Name", Model.TypeFlat.FirstOrDefault().TypeFlatID),new {
+               @class = "form-control"})
+            </div>
+
+        </div>
+        <div class="row form-group">
+            <div div class="col-md-3">
+                @Html.LabelFor(x => x.PriceFrom, "Cena od")
+                @Html.TextBoxFor(x => x.PriceFrom, new { @class = "form-control" })
+
             </div>
             <div div class="col-md-3">
+                @Html.LabelFor(x => x.PriceTo, "do")
+                @Html.TextBoxFor(x => x.PriceTo, new { @class = "form-control" })
+            </div>
+            <div div class="col-md-3">
+                @Html.LabelFor(x => x.QuantityRoomFrom, "Liczba Pokoi od")
+                @Html.TextBoxFor(x => x.QuantityRoomFrom, new { @class = "form-control" })
+
+            </div>
+            <div div class="col-md-3">
+                @Html.LabelFor(x => x.QuantityRoomTo, "do")
+                @Html.TextBoxFor(x => x.QuantityRoomTo, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row form-group">
+            <div div class="col-md-3">
+                @Html.LabelFor(x => x.AreaFrom, "Powierzchnia do")
+                @Html.TextBoxFor(x => x.AreaFrom, new { @class = "form-control" })
+
+            </div>
+            <div div class="col-md-3">
+                @Html.LabelFor(x => x.AreatTo, "do")
+                @Html.TextBoxFor(x => x.AreatTo, new { @class = "form-control" })
+            </div>
+            <div div class="col-md-3">
+                @Html.LabelFor(x => x.CondignationFrom, "Kondygnacji od")
+                @Html.TextBoxFor(x => x.CondignationFrom, new { @class = "form-control" })
+
+            </div>
+            <div div class="col-md-3">
+                @Html.LabelFor(x => x.CondignationFrom, "do")
+                @Html.TextBoxFor(x => x.CondignationTo, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row form-group">
+            <div div class="col-md- checkbox">
                 @Html.LabelFor(x => x.IsBalcon, "Z balkonem")
                 @Html.CheckBoxFor(x => x.IsBalcon)
             </div>
         </div>
-        <div class="row all-property-search-row">
-            <div div class="col-md-6">
-                @Html.LabelFor(x => x.PriceFrom, "Cena")
-                @Html.TextBoxFor(x => x.PriceFrom)
-                @Html.TextBoxFor(x => x.PriceTo)
-            </div>
-            <div div class="col-md-6">
-                @Html.LabelFor(x => x.QuantityRoomFrom, "Liczba Pokoi")
-                @Html.TextBoxFor(x => x.QuantityRoomFrom)
-                @Html.TextBoxFor(x => x.QuantityRoomTo)
-            </div>
-
-        </div>
-        <div class="row all-property-search-row">
-            <div div class="col-md-6">
-                @Html.LabelFor(x => x.AreaFrom, "Powierzchnia")
-                @Html.TextBoxFor(x => x.AreaFrom)
-                @Html.TextBoxFor(x => x.AreatTo)
-            </div>
-            <div div class="col-md-6">
-                @Html.LabelFor(x => x.CondignationFrom, "Kondygnacja")
-                @Html.TextBoxFor(x => x.CondignationFrom)
-                @Html.TextBoxFor(x => x.CondignationTo)
-            </div>
-        </div>
-        <div div class="col-md-3">
+        <div>
             <input type="submit" value="Szukaj" class="btn" />
         </div>
-            }
- @*   </form>*@
-    <div>
-        <div class="row"></div>
-    </div>
-    @Html.Partial("_ListAllProperty")
 
+    }
 </div>
+
+@Html.Partial("_ListAllProperty")
+
+
 @section scripts{
     <script>
 

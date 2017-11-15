@@ -325,6 +325,16 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fancybox\blank.gif" />
+    <Content Include="Content\fancybox\fancybox_buttons.png" />
+    <Content Include="Content\fancybox\fancybox_loading%402x.gif" />
+    <Content Include="Content\fancybox\fancybox_loading.gif" />
+    <Content Include="Content\fancybox\fancybox_overlay.png" />
+    <Content Include="Content\fancybox\fancybox_sprite%402x.png" />
+    <Content Include="Content\fancybox\fancybox_sprite.png" />
+    <Content Include="Content\jquery.fancybox-buttons.css" />
+    <Content Include="Content\jquery.fancybox-thumbs.css" />
+    <Content Include="Content\jquery.fancybox.css" />
     <Content Include="Content\p1.jpeg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -377,6 +387,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="App_Code\Message.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.12.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
@@ -385,6 +396,12 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.fancybox-buttons.js" />
+    <Content Include="Scripts\jquery.fancybox-media.js" />
+    <Content Include="Scripts\jquery.fancybox-thumbs.js" />
+    <Content Include="Scripts\jquery.fancybox.js" />
+    <Content Include="Scripts\jquery.fancybox.pack.js" />
+    <Content Include="Scripts\jquery.mousewheel-3.0.6.pack.js" />
     <Content Include="Scripts\jquery.price_format.2.0.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -440,20 +457,23 @@
     <Content Include="Views\Manage\ChangePasswordOtherUser.cshtml" />
     <Content Include="Views\Property\RaportAdmin.cshtml" />
     <Content Include="Views\Shared\_RaportAdmin.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\DateTimePicker.cshtml" />
+    <Content Include="Views\Shared\DateTimePicker.cshtml" />
     <Content Include="Views\Shared\_Test.cshtml" />
     <Content Include="Views\Property\Index.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
     <Content Include="Views\Message\MessageInfo.cshtml" />
     <Content Include="Views\Message\EmptyMessage.cshtml" />
-    <Content Include="Views\Shared\_ListMessageInfo.cshtml" />
+    <Content Include="Views\Message\_ListMessageInfo.cshtml" />
     <Content Include="Views\Property\EditProperty.cshtml" />
     <Content Include="Views\Property\ManageOwnProperty.cshtml" />
-    <Content Include="Views\Shared\_ListAllProperty.cshtml" />
+    <Content Include="Views\Property\_ListAllProperty.cshtml" />
+    <Content Include="Views\Shared\_LoginMessagePartial.cshtml" />
+    <Content Include="Views\Property\_ListOwnProperty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Main\" />
+    <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

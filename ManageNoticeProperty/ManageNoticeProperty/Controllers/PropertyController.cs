@@ -17,7 +17,7 @@ namespace ManageNoticeProperty.Controllers
 {
     public class PropertyController : Controller
     {
-        private readonly int _itemOnPage = 2;
+        private readonly int _itemOnPage = 5;
         private ApplicationUserManager _userManager;
         private IRepository<TypeFlat> _typeFlatRepository;
         private IExtendRepository<Order> _orderRepository;
@@ -146,6 +146,11 @@ namespace ManageNoticeProperty.Controllers
         {
             Func<Flat, bool> predicate = x => x.UserId == User.Identity.GetUserId();
             var ownProperty = _flatRepository.GetOverviewAll(predicate).ToList();
+            if(Request.IsAjaxRequest())
+            {
+                return PartialView("_ListOwnProperty",ownProperty);
+            }
+
             return View(ownProperty);
         }
 
@@ -174,22 +179,17 @@ namespace ManageNoticeProperty.Controllers
             {
                 return View("GetProperty", new { id = id, getPropertyOrder = getPropertyOrder });
             }
-
+            var flat = _flatRepository.GetID(id);
             Order order = new Order();
             order.Description = getPropertyOrder.Order.Description;
             order.BuyUserID = User.Identity.GetUserId();
-            order.FlatId = id;
+            order.FlatId = flat.FlatId;
             order.isDeleteBuyer = false;
-            order.Price = getPropertyOrder.Flat.Price;
+            order.Price = flat.Price;
             order.SellDate = DateTime.Now;
             _orderRepository.Add(order);
             _orderRepository.Save();
 
-            Flat flat = _flatRepository.GetID(id);
-            // flat.IsHidden = true;
-            //flat.SellDate = DateTime.Now;
-            _flatRepository.Update(flat);
-            _flatRepository.Save();
 
             return RedirectToAction("Index", "Home");
         }
@@ -217,6 +217,18 @@ namespace ManageNoticeProperty.Controllers
             }
 
             return View(adminRaportViewModel);
+        }
+
+        public ActionResult HideShowProperty(int id)
+        {
+            var property = _flatRepository.GetID(id);
+            var statusProperty = property.IsHidden;
+
+            property.IsHidden = !statusProperty;
+            _flatRepository.Update(property);
+            _flatRepository.Save();
+
+            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
 
         public ApplicationUserManager UserManager
@@ -288,7 +300,7 @@ namespace ManageNoticeProperty.Controllers
             return x => x.IsHidden == false && (vM.City == null || x.City.ToLower().Contains(vM.City.ToLower()))
                 && (vM.PriceFrom == null || x.Price >= decimal.Parse(vM.PriceFrom))
                 && (vM.PriceTo == null || x.Price <= decimal.Parse(vM.PriceTo))
-                && (vM.IsBalcon == x.IsBalcon)
+                && (x.IsBalcon == true || vM.IsBalcon == x.IsBalcon)
                 && (vM.QuantityRoomFrom == null || x.QuantityRoom >= int.Parse(vM.QuantityRoomFrom))
                 && (vM.QuantityRoomTo == null || x.QuantityRoom <= int.Parse(vM.QuantityRoomTo))
                 && (vM.AreaFrom == null || x.Area >= decimal.Parse(vM.AreaFrom))

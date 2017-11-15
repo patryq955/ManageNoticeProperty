@@ -3,22 +3,30 @@
     ViewBag.Title = "ManageOwnProperty";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>Zarządzanie ofertami</h2>
-@if (Model.Count() > 0)
-{
-    foreach (var flat in Model)
-    {
-        <div class="row">
-            <a href="@Url.Action("EditProperty", "Property", new { id = flat.FlatId })"> @flat.City</a>
-        </div>
-        <br />
+<div id="list-own-property">
+    @Html.Partial("_ListOwnProperty")
+</div>
 
-    }
-}
-else
+@section scripts
 {
-    <div class="row">
-        Brak dodanych ofert
-    </div>
+    <script>
+        $("#hidden-show-property").click(function () {
+            idProperty = $(this).attr("data-id");
+            $.ajax({
+                type: "post",
+                url: "@Url.Action("HideShowProperty","Property")",
+                ajaxsync: true,
+                data: { id: idProperty },
+                success: function () {
+                    $("#list-own-property").load("/Property/ManageOwnProperty");
+                },
+                error: function (data) {
+                    alert(data)
+                }
+                
+            });
+            return false;
+        });
+    </script>
 }

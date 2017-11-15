@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ManageNoticeProperty.Models.Flat>
+@if (Model.Count() > 0)
+{
+    foreach (var property in Model)
+    {
+        <a href="@Url.Action("EditProperty", "Property", new { id = property.FlatId })">
+            <div class="row all-property-list ">
+                <div class="col-md-4 all-property-list-element">
+                    <img src="data:image;base64,@Convert.ToBase64String(property.Album.FirstOrDefault().Photo)" class="img-responsive" />
+                </div>
+                <div class="col-md-8">
+                    <a id="hidden-show-property" data-id="@property.FlatId" href="#" class="remove-message btn btn-default">
+                        @if (property.IsHidden)
+                        {
+                            @:Ukryj
+                        }
+                        else
+                        {
+                            @:Pokaż
+                        }
+                    </a>
+                    <h2>
+                        <a href="@Url.Action("EditProperty", "Property", new { id = property.FlatId })" class="all-property-list-description-a"> @property.City</a>
+                        @if (property.IsHidden)
+                        {
+                            @:(Ukryta)
+                        }
+                    </h2>
+                    <p>Oferta wystawiona dnia @property.AddFlate. Powierzechnia wynosi: @property.Area m<sup>2</sup></p>
+                    <br />
+                    <p></p>
+                </div>
+
+            </div>
+        </a>
+        <br />
+
+    }
+}
+else
+{
+    <div class="row">
+        Brak dodanych ofert
+    </div>
+}

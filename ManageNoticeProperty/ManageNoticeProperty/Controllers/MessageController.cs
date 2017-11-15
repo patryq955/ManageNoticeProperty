@@ -70,14 +70,9 @@ namespace ManageNoticeProperty.Controllers
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
         }
 
-        public int MessageToRead()
+        public ActionResult RefreshMessageIsNotRead()
         {
-            var test = User.Identity.GetUserId();
-            Func<Order, bool> predicate =
-                x => x.Flat.UserId == User.Identity.GetUserId()
-                && x.isReadSeller == false;                ;
-            
-            return _orderRepository.GetOverviewAll(predicate).Where(predicate).Count();
+            return PartialView("_LoginMessagePartial");
         }
 
         #region private Method

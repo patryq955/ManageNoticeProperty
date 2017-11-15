@@ -1,0 +1,14 @@
+﻿@using ManageNoticeProperty.Models;
+@using ManageNoticeProperty.Models.Repository;
+@using System.Linq;
+
+@helper Test(string userID)
+{
+OrderRepository _orderRepository = new OrderRepository();
+Func<Order, bool> predicate =
+    x => x.Flat.UserId == userID
+    && x.isReadSeller == false; ;
+    var result = _orderRepository.GetOverviewAll(predicate).Where(predicate).Count();
+    @result
+
+}

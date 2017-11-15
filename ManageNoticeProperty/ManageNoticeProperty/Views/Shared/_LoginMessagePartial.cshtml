@@ -1,0 +1,6 @@
+﻿@using Microsoft.AspNet.Identity
+<a id="value-message-all"
+   @if (!Message.Test(User.Identity.GetUserId()).ToString().Equals("0")) { <text> class="message-active" </text>  } href="@Url.Action("Index","Message")">
+    Wiadomości (@Message.Test(User.Identity.GetUserId()))
+</a>
+

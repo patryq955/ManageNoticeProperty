@@ -3,20 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Własny kąt</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
     <meta name="description" content="The description of my page" />
-    <script>
-        window.onload = function () {
-            valueMessage = $("#value-message").text();
-            if(valueMessage>0)
-            {
-                $("#value-message-all").addClass("text-is-message");
-            }
-        }
-    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -26,6 +16,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+
                 </button>
                 @Html.ActionLink("Własny kąt", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
@@ -55,10 +46,18 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jQueryAll")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-
+    <script>
+        $(function () {
+            var url = '@Url.Action("RefreshMessageIsNotRead","Message")';
+            var notifications = $("#refresh-message"); // cache it to avoid repeatedly searching the DOM
+            setInterval(function () {
+                notifications.load(url);
+               
+            }, 60000);
+        });
+    </script>
 </body>
 </html>
