@@ -9,9 +9,7 @@
     <div class="row form">
         <form id="search-form" method="get" data-ajax="true" data-ajax-target="#property-list">
             <div class="col-lg-4 col-sm12">
-
                 <input class="search-filter" type="search" name="startDate" placeholder="Data od" />
-
             </div>
             <div class="col-lg-4 col-sm012">
                 <input class="search-filter" type="search" name="endDate" placeholder="Data do" />
@@ -19,17 +17,13 @@
             <div class="col-lg-4 col-sm012">
                 <input type="submit" value="Szukaj" />
             </div>
-
         </form>
     </div>
     <div class="row">
-
         <hr />
-
     </div>
+    @Html.Partial("_RaportAdmin")
 </div>
-@Html.Partial("_RaportAdmin")
-
 @section scripts{
     <script>
         $(function () {

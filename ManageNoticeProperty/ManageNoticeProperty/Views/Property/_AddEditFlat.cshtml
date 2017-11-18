@@ -1,6 +1,6 @@
 ﻿@model ManageNoticeProperty.ViewModel.FlatViewModel
 <div class="row">
-    <div class="col-lg-6 col-md-12">
+    
         @using (Html.BeginForm(Model.NameAction, "Property", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-group" }))
         {
             @Html.AntiForgeryToken()
@@ -63,11 +63,8 @@
             </table>
 
 
-            <div>
                 @ViewBag.ErrorMessage
                 @Html.ValidationSummary()
-            </div>
             <input type="submit" value="Dodaj" />
         }
-    </div>
 </div>

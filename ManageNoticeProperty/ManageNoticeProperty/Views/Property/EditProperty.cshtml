@@ -1,12 +1,10 @@
 ﻿@model ManageNoticeProperty.ViewModel.FlatViewModel
 @{
-    ViewBag.Title = "EditProperty";
+    ViewBag.Title = "Edycja oferty";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Edycja</h2>
-
-@Html.Partial("_AddEditFlat")
-
-
+<div class="container">
+    <h2>Edycja</h2>
+    @Html.Partial("_AddEditFlat")
+</div>
 

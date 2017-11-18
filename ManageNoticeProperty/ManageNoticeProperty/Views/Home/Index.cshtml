@@ -2,9 +2,27 @@
 @{
     ViewBag.Title = "Stron Główna";
 }
-<div class="jumbotron">
-    SLIDER
+
+<div class="owl-carousel owl-theme">
+    <div class="item">
+        <img src="~/AppImage/Chic-Rich-Houses-with-Pool.jpg" />
+        <div class="carousel-content">
+            <p>TWÓJ WŁASNY KĄT</p>
+        </div>
+    </div>
+    <div class="item">
+        <img src="~/AppImage/the-21-most-expensive-houses-for-sale-in-the-hamptons.jpg" />
+        <div class="carousel-content2">
+            <p>Wybierz coś dla siebie</p>
+        </div>
+    </div>
 </div>
+
+
+
+
+
+
 <div class="container main-page-three-photo">
     <div class="row">
         <h1>Ostatnio przeglądane mieszkania</h1>
@@ -12,29 +30,70 @@
     <div class="row">
         @if (Model.Count == 0)
         {
-            @: Brak mieszkń ostatnich przegladanych
+        @: Brak mieszkń ostatnich przegladanych
     }
         else
         {
             foreach (var flat in Model)
             {
-                <div class="col-sm-4 ">
-                    <a href="@Url.Action("GetProperty","Property",new {id = flat.FlatId})">
-                        <img src="data:image;base64,@Convert.ToBase64String(flat.Album.FirstOrDefault().Photo)" class="img-responsive img-thumbnail" />
-                    </a>
-                    <div class="main-page-three-photo-text">
-                        <a href="@Url.Action("GetProperty","Property",new {id = flat.FlatId})">
-                            <h2>@flat.City</h2>
-                        </a>
-                        <p>
-                            @flat.Description
-                        </p>
-                    </div>
+        <div class="col-sm-4 ">
+            <a href="@Url.Action("GetProperty","Property",new {id = flat.FlatId})">
+                <img src="data:image;base64,@Convert.ToBase64String(flat.Album.FirstOrDefault().Photo)" class="img-responsive img-thumbnail" />
+            </a>
+            <div class="main-page-three-photo-text">
+                <a href="@Url.Action("GetProperty","Property",new {id = flat.FlatId})">
+                    <h2>@flat.City</h2>
+                </a>
+                <p>
+                    @flat.Description
+                </p>
+            </div>
 
-                </div>
+        </div>
             }
         }
 
     </div>
 
+
 </div>
+
+@section scripts{
+    <link href="~/Content/owl.carousel.css" rel="stylesheet" />
+    <script src="~/Scripts/owl.carousel.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                navText: ['<img src="/AppImage/if_arrow_left_alt1_118748.svg"/>', '<img src="/AppImage/if_arrow_right_alt1_118746.svg" />'],
+                autoHeight: false,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 1
+                    },
+                    1000: {
+                        items: 1
+                    }
+                }
+            })
+            var owl = $('.owl-carousel');
+            owl.owlCarousel();
+            // Go to the next item
+            $('.customNextBtn').click(function () {
+                owl.trigger('next.owl.carousel');
+            })
+            // Go to the previous item
+            $('.customPrevBtn').click(function () {
+                // With optional speed parameter
+                // Parameters has to be in square bracket '[]'
+                owl.trigger('prev.owl.carousel', [300]);
+            })
+        });
+
+    </script>
+}

@@ -12,72 +12,75 @@
         HttpMethod = "Get"
     }))
     {
-        <div class="row form-group">
-            <div div class="col-md-3 ">
-                @Html.LabelFor(x => x.City, "Miejscowość")
-                @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
-            </div>
-            <div class="col-md-9 ">
-                @Html.LabelFor(x => x.TypeFlatID, "Typ Nieruchomoście")
-                @Html.DropDownListFor(x => x.TypeFlatID, new SelectList(Model.TypeFlat, "TypeFlatID", "Name", Model.TypeFlat.FirstOrDefault().TypeFlatID),new {
-               @class = "form-control"})
-            </div>
-
-        </div>
-        <div class="row form-group">
-            <div div class="col-md-3">
-                @Html.LabelFor(x => x.PriceFrom, "Cena od")
-                @Html.TextBoxFor(x => x.PriceFrom, new { @class = "form-control" })
+        <div class="row all-property-list-searching ">
+            <div class="row form-group ">
+                <div div class="col-sm-3 ">
+                    @Html.LabelFor(x => x.City, "Miejscowość")
+                    @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
+                </div>
+                <div class="col-sm-9 ">
+                    @Html.LabelFor(x => x.TypeFlatID, "Typ Nieruchomoście")
+                    @Html.DropDownListFor(x => x.TypeFlatID, new SelectList(Model.TypeFlat, "TypeFlatID", "Name", Model.TypeFlat.FirstOrDefault().TypeFlatID), new
+               {
+                   @class = "form-control"
+               })
+                </div>
 
             </div>
-            <div div class="col-md-3">
-                @Html.LabelFor(x => x.PriceTo, "do")
-                @Html.TextBoxFor(x => x.PriceTo, new { @class = "form-control" })
-            </div>
-            <div div class="col-md-3">
-                @Html.LabelFor(x => x.QuantityRoomFrom, "Liczba Pokoi od")
-                @Html.TextBoxFor(x => x.QuantityRoomFrom, new { @class = "form-control" })
+            <div class="row form-group">
+                <div div class="col-sm-3">
+                    @Html.LabelFor(x => x.PriceFrom, "Cena od")
+                    @Html.TextBoxFor(x => x.PriceFrom, new { @class = "form-control" })
 
-            </div>
-            <div div class="col-md-3">
-                @Html.LabelFor(x => x.QuantityRoomTo, "do")
-                @Html.TextBoxFor(x => x.QuantityRoomTo, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="row form-group">
-            <div div class="col-md-3">
-                @Html.LabelFor(x => x.AreaFrom, "Powierzchnia do")
-                @Html.TextBoxFor(x => x.AreaFrom, new { @class = "form-control" })
+                </div>
+                <div div class="col-sm-3">
+                    @Html.LabelFor(x => x.PriceTo, "do")
+                    @Html.TextBoxFor(x => x.PriceTo, new { @class = "form-control" })
+                </div>
+                <div div class="col-sm-3">
+                    @Html.LabelFor(x => x.QuantityRoomFrom, "Liczba Pokoi od")
+                    @Html.TextBoxFor(x => x.QuantityRoomFrom, new { @class = "form-control" })
 
+                </div>
+                <div div class="col-sm-3">
+                    @Html.LabelFor(x => x.QuantityRoomTo, "do")
+                    @Html.TextBoxFor(x => x.QuantityRoomTo, new { @class = "form-control" })
+                </div>
             </div>
-            <div div class="col-md-3">
-                @Html.LabelFor(x => x.AreatTo, "do")
-                @Html.TextBoxFor(x => x.AreatTo, new { @class = "form-control" })
-            </div>
-            <div div class="col-md-3">
-                @Html.LabelFor(x => x.CondignationFrom, "Kondygnacji od")
-                @Html.TextBoxFor(x => x.CondignationFrom, new { @class = "form-control" })
+            <div class="row form-group">
+                <div div class="col-sm-3">
+                    @Html.LabelFor(x => x.AreaFrom, "Powierzchnia do")
+                    @Html.TextBoxFor(x => x.AreaFrom, new { @class = "form-control" })
 
+                </div>
+                <div div class="col-sm-3">
+                    @Html.LabelFor(x => x.AreatTo, "do")
+                    @Html.TextBoxFor(x => x.AreatTo, new { @class = "form-control" })
+                </div>
+                <div div class="col-sm-3">
+                    @Html.LabelFor(x => x.CondignationFrom, "Kondygnacji od")
+                    @Html.TextBoxFor(x => x.CondignationFrom, new { @class = "form-control" })
+
+                </div>
+                <div div class="col-sm-3">
+                    @Html.LabelFor(x => x.CondignationFrom, "do")
+                    @Html.TextBoxFor(x => x.CondignationTo, new { @class = "form-control" })
+                </div>
             </div>
-            <div div class="col-md-3">
-                @Html.LabelFor(x => x.CondignationFrom, "do")
-                @Html.TextBoxFor(x => x.CondignationTo, new { @class = "form-control" })
+            <div class="row form-group">
+                <div div class="col-sm-3 checkbox">
+                    @Html.LabelFor(x => x.IsBalcon, "Z balkonem")
+                    @Html.CheckBoxFor(x => x.IsBalcon)
+                </div>
             </div>
-        </div>
-        <div class="row form-group">
-            <div div class="col-md- checkbox">
-                @Html.LabelFor(x => x.IsBalcon, "Z balkonem")
-                @Html.CheckBoxFor(x => x.IsBalcon)
+            <div>
+                <input type="submit" value="Szukaj" class="btn" />
             </div>
-        </div>
-        <div>
-            <input type="submit" value="Szukaj" class="btn" />
         </div>
 
     }
+    @Html.Partial("_ListAllProperty")
 </div>
-
-@Html.Partial("_ListAllProperty")
 
 
 @section scripts{

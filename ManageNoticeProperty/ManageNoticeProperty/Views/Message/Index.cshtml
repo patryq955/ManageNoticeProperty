@@ -3,11 +3,14 @@
     ViewBag.Title = "Wiadomości";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>@ViewBag.Title</h2>
-<div id="load-message">
-    @Html.Partial("_ListMessageInfo")
+<div class="container">
+    <h2>@ViewBag.Title</h2>
+    <div id="load-message">
+        @Html.Partial("_ListMessageInfo")
+    </div>
 </div>
+
+
 @section scripts{
     <script>
         $(document).delegate('#Delete', 'click', function (e) {
@@ -30,5 +33,4 @@
 
 
     </script>
-
 }

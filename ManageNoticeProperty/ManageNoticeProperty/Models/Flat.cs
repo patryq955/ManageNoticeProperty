@@ -64,9 +64,9 @@ namespace ManageNoticeProperty.Models
             }
         }
 
-            [Display(Name = "Ulica")]
-            [Required(ErrorMessage = "Podaj nazwę ulicy")]
-            public string Street { get; set; }
+        [Display(Name = "Ulica")]
+        [Required(ErrorMessage = "Podaj nazwę ulicy")]
+        public string Street { get; set; }
 
         [Display(Name = "Kod pocztowy")]
         [RegularExpression("^[0-9][0-9]-[0-9][0-9][0-9]$", ErrorMessage = "Nieprawidłowy kod pocztowy")]
@@ -74,6 +74,7 @@ namespace ManageNoticeProperty.Models
         public string PostCode { get; set; }
 
         public DateTime AddFlate { get; set; }
+
 
     }
 }

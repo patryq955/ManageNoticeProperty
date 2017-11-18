@@ -24,6 +24,8 @@ footer, header, hgroup, menu, nav, section {
     display: block;
 }
 
+
+
 .column {
     padding: 0px;
 }
@@ -54,9 +56,7 @@ table {
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-top: 70px;
-    padding-left: 15px;
-    padding-right: 15px;
+    margin-top: 70px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -121,12 +121,87 @@ textarea {
 
 
 /*Main Page*/
-
-@media screen and (max-width: 620px) {
-    .main-page-three-photo h1 {
-        font-size: 24px;
-    }
+.owl-carousel {
+    margin-top: -70px;
 }
+
+.carousel-content {
+    position: absolute;
+    top: 70%;
+    text-align: right;
+    right: 10%;
+    width: 100%;
+    z-index: 1;
+    color: #68cb96;
+    font-size: 105px;
+    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+
+.carousel-content2 {
+    position: absolute;
+    top: 75%;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+    color: #cadd48;
+    font-size: 105px;
+    text-shadow: 0 1px 2px rgba(26, 56, 35, 0.80);
+}
+
+.customNextBtn {
+    background-image: url('../AppImage/if_arrow_left_alt1_118748.svg');
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 150px;
+    z-index: 5;
+}
+
+.customPrevBtn {
+    background-image: url('../AppImage/if_arrow_right_alt1_118746.svg');
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 150px;
+    z-index: 5;
+    position: absolute;
+    top: 10%;
+}
+
+.owl-prev {
+    position:absolute;
+    top: 30%;
+    color:white;
+    width: 150px;
+    height: 150px;
+}
+
+    .owl-prev img {
+        width: 150px;
+        height: 150px;
+    }
+
+.owl-next {
+    position:absolute;
+    top: 30%;
+    right:0%;
+    color:white;
+    width: 150px;
+    height: 150px;
+}
+
+    .owl-next img {
+        width: 150px;
+        height: 150px;
+    }
+
+.owl-nav {
+    width: 150px;
+    height: 150px;
+}
+
+.item img {
+    height: 600px;
+}
+
 
 .main-page-three-photo {
     padding: 10px 20px;
@@ -224,7 +299,15 @@ textarea {
     }
 
 /*Get Product*/
-.get-property {
+.get-property-panel-info div:nth-child(even) {
+    color: rgba(0,0,0,0.4);
+    background-color: #f8f2f2;
+    padding: 15px 50px;
+}
+
+.get-property-panel-info div:nth-child(odd) {
+    color: #1a5f17;
+    background-color: #a3c49d;
 }
 
 .get-product-title {
@@ -237,8 +320,8 @@ textarea {
     width: 100%;
 }
 
-.get-property-panel-info{
-    margin:10px 0px;
+.get-property-panel-info {
+    margin: 10px 0px;
 }
 
 
@@ -261,20 +344,25 @@ textarea {
     line-height: 25px;
 }
 
-    .message-text div:first-child  {
+    .message-text div:first-child {
         font-weight: bold;
-        border: 1px solid ;
+        border: 1px solid;
         border-radius: 15px;
-        padding:10px;
-           
+        padding: 10px;
     }
-    .message-text div:nth-child(2)  {
+
+    .message-text div:nth-child(2) {
         font-weight: bold;
-        border: 1px solid ;
-        border-radius:  15px 15px 40px 40px;
-        padding:10px 20px;
-           
+        border: 1px solid;
+        border-radius: 15px 15px 40px 40px;
+        padding: 10px 20px;
     }
+
+/* Contact*/
+.contact address {
+    line-height: 20px;
+    padding: 20px 0px 0px 10px;
+}
 
 /*  Validation */
 .field-validation-error {
@@ -302,4 +390,37 @@ textarea.input-validation-error {
 
 .validation-summary-valid {
     display: none;
+}
+
+/*Width 620px*/
+@media screen and (max-width: 620px) {
+    /*Main page*/
+    .main-page-three-photo h1 {
+        font-size: 24px;
+    }
+
+    .item img {
+        height: 350px;
+    }
+
+    /*All-property-list*/
+
+
+
+    .all-property-list-element {
+        padding: 0px;
+    }
+
+    .all-property-list-element-text {
+        padding: 0px 20px 10px 10px;
+        color: #8f7c7c;
+    }
+
+    .all-property-list-searching {
+        padding: 0px 40px;
+    }
+
+    .all-property-search-row {
+        padding: 6px 0px;
+    }
 }

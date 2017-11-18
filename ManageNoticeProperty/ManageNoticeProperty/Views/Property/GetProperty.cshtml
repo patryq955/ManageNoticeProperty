@@ -39,18 +39,60 @@
         <div class="row panel-body">
             @Model.Flat.Street
         </div>
+        <div class="row panel-heading">
+            @Html.LabelFor(x => x.Flat.PostCode)
+        </div>
+        <div class="row panel-body">
+            @Model.Flat.PostCode
+        </div>
+        <div class="row panel-heading">
+            @Html.LabelFor(x => x.Flat.Area)
+        </div>
+        <div class="row panel-body">
+            @Model.Flat.Area
+        </div>
+        <div class="row panel-heading">
+            @Html.LabelFor(x => x.Flat.Condignation)
+        </div>
+        <div class="row panel-body">
+            @Model.Flat.Condignation
+        </div>
+        <div class="row panel-heading">
+            @Html.LabelFor(x => x.Flat.Description)
+        </div>
+        <div class="row panel-body">
+            @Model.Flat.Description
+        </div>
+        <div class="row panel-heading">
+            @Html.LabelFor(x => x.Flat.Area)
+        </div>
+        <div class="row panel-body">
+            @Model.Flat.Area
+        </div>
+        <div class="row panel-heading">
+            @Html.LabelFor(x => x.Flat.QuantityRoom)
+        </div>
+        <div class="row panel-body">
+            @Model.Flat.QuantityRoom
+        </div>
+        <div class="row panel-heading">
+            @Html.LabelFor(x => x.Flat.IsBalcon)
+        </div>
+        <div class="row panel-body">
+            @if (Model.Flat.IsBalcon)
+            {
+                @:Tak
+            }
+            else
+            {
+                @:Nie
+            }
+        </div>
 
     </div>
 
 </div>
 
-
-<div class="col-lg-4 col-md-12">
-    @Model.Flat.Description
-</div>
-    </div>
-
-</div>
 
 
 <!-- The Modal -->

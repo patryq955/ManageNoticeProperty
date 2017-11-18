@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="manage-user">
+<div class="container manage-user">
     <h2>Zarządzanie użytkownikami</h2>
     <table class="table table-condensed">
         <tr>
@@ -12,11 +12,10 @@
                 @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
-
+                Numer Telefonu
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserName)
+                Nazwa użytkownika
             </th>
             <th></th>
         </tr>

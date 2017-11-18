@@ -31,19 +31,28 @@
                     }
                     @if (User.IsInRole("Admin"))
                     {
-                        <li>@Html.ActionLink("Użytkownicy", "Index", "AdminManagUser")</li>
-                        <li>@Html.ActionLink("Raport", "RaportAdmin", "Property")</li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Administracja
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Użytkownicy", "Index", "AdminManagUser")</li>
+                                <li>@Html.ActionLink("Raport", "RaportAdmin", "Property")</li>
+                            </ul>
+                        </li>
+
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Patryk</p>
         </footer>
     </div>
     @Scripts.Render("~/bundles/jQueryAll")

@@ -28,6 +28,7 @@ namespace ManageNoticeProperty.Models
 
         public DateTime? DeleteSellerDate { get; set; }
 
+        [Display(Name = "Data sprzedaży")]
         public DateTime? SellDate { get; set; }
 
         public decimal Price { get; set; }

@@ -323,6 +323,11 @@
     <Compile Include="ViewModel\MessageInfoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppImage\Chic-Rich-Houses-with-Pool.jpg" />
+    <Content Include="AppImage\if_arrow_left_alt1_118748.svg" />
+    <Content Include="AppImage\if_arrow_right_alt1_118746.svg" />
+    <Content Include="AppImage\slide-1.jpg" />
+    <Content Include="AppImage\the-21-most-expensive-houses-for-sale-in-the-hamptons.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fancybox\blank.gif" />
@@ -335,6 +340,7 @@
     <Content Include="Content\jquery.fancybox-buttons.css" />
     <Content Include="Content\jquery.fancybox-thumbs.css" />
     <Content Include="Content\jquery.fancybox.css" />
+    <Content Include="Content\owl.carousel.css" />
     <Content Include="Content\p1.jpeg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -410,6 +416,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\owl.carousel.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -424,7 +431,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -450,13 +456,13 @@
     <Content Include="Views\Property\AddProperty.cshtml" />
     <Content Include="Views\Property\GetProperty.cshtml" />
     <Content Include="Views\Property\NothingProperty.cshtml" />
-    <Content Include="Views\Shared\_AddEditFlat.cshtml" />
+    <Content Include="Views\Property\_AddEditFlat.cshtml" />
     <Content Include="Views\AdminManagUser\Delete.cshtml" />
     <Content Include="Views\AdminManagUser\Edit.cshtml" />
     <Content Include="Views\AdminManagUser\Index.cshtml" />
     <Content Include="Views\Manage\ChangePasswordOtherUser.cshtml" />
     <Content Include="Views\Property\RaportAdmin.cshtml" />
-    <Content Include="Views\Shared\_RaportAdmin.cshtml" />
+    <Content Include="Views\Property\_RaportAdmin.cshtml" />
     <Content Include="Views\Shared\DateTimePicker.cshtml" />
     <Content Include="Views\Shared\_Test.cshtml" />
     <Content Include="Views\Property\Index.cshtml" />
@@ -472,7 +478,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Main\" />
     <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>

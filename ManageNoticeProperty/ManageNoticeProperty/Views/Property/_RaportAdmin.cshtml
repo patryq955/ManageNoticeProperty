@@ -1,7 +1,7 @@
 ﻿@model ManageNoticeProperty.ViewModel.AdminRaportViewModel
 <div id="property-list" class="row">
-    <div class="col-lg-12">
-        <table class="table">
+    <div class="col-lg-12 table-admin">
+        <table class="table table-admin">
             <thead>
                 <tr>
                     <th>
@@ -15,18 +15,17 @@
                     </th>
                     <th>
                         @Html.DisplayNameFor(x => x.Order.First().SellDate)
-                    </th>     
-                    <th>
-                        Sell user
                     </th>
                     <th>
-                        Buy user
+                        Sprzedający
+                    </th>
+                    <th>
+                        Kupujący
                     </th>
                     <th>
                         @Html.DisplayNameFor(x => x.Order.First().Flat.Price)
                     </th>
                 </tr>
-
             </thead>
             @foreach (var order in Model.Order)
             {
@@ -63,10 +62,9 @@
                     <td></td>
                     <td></td>
                     <td>Razem:</td>
-                    <td>@Model.TotalPrice Do EDYCJI!! zastanowienia</td>
+                    <td>@Model.TotalPrice zł</td>
                 </tr>
             </tfoot>
         </table>
-
     </div>
 </div>

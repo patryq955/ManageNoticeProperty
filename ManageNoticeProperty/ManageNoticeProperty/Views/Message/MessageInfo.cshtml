@@ -4,47 +4,45 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="container">
+    <div class="row">
+        <h2>@Model.GetText() </h2>
+        @if (@Model.IsSellOffer)
+        {
+            <div class="row message-text">
+                <div class="row">
 
-<h2>@Model.GetText() </h2>
-<dv class="row">
-    @if (@Model.IsSellOffer)
-    {
-        <div class="row message-text">
-            <div class="row">
+                    Użytkownik @Model.Order.BuyUser.UserName zainteresował się twoją ofertą jego numer kontaktowy to: @Model.Order.BuyUser.PhoneNumber
+                </div>
+                <div class="row">
 
-                Użytkownik @Model.Order.BuyUser.UserName zainteresował się twoją ofertą jego numer kontaktowy to: @Model.Order.BuyUser.PhoneNumber
-            </div>
-            <div class="row">
-
-                Treść Wiadomości:<br />
-                @Model.Order.Description
+                    Treść Wiadomości:<br />
+                    @Model.Order.Description
 
 
-            </div>
-        </div>
-
-    }
-    else
-    {
-        <div class="row message-text">
-            <div class="row">
-                Zainteresowałes sie ofertą
-                <a href="@Url.Action("GetProperty","Property", new { id = Model.Order.Flat.FlatId})">
-                    @Model.Order.Flat.City @Model.Order.Flat.Street
-                </a>"
-                użytkownika @Model.Order.Flat.User.UserName
-
+                </div>
             </div>
 
+        }
+        else
+        {
+            <div class="row message-text">
+                <div class="row">
+                    Zainteresowałes sie ofertą
+                    <a href="@Url.Action("GetProperty","Property", new { id = Model.Order.Flat.FlatId})">
+                        @Model.Order.Flat.City @Model.Order.Flat.Street
+                    </a>"
+                    użytkownika @Model.Order.Flat.User.UserName
 
-            <div class="row">
-                Treść Wiadomości:<br />
-                @Model.Order.Description
+                </div>
+
+
+                <div class="row">
+                    Treść Wiadomości:<br />
+                    @Model.Order.Description
+                </div>
             </div>
-        </div>
 
-    }
-
+        }
     </div>
-
-
+</div>
