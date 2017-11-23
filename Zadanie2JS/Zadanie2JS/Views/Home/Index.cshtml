@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <form name="dane_osobowe">
+        <table>
+
+            <tr><td>Imię</td><td><input type="text" name="f_imie"><span class="err" id="e_imie" /></td></tr>
+            <tr>
+                <td>Nazwisko</td>
+                <td>
+
+                    <input type="text" name="f_nazwisko"><span class="err" id="e_nazwisko" />
+                </td>
+            </tr>
+            <tr>
+                <td>Płeć</td>
+                <td>
+                    <input name="f_plec" value="f_k" checked type="radio" onclick="showElement('NazwiskoPanienskie')" />kobieta<br />
+                    <input name="f_plec" value="f_m" type="radio" onclick="hideElement('NazwiskoPanienskie')" />mężczyzna
+                </td>
+            </tr>
+
+            <tr>
+
+                <td>
+                    N. panieńskie
+                </td>
+                <td>
+                    <span id="NazwiskoPanienskie">  <input type="text" name="f_nazwisko_p">  </span>
+                </td>
+            </tr>
+
+            <tr><td>E-mail</td><td><input type="text" name="f_email"> <span class="err" id="e_email" /></td></tr>
+            <tr><td>Kod pocztowy</td><td><input type="text" name="f_kod" id="test" onkeypress="checkZIPCodeRegEx()"><span  id="kod" /></td></tr>
+            <tr><td>Ulica/Osiedle</td><td><input type="text" name="f_ulica"><span class="err" id="e_ulica" /></td></tr>
+            <tr><td>Miasto</td><td><input type="text" name="f_miasto"><span class="err" id="e_miasto" /></td></tr>
+            <tr>
+                <td>Uwagi</td>
+                <td>
+                    <textarea rows="5" cols="15" name="uwagi"></textarea>
+                </td>
+            </tr>
+            <tr><td colspan="2"><input type="submit" value="Prześlij" onclick="return validate(this.form)"></td></tr>
+        </table>
+    </form>
+
+</div>
+
+@section scripts{
+    <script>
+        function demoVisibility() {
+        }
+    </script>
+    <script src="~/Scripts/validationForm.js"></script>
+}
