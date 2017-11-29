@@ -1,0 +1,32 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.Data.RepeaterData
+@{
+    var items = new Mvc.Easy.Cms.Edit.Models.DataItemList((IEnumerable<Mvc.Easy.Cms.Edit.Models.DataItem>)ViewData["Items"]);
+}
+
+<div class="repeaterList">
+@Html.HiddenFor(m => items)
+@Html.HiddenFor(m => m.Count)
+<div class="repeaterLines">
+@for (var i = 0; i < Model.Count; i++)
+{
+    @Html.EditorFor(m => m[i], "ECmsRepeaterLineEdit", new { Items = ViewData["Items"], RowIndex = i, Prefix = ViewData.TemplateInfo.HtmlFieldPrefix })
+}
+</div>
+<div class="addButton">
+    <button type="button" data-ecms-icon="ui-icon-plusthick" onclick="ecms.addRepeaterItem($(this).parent(), '@ViewData.TemplateInfo.HtmlFieldPrefix');">Add</button>
+    @if (Model.Attributes.Count > 0)
+    {
+    <div class="hidden">
+    @for (int i = 0; i < Model.Attributes.Count; i++)
+    {
+    <div class="ecmsRow">
+    @Html.LabelFor(m => m.Attributes[i].Value, Model.Attributes[i].Name)
+    @Html.HiddenFor(m => m.Attributes[i].Name)
+    @Html.TextBoxFor(m => m.Attributes[i].Value)
+    </div>
+    }
+    </div>    
+    <button type="button" data-ecms-icon="ui-icon-comment" onclick="ecms.showExtraProperties(this);">@Context.GetResourceText("Buttons_Properties", "Properties")</button>
+    }
+</div>
+</div>

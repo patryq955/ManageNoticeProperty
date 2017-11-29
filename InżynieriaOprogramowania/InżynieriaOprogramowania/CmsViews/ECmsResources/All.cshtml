@@ -1,0 +1,14 @@
+﻿@{
+    var resources = new Dictionary<string, string>();
+    foreach (string key in new string[] { "Text_Confirm_Delete", "Text_Ajax_Loading", "Text_ImageSelector_EnterUrl", "Text_ImageSelector_Select", 
+        "Text_ImageSelector_Submit", "Titles_Repeater_NewItem", "Titles_PageData", "Titles_ChangePassword", "Titles_Login", "Titles_EditItem", "Buttons_Save",
+        "Titles_Rename", "Titles_CreateFolder", "Titles_OpenFile", "Titles_ServerExplorer", "Titles_Upload"})
+    {
+        var resourceValue = Context.GetResourceText(key);
+        if(!string.IsNullOrEmpty(resourceValue))
+        {
+            resources[key] = resourceValue.Replace("'", "&quote;");
+        }
+    }
+}
+@foreach (string key in resources.Keys){<text>window.ecms.resources.@Html.Raw(key)='@Html.Raw(resources[key])';</text>}

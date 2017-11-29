@@ -1,0 +1,16 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.AccountLogIn
+
+@using (Ajax.BeginForm(new AjaxOptions() { HttpMethod = "POST" }))
+{
+<div class="account">
+    @Html.ValidationSummary()
+    <div class="ecmsRow">
+        <span class="ecmsTitle">@Html.LabelFor(m => m.UserName, Context.GetResourceText("Titles_Account_User_Name", "User name"))</span>
+        @Html.TextBoxFor(m => m.UserName)
+    </div>
+    <div class="ecmsRow">
+        <span class="ecmsTitle">@Html.LabelFor(m => m.Password, Context.GetResourceText("Titles_Account_Password", "Password"))</span>
+        @Html.PasswordFor(m => m.Password)
+    </div>
+</div>
+}

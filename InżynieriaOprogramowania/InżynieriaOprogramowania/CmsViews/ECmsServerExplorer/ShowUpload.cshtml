@@ -1,0 +1,5 @@
+﻿
+@using (Html.BeginForm("ShowUpload", "ECmsServerExplorer", FormMethod.Get, new { @class = "uploadForm", id = "ecmsSEUpload", onsubmit = "ecms.ajaxLoader.trigger('ajaxStart'); return ecms.SE.onFileUpload()" }))
+{
+    <iframe id="ecmsSEUploadIframe" src="@Url.Action("Upload", "ECmsServerExplorer", new { explorerPath = Model })" height="47" frameborder="0" scrolling="no"></iframe> 
+}

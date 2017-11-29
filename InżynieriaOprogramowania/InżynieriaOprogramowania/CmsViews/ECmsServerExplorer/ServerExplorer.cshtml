@@ -1,0 +1,30 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.ServerExplorerModel
+@using (Ajax.BeginForm(new AjaxOptions() { HttpMethod = "POST" }))
+{
+    <div class="serverExplorer">
+        <div id="ecmsSETopActions">
+            <ul>
+                <li id="ecmsselect_top">@Context.GetResourceText("SE_Buttons_Select", "Select")</li>
+                <li id="ecmsopen_top">@Context.GetResourceText("SE_Buttons_Open", "Open")</li>
+                <li id="ecmsdelete_top">@Context.GetResourceText("SE_Buttons_Delete", "Delete")</li>
+                <li id="ecmsrename_top">@Context.GetResourceText("SE_Buttons_Rename", "Rename")</li>
+                <li id="ecmscreate_top">@Context.GetResourceText("SE_Buttons_New_Folder", "New Folder")</li>
+                <li id="ecmsupload_top">@Context.GetResourceText("SE_Buttons_Upload", "Upload")</li>
+            </ul>
+        </div>
+        @Html.Partial(Mvc.Easy.Cms.Edit.CmsViewsPath.BuildPath("ECmsServerExplorer/Tree.cshtml"), Model.Root)
+        <div id="ecmsSEContent" data-content-actions="create,upload">
+            @Html.Partial(Mvc.Easy.Cms.Edit.CmsViewsPath.BuildPath("ECmsServerExplorer/Content.cshtml"), Model.Content)
+        </div>
+    </div>    
+    <div class="contextMenu" id="ecmsSEContextMenu" style="display: none;">
+        <ul>
+            <li id="ecmsselect">@Context.GetResourceText("SE_Buttons_Select", "Select")</li>
+            <li id="ecmsopen">@Context.GetResourceText("SE_Buttons_Open", "Open")</li>
+            <li id="ecmsdelete">@Context.GetResourceText("SE_Buttons_Delete", "Delete")</li>
+            <li id="ecmsrename">@Context.GetResourceText("SE_Buttons_Rename", "Rename")</li>
+            <li id="ecmscreate">@Context.GetResourceText("SE_Buttons_New_Folder", "New Folder")</li>
+            <li id="ecmsupload">@Context.GetResourceText("SE_Buttons_Upload", "Upload")</li>
+        </ul>
+    </div>
+}

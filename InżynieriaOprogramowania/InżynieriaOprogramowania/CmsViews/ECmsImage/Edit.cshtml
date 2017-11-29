@@ -1,0 +1,6 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.Entity<Mvc.Easy.Cms.Edit.Models.Data.ImageData>
+
+@using (Ajax.BeginForm(new AjaxOptions() { HttpMethod = "POST" }))
+{
+    @Html.EditorFor(m => m.Data, "ECmsImageEdit")
+}

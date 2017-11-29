@@ -1,0 +1,9 @@
+﻿@model Mvc.Easy.Cms.Models.CmsImageModel
+@{
+    var attributes = Model.Attributes.ToList();
+    var srcAttribute = attributes.FirstOrDefault(a => a.StartsWith("src="));
+}
+@if (!string.IsNullOrEmpty(srcAttribute) || Mvc.Easy.Cms.Edit.CmsEditContext.Current.IsInEditMode)
+{
+<img @Html.Raw(string.Join(" ", attributes))/>
+}

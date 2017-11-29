@@ -1,0 +1,28 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.Data.DataSet
+@{
+    var items = new Mvc.Easy.Cms.Edit.Models.DataItemList((IEnumerable<Mvc.Easy.Cms.Edit.Models.DataItem>)ViewData["Items"]);
+    var rowIndex = (int)ViewData["RowIndex"];
+    
+    var dataPrefix = ViewData.TemplateInfo.HtmlFieldPrefix;
+    var itemPrefix = dataPrefix + "_item";
+    var linePrefix = dataPrefix + "_line";
+    var parentPrefix = (string)ViewData["Prefix"];
+    var itemsId = parentPrefix + "_items";
+
+    ViewData.ModelState.Clear();
+}
+
+<div id='@linePrefix' class="ecmsRpRow ui-state-default" data-ecms-row="@rowIndex">
+    @Html.Hidden("Position", rowIndex, new { @class = "position"})
+    <span class="itemText">
+    @foreach (var item in items)
+    {
+        @Model.ToString(item.Key)
+    }
+    </span>
+    <button type="button" data-ecms-icon="ui-icon-wrench" onclick="ecms.editRepeaterItem('@dataPrefix', @rowIndex, '@itemsId', '@parentPrefix');">@Context.GetResourceText("Buttons_Edit", "Edit")</button>
+    <button type="button" data-ecms-icon="ui-icon-trash" onclick="ecms.deleteRepeaterItem(this);" class="ecmsDelete">@Context.GetResourceText("Buttons_Delete", "Delete")</button>
+    <div class="hidden" id="@itemPrefix">
+    @Html.Partial("EditorTemplates/ECmsRepeaterLineDataEdit", Model, ViewData)
+    </div>
+</div>

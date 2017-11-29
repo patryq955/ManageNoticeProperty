@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<records>
+  <record id="admin" type="Mvc.Easy.Cms.Infrastructure.Authentication.CmsUser, Mvc.Easy.Cms.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">&lt;CmsUser xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Mvc.Easy.Cms.Infrastructure.Authentication"&gt;&lt;FailedLogins&gt;0&lt;/FailedLogins&gt;&lt;LockedTime i:nil="true" /&gt;&lt;PasswordHash&gt;6367C48DD193D56EA7B0BAAD25B19455E529F5EE&lt;/PasswordHash&gt;&lt;UserName&gt;admin&lt;/UserName&gt;&lt;/CmsUser&gt;</record>
+</records>

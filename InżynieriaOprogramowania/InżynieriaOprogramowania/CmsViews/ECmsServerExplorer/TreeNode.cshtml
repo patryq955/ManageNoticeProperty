@@ -1,0 +1,25 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.TreeNode
+@if (Model.Info.IsFolder)
+{
+    <li  @(Model.IsLast ? "class=last" : string.Empty)><div class="node" data-content-actions="@Model.Info.ActionList">
+    @if (Model.HasChilds)
+            {
+                <span class="@(Model.ChildSelected ? "minus" : "plus")"></span>
+            }
+    <span class="folder" data-content-path="@Model.Info.Path" data-content-type="folder" data-content-name="@Model.Info.Name"></span><span class="nodeTitle@(Model.Seleted ? " selected" : string.Empty)" data-content-path="@Model.Info.Path" data-content-type="folder" data-content-name="@Model.Info.Name">@Model.Info.Name</span></div>
+        @if (Model.HasChilds)
+        {
+            Model.Childs.Last().IsLast = true;
+            <ul class="subTree @(Model.IsLast ? "last" : string.Empty)" style="@(Model.ChildSelected ? string.Empty : "display:none;")">
+                @foreach (var item in Model.Childs)
+                {
+                    @Html.Partial(Mvc.Easy.Cms.Edit.CmsViewsPath.BuildPath("ECmsServerExplorer/TreeNode.cshtml"), item);
+                }
+            </ul>
+        }
+    </li>
+}
+else
+{ 
+    <li>@Model.Info.Name</li>
+}

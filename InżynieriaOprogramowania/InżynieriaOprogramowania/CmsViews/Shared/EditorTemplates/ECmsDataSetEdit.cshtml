@@ -1,0 +1,22 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.Data.DataSet
+@{
+    var items = new Mvc.Easy.Cms.Edit.Models.DataItemList((IEnumerable<Mvc.Easy.Cms.Edit.Models.DataItem>)ViewData["Items"]);
+}
+
+@Html.HiddenFor(m => items)
+<div class="dataset">
+    @Html.Partial("EditorTemplates/ECmsRepeaterLineDataEdit", Model, ViewData)
+    @if (Model.Attributes.Count > 0)
+    {
+        for (int i = 0; i < Model.Attributes.Count; i++)
+        {
+        <div class="ecmsRow">
+        <span class="ecmsTitle">
+            @Model.Attributes[i].Name
+        </span>
+        @Html.HiddenFor(m => m.Attributes[i].Name)
+        @Html.TextBoxFor(m => m.Attributes[i].Value)
+        </div>
+        }
+    }
+</div>

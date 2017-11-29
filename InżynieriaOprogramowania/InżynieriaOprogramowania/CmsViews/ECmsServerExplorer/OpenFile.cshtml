@@ -1,0 +1,13 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.OpenFileModel
+
+@using (Html.BeginForm())
+{
+    if (Model.IsImage)
+    {
+        <img alt="" src="@Url.Content(Model.Path)" style="max-width:1024px;" />
+    }
+    else
+    {
+        <iframe width="800" frameborder="0" src="@Url.Content(Model.Path)"></iframe>
+    }
+}

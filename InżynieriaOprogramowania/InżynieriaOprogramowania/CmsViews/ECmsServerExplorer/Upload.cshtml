@@ -1,0 +1,69 @@
+﻿@model string
+<link href="@Url.Content("~/Content/mvc.easy.cms.css")" rel="stylesheet" type="text/css" />
+
+<body class="fu-body">
+@using (Html.BeginForm("Upload", "ECmsServerExplorer", FormMethod.Post, new { enctype = "multipart/form-data", name = "ecmsSEUpload", id = "ecmsSEUpload" }))
+{
+    @Html.Hidden("explorerPath", Model)
+    <table cellpadding="0" cellspacing="0">
+      <tr>
+        <td class="fu-upload-cnt">
+           <input class="fu-uploadfile first" name="files" type="file" />
+           <input class="fu-uploadfile" name="files" type="file" />
+           <input class="fu-uploadfile" name="files" type="file" />
+           <input class="fu-uploadfile" name="files" type="file" />
+           <input class="fu-uploadfile" name="files" type="file" />
+           <input class="fu-uploadfile" name="files" type="file" />
+           <input class="fu-uploadfile" name="files" type="file" />
+           <input class="fu-uploadfile" name="files" type="file" />
+           <input class="fu-uploadfile" name="files" type="file" />
+           <input class="fu-uploadfile last" name="files" type="file" />
+        </td>
+        <td valign="bottom"><a id="addbtn" class="fu-addbtn" type="button" onclick="ecmsAddFileInput();"></a></td>
+      </tr>
+    </table>
+}
+<script type="text/javascript">
+    var form = document.getElementById('ecmsSEUpload');
+
+    if (window.parent.ecms != null) {
+        window.parent.ecms.SE.onFileUpload = function () {
+            form.submit();
+            return false;
+        }
+    }
+
+    function ecmsAddFileInput() {
+        var inputs = document.getElementsByName('files');
+        if (!window.getComputedStyle) {
+            window.getComputedStyle = function (el, pseudo) {
+                this.el = el;
+                this.getPropertyValue = function (prop) {
+                    var re = /(\-([a-z]){1})/g;
+                    if (prop == 'float') prop = 'styleFloat';
+                    if (re.test(prop)) {
+                        prop = prop.replace(re, function () {
+                            return arguments[2].toUpperCase();
+                        });
+                    }
+                    return el.currentStyle[prop] ? el.currentStyle[prop] : null;
+                }
+                return this;
+            }
+        }
+
+        for (var i = 0; i < inputs.length; i++) {
+            if (window.getComputedStyle(inputs[i], null).getPropertyValue('display') == 'none') {
+                inputs[i].style.display = 'inline-block';
+                var wnd = window.parent.document.getElementById('ecmsSEUploadIframe');
+                wnd.setAttribute('height', parseInt(wnd.getAttribute('height')) + inputs[1].offsetHeight + 4);
+
+                if (i == inputs.length - 1)
+                    document.getElementById('addbtn').style.display = 'none';
+                
+                return;
+            }
+        }
+    }
+</script>
+</body>

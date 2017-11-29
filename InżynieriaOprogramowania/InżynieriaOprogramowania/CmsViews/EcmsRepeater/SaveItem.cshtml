@@ -1,0 +1,6 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.RepeaterItemEntity
+@{ 
+    var htmlPath = Model.Prefix + string.Format(".[{0}]", Model.RowIndex);
+}
+
+@Html.EditorFor(m => m.Data, "ECmsRepeaterLineEdit", htmlPath, new { Items = Model.Items, RowIndex = Model.RowIndex, Prefix = Model.Prefix })

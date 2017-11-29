@@ -1,0 +1,6 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.HtmlEntity
+
+@using (Ajax.BeginForm(new AjaxOptions() { HttpMethod = "POST"}))
+{
+    @Html.EditorFor(m => m.Data, "ECmsHtmlEdit")
+}

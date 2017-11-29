@@ -1,0 +1,9 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.EditorEntity
+@{
+    string templateName =  string.Format("ECms{0}Edit", ViewBag.ScriptType);
+}
+
+@using (Ajax.BeginForm(new AjaxOptions() { HttpMethod = "POST" }))
+{
+    @Html.EditorFor(m => m.Data, templateName)
+}

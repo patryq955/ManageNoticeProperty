@@ -1,0 +1,14 @@
+﻿ @if (Mvc.Easy.Cms.Edit.CmsEditContext.Current.IsInEditMode)
+ {
+<div class="adminPanel ui-widget-header ui-corner-all">
+    <span class="header">@Context.GetResourceText("Titles_Admin_Panel", "ADMIN PANEL")</span>
+    <span id="radio">
+		<input type="radio" id="preview" name="editmode" checked="checked" onchange="window.ecms.state.changeMode('preview');"/><label for="preview">@Context.GetResourceText("Buttons_Preview", "Preview")</label>
+		<input type="radio" id="edit" name="editmode" onchange="window.ecms.state.changeMode('edit');"/><label for="edit">@Context.GetResourceText("Buttons_Inline", "Inline")</label>
+	</span> 
+    <a href="javascript:ecms.SE.showServerExplorerPopUp();">@Context.GetResourceText("Buttons_Server_Explorer", "Server explorer")</a>
+    <a href="javascript:ecms.getPageData();">@Context.GetResourceText("Buttons_Edit_Page_Data", "Edit page data")</a>
+    <a onclick="javascript:ecms.changePassword();">@Context.GetResourceText("Buttons_Change_Password", "Change password")</a>
+    @Html.ActionLink(Context.GetResourceText("Buttons_Log_Out", "Log Out"), "Logout", "ECmsAccount", new { returnUrl = HttpUtility.UrlEncode(ViewContext.HttpContext.Request.Url.PathAndQuery) }, null)
+</div>
+ }

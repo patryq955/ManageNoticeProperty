@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Buttons_Change_Password" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="Buttons_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Buttons_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Buttons_Edit_Page_Data" xml:space="preserve">
+    <value>Edit page data</value>
+  </data>
+  <data name="Buttons_File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Buttons_Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="Buttons_Inline" xml:space="preserve">
+    <value>Inline</value>
+  </data>
+  <data name="Buttons_Log_Out" xml:space="preserve">
+    <value>Log Out</value>
+  </data>
+  <data name="Buttons_Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="Buttons_Properties" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="Buttons_Server_Explorer" xml:space="preserve">
+    <value>Server explorer</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="SE_Buttons_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="SE_Buttons_New_Folder" xml:space="preserve">
+    <value>New Folder</value>
+  </data>
+  <data name="SE_Buttons_Rename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="SE_Buttons_Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SE_Buttons_Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="SE_Titles_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SE_Titles_Root_Name" xml:space="preserve">
+    <value>root</value>
+  </data>
+  <data name="SE_Titles_Size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="SE_Validation_Directory_Already_Exists" xml:space="preserve">
+    <value>Directory with such name already exists.</value>
+  </data>
+  <data name="SE_Validation_File_Already_Exists" xml:space="preserve">
+    <value>File with such name already exists.</value>
+  </data>
+  <data name="SE_Validation_Name_Has_Invalid_Chars" xml:space="preserve">
+    <value>Name has path invalid characters.</value>
+  </data>
+  <data name="Titles_Account_Confirm_Password" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="Titles_Account_New_Password" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="Titles_Account_Old_Password" xml:space="preserve">
+    <value>Old password</value>
+  </data>
+  <data name="Titles_Account_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Titles_Account_User_Name" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="Titles_Admin_Panel" xml:space="preserve">
+    <value>ADMIN PANEL</value>
+  </data>
+  <data name="Titles_Page_Data_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Titles_Page_Data_Storage_Local" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="Titles_Page_Data_Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="Validation_Account_Comapre_Passwords" xml:space="preserve">
+    <value>'Confirm password' and 'New password' do not match.</value>
+  </data>
+  <data name="Validation_Account_Confirm_Password_Required" xml:space="preserve">
+    <value>Confirm password is required.</value>
+  </data>
+  <data name="Validation_Account_New_Password_Required" xml:space="preserve">
+    <value>New password is required.</value>
+  </data>
+  <data name="Validation_Account_Old_Password_Required" xml:space="preserve">
+    <value>Old password is required.</value>
+  </data>
+  <data name="Validation_Account_Password_Required" xml:space="preserve">
+    <value>Password is required.</value>
+  </data>
+  <data name="Validation_Account_User_Name_Required" xml:space="preserve">
+    <value>User name is required.</value>
+  </data>
+  <data name="Validation_Invalid_Credentials" xml:space="preserve">
+    <value>The user name or password provided is incorrect.</value>
+  </data>
+  <data name="Validation_Old_Password_Invalid" xml:space="preserve">
+    <value>The old password provided is incorrect.</value>
+  </data>
+  <data name="Text_Confirm_Delete" xml:space="preserve">
+    <value>Are you sure you want to delete?</value>
+  </data>
+  <data name="Buttons_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Text_Ajax_Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="Text_ImageSelector_EnterUrl" xml:space="preserve">
+    <value>Enter URL:</value>
+  </data>
+  <data name="Text_ImageSelector_Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="Text_ImageSelector_Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Titles_ChangePassword" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="Titles_CreateFolder" xml:space="preserve">
+    <value>Create folder</value>
+  </data>
+  <data name="Titles_EditItem" xml:space="preserve">
+    <value>Edit - </value>
+  </data>
+  <data name="Titles_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Titles_OpenFile" xml:space="preserve">
+    <value>Open file - </value>
+  </data>
+  <data name="Titles_PageData" xml:space="preserve">
+    <value>Page data</value>
+  </data>
+  <data name="Titles_Rename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="Titles_ServerExplorer" xml:space="preserve">
+    <value>Server explorer</value>
+  </data>
+  <data name="Titles_Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="Title_Repeater_NewItem" xml:space="preserve">
+    <value>New item</value>
+  </data>
+</root>

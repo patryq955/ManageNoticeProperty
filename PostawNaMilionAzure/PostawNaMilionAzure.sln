@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostawNaMilionAzure", "PostawNaMilionAzure\PostawNaMilionAzure.csproj", "{FC9F9ED6-5A41-4914-9507-D1F9C509F2BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostawNaMilionAzure.Tests", "PostawNaMilionAzure.Tests\PostawNaMilionAzure.Tests.csproj", "{22776424-8DFA-4044-88F8-801392C0F8BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC9F9ED6-5A41-4914-9507-D1F9C509F2BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC9F9ED6-5A41-4914-9507-D1F9C509F2BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC9F9ED6-5A41-4914-9507-D1F9C509F2BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC9F9ED6-5A41-4914-9507-D1F9C509F2BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22776424-8DFA-4044-88F8-801392C0F8BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22776424-8DFA-4044-88F8-801392C0F8BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22776424-8DFA-4044-88F8-801392C0F8BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22776424-8DFA-4044-88F8-801392C0F8BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

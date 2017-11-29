@@ -1,0 +1,542 @@
+﻿.adminPanel
+{
+    text-align : right;
+    padding : 10px;
+    margin : 5px;
+    font-size: 12px;
+}
+
+.adminPanel #radio
+{
+    margin-right : 50px;
+}
+
+.adminPanel .header
+{
+    float : left;
+    display: block;
+    padding-top : 10px;
+}
+
+.hidden
+{
+    display : none;
+}
+.cmsForm
+{
+    font-size: 12px;
+}
+.cmsForm input[type="text"], 
+.cmsForm input[type="password"], 
+.ecmsRow input[type="text"]
+{
+    width : 365px;
+}
+
+.repeaterList
+{
+}
+
+.repeaterList .itemText
+{
+    width : 429px;
+    width : 428px\0/IE89;
+    display : inline-block;
+}
+
+.repeaterList .addButton
+{
+    border-top:1px solid LightGray;
+    text-align : right;
+    padding-top : 5px;
+    margin-top : 5px;
+}
+
+#ajaxLoader
+{
+    display : none;
+}
+
+#ajaxLoader .overlay
+{
+	position: absolute;
+	z-index: 2005;
+	color: #fff;
+	background-color: #666;
+	margin: 0;
+	padding: 0;
+	opacity: 0.5;
+	filter: alpha(opacity=95);
+	-ms-filter: "alpha(opacity=95)";
+	width : 100%;
+	height : 100%;
+	top : 0;
+	left : 0;
+    
+}
+
+#ajaxLoader div.loading
+{
+    position: absolute;
+    top : 50%;
+    left : 50%;
+    z-index: 2006;
+    background-image : url(ajax-loader.gif);
+    background-repeat : no-repeat;
+    padding-left : 20px;
+    color : #FFF;
+}
+
+.ecmsRow
+{
+    min-height : 35px;
+}
+
+.dataset .ecmsRow
+{
+    height : auto;
+    padding-bottom : 5px;
+}
+
+.ecmsRpRow
+{
+    min-height : 28px;
+    padding: 2px;
+    cursor : pointer;
+}
+
+.ecmsRpRow.rowselected
+{
+    border : 0 !important;
+}
+
+.ecmsRow .ecmsTitle, .ecmsRow label
+{
+    display : inline-block;
+    width : 130px;
+}
+
+.account .ecmsRow .ecmsTitle, .account .ecmsRow label
+{
+    width : 150px;
+}
+
+.pageData .masterData
+{
+    height : 400px;
+    overflow : auto;
+}
+
+.pageData .dataValue
+{
+    width : 450px;
+}
+
+.pageData .dataValueData
+{
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.pageData .idValue
+{
+    width : 150px;
+}
+
+.ecmsTitle label, .ecmsRow label
+{
+    font-size : 13px;
+    font-weight : normal;
+}
+
+.pageData table {
+    border: solid 1px #e8eef4;
+    border-collapse: collapse;
+}
+
+.pageData table td {
+    padding: 5px;
+    border: solid 1px #e8eef4;
+    vertical-align : top;
+}
+
+.pageData table th {
+    padding: 6px 5px;
+    text-align: left;
+    background-color: #e8eef4;
+    border: solid 1px #e8eef4;
+}
+.ecmsDelete, .button.ui-button-icon-only
+{
+    width: 30px !important;
+}
+:root .ecmsDelete 
+{ 
+    margin-right: 2px\0/IE9; 
+}
+.redBorder{
+    border: 1px solid Red !important;
+}
+
+.serverExplorer ul
+{
+    list-style-type:none;
+    padding:0px;
+    margin:0px;
+}
+
+.serverExplorer li
+{
+    background-position: 0px 0px;
+    background-repeat:repeat-y;
+}
+#jqContextMenu ul 
+{
+    width: 112px !important;
+}
+#jqContextMenu ul li, #ecmsSETopActions ul li
+{
+    height: 18px;
+    padding-left: 26px !important;
+    background-image: url(themes/base/images/icons.png);
+    background-repeat: no-repeat;
+    
+}
+#ecmsSETopActions ul li
+{
+    display : inline-block;
+    cursor : pointer;
+    height : 23px;
+    line-height : 25px;
+}
+li#ecmsselect, li#ecmsselect_top
+{
+    background-position: -3px -1539px;
+}
+li#ecmsdelete, li#ecmsdelete_top
+{
+    background-position: -2px -1377px;
+}
+li#ecmsrename, li#ecmsrename_top
+{
+    background-position: -2px -1408px;
+}
+li#ecmscreate, li#ecmscreate_top
+{
+    background-position: -4px -1471px;
+}
+li#ecmsupload, li#ecmsupload_top
+{
+    background-position: -1px -1440px;
+}
+li#ecmsopen, li#ecmsopen_top
+{
+    background-position: -4px -1504px;
+}
+.fa-right-table
+{
+    font-size: 12px;
+}
+.fa-right-table th
+{
+    background: #eeeeee;
+}
+.fa-right-table td
+{
+    padding: 2px 5px 3px 5px;
+    line-height: 20px;
+}
+.fa-right-table td a
+{
+    line-height: 16px;
+    float: left;
+    text-decoration: none;
+    line-height: 19px;
+}
+.fa-right-table td > span,
+.uploadBtn
+{
+    float: left;
+    height: 20px !important;
+    width: 20px !important;
+    padding-right: 2px;
+    background-image: url(themes/base/images/icons.png);
+    background-repeat: no-repeat;
+}
+.uploadBtn
+{
+    display: inline-block;
+    background-position: -6px -1440px;
+    margin-bottom: 3px;
+    float: none;
+    padding-left: 20px;
+    text-decoration: none !important;
+    font-size: 12px;
+    width: auto !important;
+    line-height: 25px;
+}
+.fa-right-table .folder
+{
+    background-position: -7px -1223px !important;
+}
+.serverExplorer
+{
+    font-size: 12px;
+}
+.serverExplorer table {
+    border: solid 1px #e8eef4;
+    border-collapse: collapse;
+}
+.serverExplorer table td {
+    padding: 5px;
+    border: solid 1px #e8eef4;
+}
+.serverExplorer table th {
+    padding: 6px 5px;
+    text-align: left;
+    background-color: #e8eef4;
+    border: solid 1px #e8eef4;
+}
+.serverExplorer li .node
+{
+    padding-left:20px;
+    background-image:url(themes/base/images/horizontal_dots.png);
+    background-position: 0px 0px;
+    background-repeat:no-repeat;
+}
+.serverExplorer li.last > .node
+{
+    background-image:url(themes/base/images/horizontal_dots_last.png);
+}
+.serverExplorer .minus
+{
+    display:inline-block;
+    width:11px;
+    height:11px;
+    cursor:pointer;
+    margin-left: -18px;
+    margin-right: 7px;
+    background-image:url(themes/base/images/plus_minus.png);
+    background-position: 0 -11px;
+}
+
+.serverExplorer .plus
+{
+    display:inline-block;
+    width:11px;
+    height:11px;
+    cursor:pointer;
+    margin-left: -18px;
+    margin-right: 7px;
+    background-image:url(themes/base/images/plus_minus.png);
+    background-position: 0 0px;
+}
+
+.serverExplorer a
+{
+    display:inline-block;
+}
+
+.serverExplorer .folder
+{
+    width:18px;
+    height:18px;
+    background-image:url(themes/base/images/icons.png);
+    background-position: -39px -1221px;
+    display:inline-block;
+    cursor:pointer;
+}
+
+.fa-right-table .name > span
+{
+    background-position: -6px -680px;
+}
+.jpg, .jpeg
+{
+    background-position: -6px -903px !important;
+}
+.psd
+{
+    background-position: -5px -133px !important;
+}
+.png, .gif, .bmp
+{
+    background-position: -7px -38px !important;
+}
+.exe
+{
+    background-position: -7px -966px !important;
+}
+.pdf
+{
+    background-position: -5px -804px !important;
+}
+.config
+{
+    background-position: -6px -359px !important;
+}
+.rtf, .doc, .docx
+{
+    background-position: -7px -455px !important;
+}
+.csv, .txt, .css
+{
+    background-position: -7px -230px !important;
+}
+.rts, .pdb
+{
+    background-position: -6px -680px !important;
+}
+.xsl, .xslx
+{
+    background-position: -7px -518px !important;
+}
+.js
+{
+    background-position: -7px -998px !important;
+}
+.avi, .mp4, .mpeg, .flv, .3gp 
+{
+    background-position: -6px -936px !important;
+}
+.swf
+{
+    background-position: -6px -872px !important;
+}
+.nodeTitle
+{
+    padding-left: 2px;
+    cursor: pointer;
+}
+.serverExplorer .subTree
+{
+    margin-left:18px;
+}
+.serverExplorer tr.hover
+{
+    background-color:#E8EEF4;
+}
+.serverExplorer .selected
+{
+    background-color:#E8EEF4;
+}
+.serverExplorer #ecmsSETree
+{
+    margin-right: 10px;
+}
+.serverExplorer #ecmsSETree > ul > li > .subTree
+{
+    margin-left: 0;
+    padding-left: 18px;
+    background: #FFFFFF;
+}
+.serverExplorer #ecmsSETree > ul > li .subTree
+{
+    margin-left: 0;
+    padding-left: 18px;
+    background:url(themes/base/images/vertical_dots.png) repeat-y;
+}
+.serverExplorer #ecmsSETree > ul > li .last.subTree
+{
+    background:none;
+}
+.serverExplorer #ecmsSETree, .serverExplorer #ecmsSEContent
+{
+    height: 450px;
+    overflow: auto;
+}
+.serverExplorer #ecmsSEContent
+{
+    width: 600px; 
+    float: left;
+}
+.serverExplorer .headerLine
+{
+    
+}
+#jqContextMenu .hidden, #ecmsSETopActions li.hidden
+{
+    display : none !important;
+}
+.cleditorPrompt button
+{
+    margin-left: 5px;
+}
+.uploadForm
+{
+    min-height : auto !important;
+}
+#ecmsSETopActions
+{
+    padding-bottom : 5px;
+}
+.fu-body
+{
+    margin-bottom: 0;
+}
+.fu-addbtn
+{
+    float: right;
+    background: transparent url(themes/base/images/icons.png) no-repeat -5px -1581px;
+    margin-top: 1px;
+    height: 24px;
+    width: 24px;
+    border: none;
+    cursor: pointer;
+    margin: 0 0 3px 7px;
+}
+:root .fu-addbtn
+{
+    margin-bottom: 0px\0/IE9;
+}
+.fu-uploadbtn
+{
+    float: right;
+    margin-right: 24px;
+}
+.fu-upload-cnt
+{
+    width: 100px;
+}
+.fu-uploadfile
+{
+    height: 26px;
+    margin: 0 0 4px 0;
+    margin: 0 0 1px 0\0/IE89;
+    display: none;
+}
+:root .fu-uploadfile
+{
+    height: 22px\0/IE9;
+    margin: 0 0 4px 0\0/IE9;
+}
+.fu-uploadfile.first
+{
+    display: inline-block;
+}
+.hover
+{
+    cursor: pointer;
+}
+.file-size
+{
+    width: 80px;
+}
+.ecmsRpRow
+{
+    width: 499px;
+}
+.ui-dialog .ui-dialog-title
+{
+    font-size: 13px;
+}
+.cmsForm .ui-widget
+{
+    margin-left: 5px;
+}
+.cmsForm .repeaterLines .ui-widget,
+.ecmsRow .ui-widget,
+.cmsForm table td .ui-widget
+{
+    margin-left: 0;
+}

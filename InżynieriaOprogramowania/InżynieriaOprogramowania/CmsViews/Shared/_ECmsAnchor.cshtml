@@ -1,0 +1,16 @@
+﻿@model Mvc.Easy.Cms.Models.CmsAnchorModel
+@{
+    var attributes = Model.Attributes.ToList();
+    var text = Model.Content;
+    
+    if (Model.Data != null)
+    {
+        text = string.IsNullOrEmpty(Model.Data.Text) ? Model.Data.Href : Model.Data.Text;
+    }
+    
+    var hrefAttribute = attributes.FirstOrDefault(a => a.StartsWith("href="));
+}
+@if (!string.IsNullOrEmpty(hrefAttribute) || Mvc.Easy.Cms.Edit.CmsEditContext.Current.IsInEditMode)
+{
+<a @Html.Raw(string.Join(" ", attributes))>@Html.Raw(text)</a>
+}

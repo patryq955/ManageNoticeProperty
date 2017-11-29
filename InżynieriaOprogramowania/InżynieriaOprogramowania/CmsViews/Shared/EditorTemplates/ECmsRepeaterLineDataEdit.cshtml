@@ -1,0 +1,16 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.Data.DataSet
+@using Mvc.Easy.Cms.Edit;
+@{
+    var items = new Mvc.Easy.Cms.Edit.Models.DataItemList((IEnumerable<Mvc.Easy.Cms.Edit.Models.DataItem>)ViewData["Items"]);
+}
+
+@for (var j = 0; j < items.Count; j++)
+{
+    @Html.Hidden(string.Format("[{0}].Key", j), items[j].Key)
+    <div class="ecmsRow">
+    <span class="ecmsTitle">
+    @items[j].Key
+    </span>
+    @Html.EditorFor(m => m[items[j].Key], string.Format("ECms{0}Edit", items[j].Type), string.Format("[{0}].Value", j), new { Items = items[j].Children })
+    </div>
+}

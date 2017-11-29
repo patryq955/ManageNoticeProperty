@@ -1,0 +1,35 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.TreeNode
+<table width="100%" class="fa-right-table">
+    <tr class="headerLine">
+        <th>
+            @Context.GetResourceText("SE_Titles_Name", "Name")
+        </th>
+        <th class="file-size">
+            @Context.GetResourceText("SE_Titles_Size", "Size")
+        </th>
+    </tr>
+    @foreach (var node in Model.Childs)
+    {
+        if (node.Info.IsFolder)
+        {
+        <tr class="contentRow" data-content-type="folder" data-content-path="@node.Info.Path" data-content-actions="@node.Info.ActionList" data-content-name="@node.Info.Name">
+            <td><span class="folder"></span>@node.Info.Name
+            </td>
+            <td class="file-size">
+            </td>
+        </tr>
+        }
+        else
+        { 
+        <tr class="contentRow" data-content-type="file" data-content-actions="@node.Info.ActionList" data-content-path="@node.Info.Path" data-content-virtualpath="@Url.Content(node.Info.VirtualPath)" data-content-name="@node.Info.Name">
+            <td class="name"><span class="@(string.IsNullOrEmpty(node.Info.Extention) ? string.Empty : node.Info.Extention.Substring(1).ToLower())"></span>@node.Info.Name
+            </td>
+            <td class="file-size">@node.Info.SizeToDisplay
+            </td>
+        </tr>
+        }
+    }
+</table>
+<script type="text/javascript">
+    ecms.SE.contentHover();
+</script>

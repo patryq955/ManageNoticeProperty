@@ -1,0 +1,16 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.NameDialogModel
+           
+@using (Ajax.BeginForm(new AjaxOptions() { HttpMethod = "POST" }))
+{ 
+    @Html.ValidationSummary()
+    <div class="ecmsRow">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name)
+    </div>
+
+    @Html.HiddenFor(model => model.Path)
+    @Html.HiddenFor(model => model.IsFolder)
+}
+<script type="text/javascript">
+    $('#@(ViewData.TemplateInfo.GetFullHtmlFieldId("Name"))').select();
+</script>

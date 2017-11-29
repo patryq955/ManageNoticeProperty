@@ -1,0 +1,27 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.Data.ImageData
+
+@Html.TextBoxFor(m => m.Src)
+<div class="hidden">
+<div class="ecmsRow">
+@Html.LabelFor(m => m.AltText)
+@Html.TextBoxFor(m => m.AltText)
+</div>
+<div class="ecmsRow">
+@Html.LabelFor(m => m.Width)
+@Html.TextBoxFor(m => m.Width)
+</div>
+<div class="ecmsRow">
+@Html.LabelFor(m => m.Height)
+@Html.TextBoxFor(m => m.Height)
+</div>
+@for (int i = 0; i < Model.Attributes.Count; i++)
+{
+<div class="ecmsRow">
+@Html.LabelFor(m => m.Attributes[i].Value, Model.Attributes[i].Name)
+@Html.HiddenFor(m => m.Attributes[i].Name)
+@Html.TextBoxFor(m => m.Attributes[i].Value)
+</div>
+}
+</div>
+<button type="button" data-ecms-icon="ui-icon-comment" onclick="ecms.showExtraProperties(this);">@Context.GetResourceText("Buttons_Properties", "Properties")</button>
+<button type="button" data-ecms-icon="ui-icon-image" onclick="ecms.onImageSelect($(this).closest('form').find('#@(ViewData.TemplateInfo.GetFullHtmlFieldId("Src"))'));">@Context.GetResourceText("Buttons_Image", "Image")</button>

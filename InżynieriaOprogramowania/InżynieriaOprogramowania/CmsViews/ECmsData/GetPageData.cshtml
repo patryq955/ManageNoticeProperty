@@ -1,0 +1,42 @@
+﻿@model Dictionary<string, IEnumerable<Mvc.Easy.Cms.Edit.Models.PageDataItem>>
+
+@using (Html.BeginForm())
+{
+<div class="pageData tabs">
+    <ul>
+    @{ 
+        var i = 0; 
+        foreach(string master in Model.Keys)
+        {
+            <li><a href='#master@(i)'>@(string.IsNullOrEmpty(master) ? Context.GetResourceText("Titles_Page_Data_Storage_Local", "Local") : Context.GetResourceText("Titles_Page_Data_Storage_" +  master, master))</a></li>
+            i++;
+        }
+    }
+    </ul>
+     @{
+         i = 0; 
+         foreach(string master in Model.Keys)
+         {
+          <div class="masterData" id='master@(i)'>
+          <table>
+          <tr>
+            <td><b>@Context.GetResourceText("Titles_Page_Data_Name", "Name")</b></td>
+            <td colspan="3"><b>@Context.GetResourceText("Titles_Page_Data_Value", "Value")</b></td>
+          </tr>
+            @foreach (var item in Model[master])
+            {
+                <tr>
+                    <td class="idValue">@item.Id</td>
+                    <td class="dataValue"><div class="dataValueData">@Html.Raw(item.Value)</div></td>
+                    <td><button type="button" data-ecms-icon="ui-icon-wrench" onclick="ecms.editPageDataItem('@item.Key', this);">@Context.GetResourceText("Buttons_Edit", "Edit")</button></td>
+                    <td><button type="button" data-ecms-icon="ui-icon-trash" onclick="ecms.clearPageDataItem('@item.Key', this);">@Context.GetResourceText("Buttons_Delete", "Delete")</button></td>
+                </tr>
+            }
+            </table>
+            </div>
+            i++;
+         }
+     }
+
+</div>
+}

@@ -1,0 +1,25 @@
+﻿@model Mvc.Easy.Cms.Models.CmsRepeaterModel
+<@Html.Raw(Model.TagName) @Html.Raw(string.Join(" ", Model.Attributes))>
+@if(Model.Data != null)
+{
+for (var i = 0; i < Model.Data.Count; i++)
+{
+    if (i % 2 == 0)
+    { 
+        @Html.Partial(Mvc.Easy.Cms.Edit.CmsViewsPath.BuildPath("/Shared/_ECmsDataItem.cshtml"), new Mvc.Easy.Cms.Models.CmsDataItemModel(Model) { IsChildModel = true, Id = i.ToString() }.SetContent(Model.Item))
+    }
+    else
+    { 
+        @Html.Partial(Mvc.Easy.Cms.Edit.CmsViewsPath.BuildPath("/Shared/_ECmsDataItem.cshtml"), new Mvc.Easy.Cms.Models.CmsDataItemModel(Model) { IsChildModel = true, Id = i.ToString() }.SetContent(Model.AltItem ?? Model.Item))
+    }
+    if (i != Model.Data.Count - 1)
+    { 
+        @Html.Raw(Model.Separator)
+    }
+}
+}
+else
+{
+    @Html.Raw(Model.Content)
+}
+</@Html.Raw(Model.TagName)>

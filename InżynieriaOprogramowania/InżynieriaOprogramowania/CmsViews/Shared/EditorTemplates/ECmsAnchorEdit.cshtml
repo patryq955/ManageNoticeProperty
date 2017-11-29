@@ -1,0 +1,36 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.Data.AnchorData
+
+@Html.TextBoxFor(m => m.Href)
+@Html.ValidationMessageFor(m => m.Href, "*")
+<div class="hidden">
+<div class="ecmsRow">
+@Html.LabelFor(m => m.Title)
+@Html.TextBoxFor(m => m.Title)
+@Html.ValidationMessageFor(m => m.Title, "*")
+</div>
+<div class="ecmsRow">
+@Html.LabelFor(m => m.Text)
+@Html.TextBoxFor(m => m.Text)
+@Html.ValidationMessageFor(m => m.Text, "*")
+</div>
+<div class="ecmsRow">
+@Html.LabelFor(m => m.Target)
+@Html.DropDownListFor(m => m.Target, new List<SelectListItem>() { 
+    new SelectListItem(){ Text = string.Empty, Value = string.Empty},
+    new SelectListItem(){ Text = "self", Value = "_self", Selected = Model.Target == "_self"},
+    new SelectListItem(){ Text = "parent", Value = "_parent", Selected = Model.Target == "_parent"},
+    new SelectListItem(){ Text = "top", Value = "_top", Selected = Model.Target == "_top"},
+    new SelectListItem(){ Text = "blank", Value = "_blank", Selected = Model.Target == "_blank"}
+})
+</div>
+@for (int i = 0; i < Model.Attributes.Count; i++)
+{
+<div class="ecmsRow">
+@Html.LabelFor(m => m.Attributes[i].Value, Model.Attributes[i].Name)
+@Html.HiddenFor(m => m.Attributes[i].Name)
+@Html.TextBoxFor(m => m.Attributes[i].Value)
+</div>
+}
+</div>
+<button type="button" data-ecms-icon="ui-icon-comment" onclick="ecms.showExtraProperties(this);">@Context.GetResourceText("Buttons_Properties", "Properties")</button>
+<button type="button" data-ecms-icon="ui-icon-image" onclick="ecms.onImageSelect($(this).closest('form').find('#@(ViewData.TemplateInfo.GetFullHtmlFieldId("Href"))'));">@Context.GetResourceText("Buttons_File", "File")</button>

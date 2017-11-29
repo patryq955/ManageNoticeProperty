@@ -1,0 +1,9 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.RepeaterEntity
+
+@using (Ajax.BeginForm(new AjaxOptions() { HttpMethod = "POST", Url =
+    Url.Content(string.Format("~/EcmsRepeater/Save?pageId={0}&id={1}&location={2}&attributes={3}", ViewContext.HttpContext.Request.QueryString["pageId"], Model.Id,
+    ViewContext.HttpContext.Request.QueryString["location"], ViewContext.HttpContext.Request.QueryString["attributes"]))
+}))
+{
+    @Html.EditorFor(m => m.Data, "ECmsRepeaterEdit", new { Items = Model.Items })
+}

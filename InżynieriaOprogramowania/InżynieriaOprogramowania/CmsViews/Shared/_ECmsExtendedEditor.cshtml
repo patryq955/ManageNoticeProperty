@@ -1,0 +1,5 @@
+﻿@model Mvc.Easy.Cms.Models.CmsExtendedEditorModel
+@if (Model.Data != null || Mvc.Easy.Cms.Edit.CmsEditContext.Current.IsInEditMode)
+{
+@:<@Html.Raw(Model.TagName) @Html.Raw(string.Join(" ", Model.Attributes))>@Html.Raw(Model.Data != null ? Model.Content : string.Empty)</@Html.Raw(Model.TagName)>
+}

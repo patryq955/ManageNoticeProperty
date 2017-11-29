@@ -1,0 +1,13 @@
+﻿@{
+    if (this.ViewData.ModelMetadata.AdditionalValues.ContainsKey("Item"))
+    {
+        ViewData["Items"] = ((Mvc.Easy.Cms.Edit.Models.DataItem)this.ViewData.ModelMetadata.AdditionalValues["Item"]).Children;
+    }
+    
+    if (this.ViewData.ModelMetadata.AdditionalValues.ContainsKey("ItemType"))
+    {
+        ViewData["ItemType"] = this.ViewData.ModelMetadata.AdditionalValues["ItemType"];
+    }
+}
+
+@Html.Partial(string.Format("EditorTemplates/ECms{0}Edit", ViewData["ItemType"]), (object)Model, ViewData)

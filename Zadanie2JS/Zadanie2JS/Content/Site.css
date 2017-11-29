@@ -36,3 +36,7 @@ textarea {
 .red{
     color:red;
 }
+
+.wrong {
+    border: solid red 2px;
+}

@@ -1,0 +1,8 @@
+﻿@model Mvc.Easy.Cms.Edit.Models.RepeaterItemEntity
+@using (Ajax.BeginForm(new AjaxOptions() { HttpMethod = "POST", Url = Url.Content("~/ECmsRepeater/SaveItem") }))
+{
+    @Html.HiddenFor(m => m.Items)
+    @Html.HiddenFor(m => m.RowIndex)
+    @Html.HiddenFor(m => m.Prefix)
+    @Html.EditorFor(m => m.Data, "ECmsRepeaterLineDataEdit", string.Format("{0}.[{1}]", Model.Prefix, Model.RowIndex), new { Items = Model.Items })
+}

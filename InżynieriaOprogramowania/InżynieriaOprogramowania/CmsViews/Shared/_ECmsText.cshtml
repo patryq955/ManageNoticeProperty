@@ -1,0 +1,2 @@
+﻿@model Mvc.Easy.Cms.Models.CmsTextModel
+<@Html.Raw(Model.TagName) @Html.Raw(string.Join(" ", Model.Attributes))@(Model.IsEmptyContent ? Html.Raw("/>") : Html.Raw(">"))@Html.Raw(Model.Data == null ? Model.Content : Model.Data.Text)@(Model.IsEmptyContent ? Html.Raw(string.Empty) : Html.Raw("</" + Model.TagName + ">"))

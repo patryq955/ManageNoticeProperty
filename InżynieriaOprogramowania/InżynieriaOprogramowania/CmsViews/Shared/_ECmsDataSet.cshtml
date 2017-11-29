@@ -1,0 +1,11 @@
+﻿@model Mvc.Easy.Cms.Models.CmsDataSetModel
+<@Html.Raw(Model.TagName) @Html.Raw(string.Join(" ", Model.Attributes))>
+@if (Model.Data != null)
+{
+    @Html.Partial(Mvc.Easy.Cms.Edit.CmsViewsPath.BuildPath("/Shared/_ECmsDataItem.cshtml"), new Mvc.Easy.Cms.Models.CmsDataItemModel(Model) { IsChildModel = true }.SetContent(Model.Item))
+}
+else
+{
+    @Html.Raw(Model.Content)
+}
+</@Html.Raw(Model.TagName)>
